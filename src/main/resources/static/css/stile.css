@@ -1,0 +1,416 @@
+@import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
+@import url('https://fonts.cdnfonts.com/css/comics');
+
+span.comic-title{
+	color:red;
+}
+div.font-effect-shadow-multiple {
+
+	font-family: 'Rancho', sans-serif;
+     font-size:40px;
+     color: white;
+}
+
+/*a.navbar-brand{
+	font-family: 'Sofia', sans-serif;
+	font-size: 30px;
+	
+}*/
+
+.cerca{
+	margin-top:5px;
+}
+textarea{
+   width: 200px; /* Puoi regolare la larghezza a tuo piacimento */
+    height: 30px; /* Puoi regolare l'altezza a tuo piacimento */
+    border-radius: 8px; /* Puoi regolare il raggio del bordo a tuo piacimento */
+    resize: none; /* Opzione per impedire il ridimensionamento della textarea da parte dell'utente */
+	
+}
+h1,h2,.commento{
+	font-family: 'Comics', sans-serif;
+	/*text-decoration : line-through wavy red;*/
+	color: #000000;
+	
+}
+
+
+body{
+	font-family:cursive;
+	background-image: url("../images/basketball_013.jpg");
+	background-position:center;
+	 background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
+    margin: 0; /* Rimuove i margini predefiniti del body */
+
+	
+}
+
+.logo{
+	display:flex;
+	margin-right:200;
+}
+
+.register-btn{
+	margin-left:200px;
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  outline: none; /* Rimuove la bordatura predefinita sul focus */
+}
+ .btn{
+ display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  outline: none; /* Rimuove la bordatura predefinita sul focus */
+}
+  .register-btn:focus,
+  .register-btn:hover,
+  .btn:hover,
+  .btn:focus {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+ .btn2{
+ display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff0000;;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  outline: none; /* Rimuove la bordatura predefinita sul focus */
+}
+  .btn2:hover,
+  .btn2:focus {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+.containerPlayer{
+	bottom:150;
+	font-size:16px;
+}
+
+.carousel-caption h5{
+	
+  font-family: 'Comics', sans-serif;
+	/*text-decoration : line-through wavy red;*/
+	color: #000000;
+}
+.carousel-caption{
+	justify-content: center;
+    align-items: center;
+    margin-bottom: 170px;
+}
+.carousel-item{
+	margin-top:50px;
+	background-size:cover;
+}
+/*footer*/
+.footer-index{
+	
+			bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 300px;
+	
+	
+}
+
+.footer-teams-default{
+	        bottom:0;
+            position:fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 300px;
+}
+.footer-reg {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 30px;
+        }
+.footer-login {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 202px;
+        }
+.footer-teams-trovati{
+	        bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 300px;
+	
+}
+.footer-search{
+	
+	        bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 300px;
+}
+.footer-players {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 336px;
+        }
+.footer-player {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 288px;
+        }
+        
+        .footer-reg-suc{
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 25px;
+        }
+        .footer {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 70px;
+        }
+        
+        .menu {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .menu__item {
+            list-style: none;
+        }
+        
+        
+        .menu__link {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 0 10px;
+            display: inline-block;
+            transition: 0.5s;
+            text-decoration: none;
+            opacity: 0.75;
+            font-weight: 300;
+        }
+        
+        .menu__link:hover {
+            opacity: 1;
+        }
+        
+
+        .containerTeam-admin{
+             margin: -200px 700px 0px;
+        }
+     /*container artisti*/
+     .containerPlayers-link{
+     text-align:center;
+     align-items: center;
+     }
+     /*login e registrazione*/  
+     .registrazione{
+     text-align:center;
+     margin-top:30px;
+        justify-content:center;
+        align-items: center;
+     }
+      .container-reg{
+        margin: auto;
+        width: 50%; /* o qualsiasi larghezza desiderata */
+        display:flex;
+        position:relative;
+        justify-content:center;
+        align-items: center;
+        text-transform: uppercase;
+        font-size:16px;
+        text-align: center;
+       }
+       
+        .container-login {
+          font-size:16px;
+          text-decoration:none;
+          text-transform: uppercase;
+          overflow: hidden;
+        }
+        .container-login-suc {
+          display:inline-block;
+          color:black;
+          font-size:16px;
+          text-decoration:none;
+          text-transform: uppercase;
+          overflow: hidden;
+          margin: auto;
+        }
+        .Congratulazioni{
+           text-decoration: underline; /* Aggiunge una sottolineatura */
+    text-decoration-color: red; /* Colore della sottolineatura */
+}
+li{
+	list-style:none;
+} 
+
+    input {
+        border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati solo al lato destro */
+        transition: background-color 0.3s, color 0.3s; /* aggiungi una transizione per un effetto più fluido */
+        
+  }
+  input:hover {
+     background-color: rgba(128, 128, 128, 0.5);
+     color: #fff;
+  }
+    label {
+        display: inline-block;
+        width: 100px; /* Imposta la larghezza desiderata */
+        text-align: right; /* Allinea il testo a destra */
+        margin-right: 10px; /* Aggiunge un margine destro per separare le etichette dagli input */
+        padding: 5px; /* Aggiunge spaziatura interna per una migliore presentazione */
+}
+.comment-section{
+	align-items:center;
+	margin-right:50px;
+	margin-bottom:0px;
+	margin-left: 600px;
+	margin-top:180px;
+	line-height:30px;
+	text-align:center
+}
+
+
+.containerTeam{
+	line-height:30px;
+}
+.containerPlayers{
+	text-align:center;
+	align-items:center;
+}
+  .containerCerca {
+  align-items:center;
+  line-height:100px;
+  }    
+  
+   .link-player{
+   font-weight:bold;
+   }
+  .players-title-page{
+  margin-left:30px;
+  }
+.player-details{
+	
+	margin-top:20px;
+}
+.membership-details{
+	margin-top:20px;
+	}
+	.players-list{
+	margin-top:20px;
+	} 
+   .lista-teams {
+            margin-top:20px;
+        }
+        
+     .name-team-list{
+     
+      font-weight:bold;
+       transition: transform 0.3s;/*Aggiunge un'animazione di transizione al cambiamento 
+                                                   della proprietà transform, che viene utilizzata quando il cursore 
+                                                   si posiziona su una card.*/
+     }
+     .name-team-list:hover {
+         transform: scale(1.05);
+         
+     }
+   .card {
+    margin: 0;
+    padding: 0;
+}

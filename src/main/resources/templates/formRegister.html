@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+	   <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+     <link  rel="icon" href="../static/images/boom.png" type="image/x-icon">
+      <link rel="stylesheet" href="../static/css/stile.css">
+    
+     <!-- font -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Alumni+Sans+Collegiate+One&display=swap" rel="stylesheet">
+   
+    <!-- titolo pagina -->
+    
+    <title>Nerdando - Registrazione</title>
+</head>
+
+<body>
+ 		<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="font-effect-shadow-multiple">Siw-Federation</div>
+     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+	<div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+	
+		<ul class="navbar-nav">
+		<li class="nav-item home">
+				<a class="nav-link" href="/index">Home</a>
+			  </li>
+			<li class="nav-item ml-auto" th:unless="${#request.userPrincipal}">
+				<a class="nav-link" href="/login">Login</a>
+			  </li>
+			  <li class="nav-item ml-auto" th:if="${#request.userPrincipal}">
+				<span class="nav-link logged-as-text">Logged as: <span th:text="${#request.userPrincipal.name}"></span></span>
+			  </li>
+			  <li class="nav-item ml-auto" th:if="${#request.userPrincipal}">
+				<a class="nav-link" href="/logout">Logout</a>
+			  </li>
+		</ul>
+	  </div>
+</nav>
+	</header>
+
+
+	<h1 class="registrazione">Registrazione nuovo utente</h1>
+	<div class="container-reg">
+	<form th:action="@{/register}" method="POST">
+	
+	<div>
+			<label>Nome:</label>
+			<ul>
+			 <li>
+			<span><input type="text" placeholder="name" required th:field="${user.name}" /></span>
+			 </li>
+			  <li>
+			<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}" th:style="'color:red'"></span>
+			 </li>
+			</ul>
+		</div>
+		<div>
+			<label>Cognome:</label>
+			<ul> 
+			<li>
+			 <span><input type="text" placeholder="surname" required th:field="${user.surname}" /></span>
+			  </li>
+			   <li>
+			<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}" th:style="'color:red'"></span>
+			 </li>
+			 </ul>
+		</div>
+		<div>
+			<label>Codice Fiscale:</label>
+			<ul>
+			<li>
+			<span><input type="text" placeholder="fiscal code" required th:field="${user.fiscalCode}" /></span>
+			</li>
+			<li>
+			<span th:if="${#fields.hasErrors('user.fiscalCode')}" th:errors="${user.fiscalCode}" th:style="'color:red'"></span>
+		</li>
+		</ul>
+		</div>
+		<div>
+			<label>Luogo di Nascita:</label>
+			<ul>
+			<li>
+			<span><input type="text" placeholder="place of birth" required th:field="${user.placeOfBirth}" /></span>
+			</li>
+			<li>
+			<span th:if="${#fields.hasErrors('user.placeOfBirth')}" th:errors="${user.placeOfBirth}" th:style="'color:red'"></span>
+		</li>
+		</ul>
+		</div>
+		<div>
+			<label>Data di Nascita:</label>
+			<ul>
+			<li>
+			<span><input type="date" placeholder="birth date" required th:field="${user.birthDate}" /></span>
+			</li>
+			<li>
+			<span th:if="${#fields.hasErrors('user.birthDate')}" th:errors="${user.birthDate}" th:style="'color:red'"></span>
+		</li>
+		</ul>
+		</div>
+		
+		<div>
+			<label>Username:</label>
+			<ul>
+			<li>
+			<span><input type="text" placeholder="username" required th:field="${credentials.username}" id="username"/></span>
+			</li>
+			<li>
+			<span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></span>
+		</li>
+		</ul>
+		</div>
+		<div>
+			<label>Password:</label>
+			<ul>
+			<li> <span><input type="password" placeholder="password" required th:field="${credentials.password}" /></span>
+			</li>
+			<li><span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></span>
+			</li>
+		</ul>
+		</div>
+		
+    <!-- Altri campi del form per User e Credentials -->
+
+    <!-- Campo per selezionare la squadra solo se l'utente è presidente -->
+   <!-- <label for="isPresident">Sei un presidente?</label>
+    <input type="checkbox" id="isPresident" name="isPresident" th:checked="${isPresident}" />
+
+    <div th:if="${isPresident}">
+       
+        <label for="teamId">Scegli la tua squadra:</label>
+        <select id="teamId" name="teamId">
+            <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
+        </select>
+         <div>
+			<label>Nome:</label>
+			<ul>
+			 <li>
+			<span><input type="text" placeholder="name" required th:field="${president.name}" th:attr="${isPresident} ? '' : 'disabled=true'"/></span>
+			 </li>
+			  <li>
+			<span th:if="${#fields.hasErrors('president.surname')}" th:errors="${president.name}" th:style="'color:red'"th:attr="${isPresident} ? '' : 'disabled=true'"></span>
+			 </li>
+			</ul>
+		</div>
+		<div>
+			<label>Cognome:</label>
+			<ul>
+			 <li>
+			<span><input type="text" placeholder="surname" required th:field="${president.surname}" th:attr="${isPresident} ? '' : 'disabled=true'"/></span>
+			 </li>
+			  <li>
+			<span th:if="${#fields.hasErrors('president.surname')}" th:errors="${president.surname}" th:style="'color:red'" th:attr="${isPresident} ? '' : 'disabled=true'"></span>
+			 </li>
+			</ul>
+		</div>
+       <div>
+        <label for="fiscalCode">Codice Fiscale:</label>
+        <ul>
+        <li><input type="text" id="fiscalCode" name="fiscalCode" th:field="${president.fiscalCode}" th:attr="${isPresident} ? '' : 'disabled=true'"/></li>
+       </ul>
+       </div>
+       
+       <div>
+        <label for="birthDate">Data di Nascita:</label>
+        <ul>
+        <li><input type="text" id="birthDate" name="birthDate" th:field="${president.birthDate}" th:attr="${isPresident} ? '' : 'disabled=true'"/></li>
+        </ul>
+        </div>
+        
+        <label for="placeOfBirth">Luogo di Nascita:</label>
+        <ul>
+        <li><input type="text" id="placeOfBirth" name="placeOfBirth" th:field="${president.placeOfBirth}" th:attr="${isPresident} ? '' : 'disabled=true'"/></li>
+        </ul>
+        </div>-->
+			
+		
+		<div>
+			<button class="btn" th:href="@{/registerSuccesLogin.html}" type="submit">Registra</button>
+		</div>
+	</form>
+	</div>
+	
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+   
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+   
+</body>
+
+</html>

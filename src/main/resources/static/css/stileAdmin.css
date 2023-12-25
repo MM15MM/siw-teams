@@ -1,0 +1,463 @@
+@import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
+@import url('https://fonts.cdnfonts.com/css/comics');
+
+
+
+
+    html{
+        cursor: url("https://localhost:8082/../images/pokeball.png"), auto;
+        /* Imposta il percorso dell'immagine desiderata e 'auto' come fallback */
+    }
+
+
+div.font-effect-shadow-multiple {
+
+	font-family: 'Rancho', sans-serif;
+     font-size:40px;
+     color: white;
+}
+
+body{
+	font-family:cursive;
+	background-image: url("../images/basketball_013.jpg");
+	background-position:center;
+	 background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
+    margin: 0; /* Rimuove i margini predefiniti del body */
+
+
+	/*min-height: 100vh; /* Impedisce che il footer si sovrapponga al contenuto */
+	
+	
+}
+
+.logo{
+	display:flex;
+	margin-right:200;
+}
+h1{
+	font-family: 'Comics', sans-serif;
+	/*text-decoration : line-through wavy red;*/
+	color: #000000;
+	
+}
+h2{
+	font-family: 'Comics', sans-serif;
+	/*text-decoration : line-through wavy red;*/
+	color: #000000;
+	
+}
+.cerca{
+	margin-top:5px;
+}
+
+textarea{
+    width: 200px; /* Puoi regolare la larghezza a tuo piacimento */
+    height: 100px; /* Puoi regolare l'altezza a tuo piacimento */
+    border-radius: 8px; /* Puoi regolare il raggio del bordo a tuo piacimento */
+    resize: none; /* Opzione per impedire il ridimensionamento della textarea da parte dell'utente */
+	
+}
+
+.aggiorna-fumetto{
+    text-align: center;
+    margin-top: 50px; /* Regola il margine superiore a tuo piacimento */
+    justify-content:center;
+    margin-left:40px;
+}
+.autori-up{
+	margin-left:30px;
+	margin-top:20px;
+}
+.fumetti{
+    text-align: center;
+    margin-top: 50px; /* Regola il margine superiore a tuo piacimento */
+}
+
+ .btn{
+ display: inline-block;
+  padding: 10px 20px;
+  background-color: #3498db;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  outline: none; /* Rimuove la bordatura predefinita sul focus */
+}
+  .btn:hover,
+  .btn:focus {
+  background-color: #2980b9;
+  transform: scale(1.05);
+}
+
+ .btn2{
+ display: inline-block;
+  padding: 10px 20px;
+  background-color: #ff0000;;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+  outline: none; /* Rimuove la bordatura predefinita sul focus */
+}
+  .btn2:hover,
+  .btn2:focus {
+  background-color: #cc0000;
+  transform: scale(1.05);
+}
+
+li{
+	list-style:none;
+} 
+    input {
+        border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati solo al lato destro */
+  }
+    label {
+        display: inline-block;
+        width: 100px; /* Imposta la larghezza desiderata */
+        text-align: right; /* Allinea il testo a destra */
+        margin-right: 10px; /* Aggiunge un margine destro per separare le etichette dagli input */
+        padding: 5px; /* Aggiunge spaziatura interna per una migliore presentazione */
+}
+      .footer-update-comic{
+             bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 100px;
+      }
+      .footer-comics-admin{            
+	        bottom:0;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 1000px
+            }
+       .footer-ricerca-comic{
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 189px;
+       }
+       
+
+    .comic-title-card h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;  /* Aggiungi uno spazio inferiore tra il titolo e il paragrafo */
+    font-weight:bold;
+   /* color:red;*/
+}         .footer-update-players{
+	
+	            bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 98px;
+          }
+       
+        .footer-nuovo-player{
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 196px;
+        }
+        .footer-nuovo-team{
+            bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 98px;
+        }
+        .footer {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 70px;
+        }
+        .footer-team{
+        
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 180px;
+        
+        }
+        .footer-index{
+            /*bottom:100;*/
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 148px;
+        }
+        .footer-player {
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 264px;
+        }
+        
+        .footer-teams-trovati{
+            bottom:100;
+            position: absolute;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 380px;
+        }
+        
+        .footer-teams-admin{
+            bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 1000px;
+        }
+        
+        .footer-players {
+            bottom:0;
+            position: fixed;
+            width: 100%;
+            background: #282828;
+            min-height: 50px;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-top: 336px;
+        }
+        
+        .menu {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px 0;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .menu__item {
+            list-style: none;
+        }
+        
+        
+        .menu__link {
+            font-size: 1.2rem;
+            color: #fff;
+            margin: 0 10px;
+            display: inline-block;
+            transition: 0.5s;
+            text-decoration: none;
+            opacity: 0.75;
+            font-weight: 300;
+        }
+        
+        .menu__link:hover {
+            opacity: 1;
+        }
+        
+        .comic-image{
+          width: 250px; /* Larghezza del box */
+          height: 300px; /* Altezza del box */
+          border: 1px solid #ccc; /* Bordo del box */
+          padding: 10px; /* Spazio interno del box */
+          margin: 60px 300px 0px; /* Margine: 10px in alto, 0 a destra, 10px in basso, -20px a sinistra */
+          display:flex;
+          align-items:center;
+          transition:border-width 0.3s;
+        }
+        .comic-image:hover {
+        border-width: 5px; /* Cambia la larghezza del bordo al passaggio del mouse */
+        }
+        .comic-image img{
+          max-width: 100%; /* L'immagine si adatta alla larghezza del box */
+         max-height: 100%; /* L'immagine si adatta all'altezza del box */
+        }
+        
+        .players-update-team{
+            margin-bottom:125px;
+        }
+        
+        .container-index-admin{
+        text-transform: uppercase;
+        font-size:16px;
+        line-height:30px;
+        }
+        /*.containerTeam-admin{
+             margin: -200px 600px 0px;
+        }*/
+       .containerTeamUpdate{
+           margin-bottom:300px;
+       }
+       .container-reg{
+        text-transform: uppercase;
+        font-size:16px;
+       }
+        .container-login {
+          display:inline-block;
+          padding:10px 20px;
+          color:black;
+          font-size:16px;
+          text-decoration:none;
+          text-transform: uppercase;
+          overflow: hidden;
+          /*margin: -300px 650px 40px;*/
+        }
+        .container-newPlayer{
+        text-transform: uppercase;
+        font-size:16px;
+        line-height:30px;
+        }
+        
+        /*.container-artisti{
+        text-transform: uppercase;
+        font-size:16px;
+        line-height:30px;
+        }*/
+
+   .container-searchComic-admin{
+        text-transform: uppercase;
+        font-size:16px;
+        line-height:30px;
+   }
+   .add-team{
+   margin-left:40px;
+   }
+   .admin-team-section{
+   margin-left:40px;
+   }
+   .players-update-team{
+   margin-top:50px;
+   }
+   .players-up{
+   margin-left:40px;
+   }
+   .search-comics-admin{
+   margin-top: 100px;
+   }
+   .indexClasse{
+   margin-top: 100px;
+     font-size:16px;
+        line-height:30px;
+   }
+   .link-player{
+   font-weight:bold;
+   }
+  .players-title-page{
+  margin-left:30px;
+  }
+.player-details{
+	
+	margin-top:20px;
+}
+.membership-details{
+	margin-top:20px;
+	}
+	.players-list{
+	margin-top:20px;
+	}
+  .lista-teams {
+            margin-top:20px;
+        }
+        
+     .name-team-list{
+     
+     margin-right:40px;
+      font-weight:bold;
+       transition: transform 0.3s;/*Aggiunge un'animazione di transizione al cambiamento 
+                                                   della proprietà transform, che viene utilizzata quando il cursore 
+                                                   si posiziona su una card.*/
+     }
+     .name-team-list:hover {
+         transform: scale(1.05);
+         
+     }
+   .card {
+    margin: 0;
+    padding: 0;
+}     
+
+   
+   
+   
+   
