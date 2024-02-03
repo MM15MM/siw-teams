@@ -66,7 +66,7 @@
   		</div>
 		
 		<div>
-			<label>Nome: </label> <span><input placeholder="title" type="text" th:field="${team.name}" /></span>
+			<label>Nome: </label> <span><input placeholder="name" type="text" th:field="${team.name}" /></span>
 		    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
 		</div>
 
@@ -77,6 +77,13 @@
 
 		<div>
 			<label>Indirizzo Sede:</label> <span><input placeholder="address" type="text" th:field="${team.address}" /></span>
+		</div>
+		
+		<div>
+			<label>URL:</label> <span><input placeholder="url immagine" type="url" th:field="${team.image}" /></span>
+		</div>
+		<div>
+			<label>Sport:</label> <span><input placeholder="sport" type="text" th:field="${team.sport}" /></span>
 		</div>
 
 		<div>

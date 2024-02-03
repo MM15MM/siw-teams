@@ -58,12 +58,18 @@
 <div class="containerComic my-5 text-center">
 	<h1>Ecco i risultati della ricerca</h1>
 	<div th:if="${teams.isEmpty()}">Non ci sono squadre che soddisfano i requisiti</div>
-	<ul th:if="${!teams.isEmpty()}" class="lista-teams">
-		<li th:each="team : ${teams}">
-			<a  th:href="@{'/admin' + '/team' + '/' + ${team.id}}"
-				th:text="${team.name}" class="name-team-list">Up! (2000)</a>
-		</li>
-	</ul>
+	<div th:if="${!teams.isEmpty()}" class="lista-teams">
+		<div th:each="team : ${teams}">
+		<div class="card">
+		
+			<a  th:href="@{'/admin' + '/team' + '/' + ${team.id}}">
+				<img th:src="@{${team.image}}" alt="Immagine della squadra" /></a>
+				<div class="card-elements">
+				<div class="team-name-card"> <h3 th:text="${team.name}"></h3></div>
+	         </div>
+		</div>
+	</div>
+	</div>
 	</div>
 
 	

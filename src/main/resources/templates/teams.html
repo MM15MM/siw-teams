@@ -66,13 +66,29 @@
 	</header>
 	<div class="containerTeams my-5 text-center">
 <h1 class="teams">Squadre</h1>
+
+<form th:action="@{/teams}" method="get">
+        <label for="sport">Seleziona sport:</label>
+        <select name="sport" id="sport">
+            <option value="">Tutti gli sport</option>
+            <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
+        </select>
+        
+        <button class="btn" type="submit">Filtra</button>
+    </form>
 <div th:if="${teams==null || teams.isEmpty()}" th:style="'color:red;'">Non ci sono squadre nel sistema</div>
 <div class="lista-teams">
 	<div th:each="team : ${teams}">
 	
-		<a th:href="@{'/team' + '/' + ${team.id}}" th:text="${team.name}" class="name-team-list"> Roma</a>
-	     
-	</div>
+		<div class="card">
+		<a th:href="@{'/team' + '/' + ${team.id}}">
+			<img th:src="@{${team.image}}" alt="Immagine del fumetto" /></a>
+			<div class="card-elements">
+				<div class="team-name-card"> <h3 th:text="${team.name}"></h3></div>
+	         </div>
+	    </div> 
+
+</div>
 </div>
 </div>
  <!--  <footer class="footer-teams">

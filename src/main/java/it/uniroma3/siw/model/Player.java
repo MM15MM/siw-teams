@@ -38,6 +38,9 @@ public class Player {
 	@NotBlank
     private String role;
 	
+	@NotBlank
+	private String sport;
+	
 	@Column(name = "membership_start_date")
 	 private LocalDate membershipStartDate;
 
@@ -60,6 +63,14 @@ public class Player {
 
     public Team getTeam() {
         return this.team;
+    }
+    /* getter e setter team*/
+    public void setSport(String sport) {
+        this.sport = sport;
+    }
+
+    public String getSport() {
+        return this.sport;
     }
     
     /*getter e setter nome*/

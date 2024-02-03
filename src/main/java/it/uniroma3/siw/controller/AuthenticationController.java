@@ -7,13 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import it.uniroma3.siw.controller.validator.CredentialsValidator;
 import it.uniroma3.siw.controller.validator.UserValidator;
 import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.User;
@@ -25,6 +26,10 @@ public class AuthenticationController {
 	
 	@Autowired
 	private UserValidator userValidator;
+	
+	@Autowired
+	private CredentialsValidator credentialsValidator;
+	
 	@Autowired
 	private CredentialsService credentialsService;
 
@@ -38,13 +43,6 @@ public class AuthenticationController {
 		model.addAttribute("user", new User());
 		return "formRegister";
 	}
-	
-	/*@GetMapping(value = "/registerPresident") 
-	public String showRegisterFormPresident (Model model) {
-		model.addAttribute("president", new President());
-		model.addAttribute("credentials", new Credentials());
-		return "president";
-	}*/
 	
 	@GetMapping(value = "/login") 
 	public String showLoginForm (Model model) {
@@ -78,8 +76,6 @@ public class AuthenticationController {
         return "index.html";
 	}
 		
-		/*Authentication loggedInUser = SecurityContextHolder.getContext().getAuthentication();
-String username = loggedInUser.getName();*/
 	
 
     @GetMapping(value = "/success")
@@ -88,39 +84,25 @@ String username = loggedInUser.getName();*/
     	Authentication userDetails =  SecurityContextHolder.getContext().getAuthentication();
 		String loggedUser = userDetails.getName();
     	Credentials credentials = credentialsService.getCredentials(loggedUser);
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+    	if (credentials != null && credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
             return "admin/indexAdmin.html";
         }
         return "index.html";
     }
-    
-
-  /*  @PostMapping(value = { "/register" })
-    public String registerUser(@Valid @ModelAttribute("user") User user,
-                 BindingResult userBindingResult, @Valid
-                 @ModelAttribute("credentials") Credentials credentials,
-                 BindingResult credentialsBindingResult,
-                 Model model) {
-
-		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
-        if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
-            userService.saveUser(user);
-            credentials.setUser(user);
-            credentialsService.saveCredentials(credentials);
-            model.addAttribute("user", user);
-            return "registrationSuccessful";
-        }
-        return "formRegister";
-    }*/
-    
+     
     @PostMapping(value = { "/register" })
     public String registerUser(@Valid @ModelAttribute("user") User user,
                  BindingResult userBindingResult, @Valid
                  @ModelAttribute("credentials") Credentials credentials,
                  BindingResult credentialsBindingResult,
                  Model model) {
-    	this.userValidator.validate(user, userBindingResult);
     	
+    	this.userValidator.validate(user, userBindingResult);
+    	if (this.credentialsValidator != null) {
+            this.credentialsValidator.validate(credentials, credentialsBindingResult);
+        }
+    	
+    	//this.credentialsValidator.validate(credentials,credentialsBindingResult);
 
 		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
@@ -128,7 +110,7 @@ String username = loggedInUser.getName();*/
             credentials.setUser(user);
             credentialsService.saveCredentials(credentials);
             model.addAttribute("user", user);
-            return "redirect:/success";
+            return "registrationSuccessful";
         }
         return "formRegister";
     }

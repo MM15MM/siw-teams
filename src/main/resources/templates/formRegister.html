@@ -17,10 +17,10 @@
    
     <!-- titolo pagina -->
     
-    <title>Nerdando - Registrazione</title>
+    <title>Siw-Federation - Registrazione</title>
 </head>
 
-<body>
+<body class="reg-form">
  		<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <div class="font-effect-shadow-multiple">Siw-Federation</div>
@@ -49,7 +49,7 @@
 	</header>
 
 
-	<h1 class="registrazione">Registrazione nuovo utente</h1>
+	<h1 class="registrazione">Registrazione nuovo Presidente</h1>
 	<div class="container-reg">
 	<form th:action="@{/register}" method="POST">
 	
@@ -60,7 +60,7 @@
 			<span><input type="text" placeholder="name" required th:field="${user.name}" /></span>
 			 </li>
 			  <li>
-			<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.name}" th:style="'color:red'"></span>
+			<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.nome}" th:style="'color:red'"></span>
 			 </li>
 			</ul>
 		</div>
@@ -71,7 +71,7 @@
 			 <span><input type="text" placeholder="surname" required th:field="${user.surname}" /></span>
 			  </li>
 			   <li>
-			<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.surname}" th:style="'color:red'"></span>
+			<span th:if="${#fields.hasErrors('user.surname')}" th:errors="${user.cognome}" th:style="'color:red'"></span>
 			 </li>
 			 </ul>
 		</div>

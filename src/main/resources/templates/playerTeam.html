@@ -82,18 +82,29 @@
     <select id="playerId" name="playerId">
         <option th:each="player : ${playersToAdd}" th:value="${player.id}" th:text="${player.name} + ' ' + ${player.surname}"></option>
     </select>
+    <label th:for="membershipStartDate">Data inizio tesseramento:</label>
+    <input type="date" th:id="membershipStartDate" th:name="membershipStartDate" th:value="*{membershipStartDate}" required />
 
-    <th:block th:each="player : ${playersToAdd}">
-        <input type="hidden" name="playerId" th:value="${player.id}" />
+    <label th:for="membershipEndDate">Data fine tesseramento:</label>
+    <input type="date" th:id="membershipEndDate" th:name="membershipEndDate" th:value="*{membershipEndDate}" required />
+    
+   <!-- <th:block th:each="player : ${playersToAdd}">-->
+        <!--  <input type="hidden" name="playerId" th:value="${player.id}" />
 
         <label th:for="membershipStartDate">Data inizio tesseramento:</label>
         <input type="date" th:id="membershipStartDate" th:name="membershipStartDate" th:value="*{membershipStartDate}" required />
 
         <label th:for="membershipEndDate">Data fine tesseramento:</label>
-        <input type="date" th:id="membershipEndDate" th:name="membershipEndDate" th:value="*{membershipEndDate}" required />
-    </th:block>
+        <input type="date" th:id="membershipEndDate" th:name="membershipEndDate" th:value="*{membershipEndDate}" required />-->
+    <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}" th:style="'color: red;'"></p></div>
+    
+  <!-- </th:block>-->
     <button class="btn" type="submit">Aggiungi Giocatore</button>
 </form>	
+    </div>
+    <div>
+      <a th:href="@{'/formNewPlayer/'+${team.id}}">Aggiungi un nuovo giocatore non presente nella lista</a>
     </div>
     <div>
       <a th:href="@{'/team/'+ ${team.id}}"><button type="button" class="btn2">Conferma</button></a>

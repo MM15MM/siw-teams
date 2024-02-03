@@ -26,6 +26,11 @@ public class Team {
 
 	    @NotBlank
 	    private String address;
+	    
+	    private String image;
+	    
+	    @NotBlank
+	    private String sport;
 
 	    @OneToOne(mappedBy = "team")
 	    private President president;
@@ -40,6 +45,24 @@ public class Team {
 		
 		public Long getId() {
 			return this.id;
+		}
+		
+		/*setter e getter sport*/
+		public void setImage(String img) {
+			this.image=img;
+		}
+		
+		public String getImage() {
+			return this.image;
+		}
+		
+		/*setter e getter sport*/
+		public void setSport(String s) {
+			this.sport=s;
+		}
+		
+		public String getSport() {
+			return this.sport;
 		}
 		
 		/*setter e getter nome*/

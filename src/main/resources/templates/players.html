@@ -33,7 +33,7 @@
 			<li class="nav-item home">
 				<a class="nav-link" href="/index">Home</a>
 			  </li>
-				<a class="nav-link" href="/teams">Elenco Squadre</a>
+				<li> <a class="nav-link" href="/teams">Elenco Squadre</a>
 			</li>
 			<li class="nav-item elenco-player">
 				<a class="nav-link" href="/players">Elenco Giocatori</a>
@@ -64,6 +64,15 @@
 	
 <div class="containerPlayers my-5 text-center">
     <h1 class="players-title-page">Giocatori</h1> 
+    <form th:action="@{/players}" method="get">
+        <label for="sport">Seleziona sport:</label>
+        <select name="sport" id="sport">
+            <option value="">Tutti gli sport</option>
+            <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
+        </select>
+        
+        <button class="btn" type="submit">Filtra</button>
+    </form>
     
     <div th:if="${players == null or players.isEmpty()}">Non ci sono giocatori nel sistema</div>
     <ul class="players-list">

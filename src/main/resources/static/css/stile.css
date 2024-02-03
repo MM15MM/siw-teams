@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
 @import url('https://fonts.cdnfonts.com/css/comics');
+@import url('https://fonts.cdnfonts.com/css/natural-precision');
 
 span.comic-title{
 	color:red;
@@ -16,6 +17,9 @@ div.font-effect-shadow-multiple {
 	font-size: 30px;
 	
 }*/
+.players-list-team{
+	margin-right:25px;
+}
 
 .cerca{
 	margin-top:5px;
@@ -28,16 +32,27 @@ textarea{
 	
 }
 h1,h2,.commento{
-	font-family: 'Comics', sans-serif;
+font-family: 'Natural Precision', sans-serif;                                              
 	/*text-decoration : line-through wavy red;*/
 	color: #000000;
 	
 }
 
-
+.reg-form, .login-form{
+    font-family:cursive;
+	background-image: url("../images/background1.jpg");
+	background-position:center;
+	 background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
+    margin: 0; /* Rimuove i margini predefiniti del body */
+     height: 125vh;
+	 backdrop-filter: blur(5px);
+	
+}
 body{
 	font-family:cursive;
-	background-image: url("../images/basketball_013.jpg");
+	background-image: url("../images/bkg1.jpg");
 	background-position:center;
 	 background-size: cover;
     background-repeat: no-repeat;
@@ -396,21 +411,81 @@ li{
 	margin-top:20px;
 	} 
    .lista-teams {
-            margin-top:20px;
+            margin-top:50px;
+            display: flex; /*Utilizza il modello di layout Flexbox*/
+            flex-wrap: wrap; /* Consente agli elementi figli di andare a capo quando raggiungono la fine della linea.*/
+            gap: 20px;/*Aggiunge uno spazio di 20 pixel tra gli elementi figli*/
+            margin-left: 30px;
+            margin-right:30px;
+            margin-bottom:100px;
         }
         
-     .name-team-list{
-     
+/*     .name-team-list{
+
       font-weight:bold;
        transition: transform 0.3s;/*Aggiunge un'animazione di transizione al cambiamento 
                                                    della proprietà transform, che viene utilizzata quando il cursore 
                                                    si posiziona su una card.*/
-     }
+   /*  }
      .name-team-list:hover {
          transform: scale(1.05);
          
-     }
-   .card {
-    margin: 0;
-    padding: 0;
+     }*/
+  
+        .card {
+         height:300px;
+            width: 200px;
+            border: 1px solid #ddd; /*Aggiunge un bordo sottile di colore grigio alle cards.*/
+            border-radius: 8px; /* bordo arrotondato*/
+            overflow: hidden;   /*Nasconde eventuali contenuti che potrebbero fuoriuscire dalla cards.*/
+            transition: transform 0.3s ease-in-out; /*Aggiunge un'animazione di transizione al cambiamento 
+                                                   della proprietà transform, che viene utilizzata quando il cursore 
+                                                   si posiziona su una card.*/
+           display: flex; /* Utilizza il modello di layout flessibile */
+          flex-direction: column; /* Imposta la direzione dei figli come colonna */
+                                                   
+                                              
+        }
+
+        .card:hover {
+            transform: scale(1.05); /*Applica una trasformazione di scala al 105% quando il cursore è posizionato sulla card, 
+                                      creando un effetto di ingrandimento.*/
+        }
+
+        .card img {
+            width: 100%;
+            height: auto; /*Mantiene l'aspetto proporzionato dell'immagine.*/
+        }
+
+        .card-content {
+            padding: 15px; /*Aggiunge uno spazio interno di 15 pixel */
+        }
+
+        h3, p {
+            margin: 0; /*Rimuove i margini predefiniti per gli elementi <h3> e <p> all'interno delle cards.*/
+        }
+      .team-name-card h3 {
+    font-size: 1rem;
+    margin-bottom: 5px;  /* Aggiungi uno spazio inferiore tra il titolo e il paragrafo */
+    font-weight:bold;
+   /* color:red;*/
 }
+        
+        .team-image{
+          width: 250px; /* Larghezza del box */
+          height: 300px; /* Altezza del box */
+          border: 1px solid #ccc; /* Bordo del box */
+          padding: 10px; /* Spazio interno del box */
+          margin: 30px auto; /* Margine: 10px in alto, 0 a destra, 10px in basso, -20px a sinistra */
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          transition:border-width 0.3s;
+        }
+        .team-image:hover {
+        border-width: 5px; /* Cambia la larghezza del bordo al passaggio del mouse */
+        }
+        .team-image img{
+          width: 100%; /* L'immagine si adatta alla larghezza del box */
+         height: 100%; /* L'immagine si adatta all'altezza del box */
+        }

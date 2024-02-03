@@ -46,9 +46,13 @@ public class TeamService {
 		return this.teamRepository.findByName(name);
 	}
 	
+	public List<Team> findTeamsBySport(String sport){
+		return this.teamRepository.findBySport(sport);
+	}
 	
-	
-	
+	public List<String> getSports(){
+		return this.teamRepository.findDistinctSports();
+	}
 	
 	
 }

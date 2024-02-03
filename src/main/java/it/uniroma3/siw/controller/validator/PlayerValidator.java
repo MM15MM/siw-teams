@@ -17,10 +17,12 @@ public class PlayerValidator implements Validator {
 	@Override
 	public void validate(Object o, Errors errors) {
 		Player player = (Player)o;
+		
 		if (player.getName()!=null && player.getSurname()!=null 
 				&& playerRepository.existsByNameAndSurname(player.getName(),  player.getSurname())) {
 			errors.reject("player.duplicate");
 		}
+
 	}
 	
 	@Override

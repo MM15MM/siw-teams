@@ -1,5 +1,7 @@
 package it.uniroma3.siw.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.repository.PlayerRepository;
 
 @Service
@@ -14,6 +17,9 @@ public class PlayerService {
 	
 	@Autowired
 	private PlayerRepository playerRepository;
+	
+	@Autowired
+	private TeamService teamService;
 
 	@Transactional
 	public Player findById(Long playerId) {
@@ -27,11 +33,6 @@ public class PlayerService {
 		this.playerRepository.save(player);
 	}
 
-	@Transactional
-	public List<Player> findPlayersNotInTeam(Long id) {
-		// TODO Auto-generated method stub
-		return (List<Player>) this.playerRepository.findPlayersNotinTeam(id);
-	}
 
 	@Transactional
 	public void deleteById(Long id) {
@@ -45,5 +46,12 @@ public class PlayerService {
 		return (List<Player>)this.playerRepository.findAll();
 	}
 
+	@Transactional
+	public List<Player> findPlayersBySport(String sport) {
+		// TODO Auto-generated method stub
+		return this.playerRepository.findBySport(sport);
+	}
+
+	
 
 }

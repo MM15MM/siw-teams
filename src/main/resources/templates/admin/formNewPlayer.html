@@ -60,24 +60,6 @@
 </header>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <div class="container-newPlayer my-5 text-center">
  <h1>Aggiungi un giocatore</h1>
 	<form th:action="@{/admin/newPlayer}" method="POST" th:object="${player}">
@@ -102,6 +84,12 @@
 		<div>
 			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date"  th:attr="placeholder=${#dates.format(player.birthDate, 'dd-MM-yyyy')}"/></span>
 		</div>
+	<div>
+    <label for="sport">Seleziona uno sport:</label>
+    <select name="sport" id="sport">
+            <option value="">Tutti gli sport</option>
+            <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
+        </select></div>
            <div>
 			<span><button class="btn" type="submit">Conferma</button></span>
 		</div>

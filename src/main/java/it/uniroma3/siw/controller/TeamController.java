@@ -1,13 +1,11 @@
 package it.uniroma3.siw.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,8 +18,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.TeamValidator;
-import it.uniroma3.siw.model.Credentials;
 import it.uniroma3.siw.model.Team;
+import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.TeamService;
 
@@ -36,6 +34,7 @@ public class TeamController {
 	
 	@Autowired
 	private CredentialsService credentialsService;
+	
 
 	/*----------------------------------------------------*/
 	/*----------------------------------------------------*/
@@ -83,7 +82,7 @@ public class TeamController {
 			}
 		}
 		
-		/*----------ADMIN ELIMINA COMIC----------*/
+		/*----------ADMIN ELIMINA TEAM----------*/
 		
 		@PostMapping(value = "/admin/deleteTeam/{id}")
 		public String deleteTeam(@PathVariable("id") Long id, Model model){
@@ -110,6 +109,8 @@ public class TeamController {
 			t.setAddress(team.getAddress());
 			t.setPresident(team.getPresident());
 			t.setYear(team.getYear());
+			t.setSport(team.getSport());
+			t.setImage(team.getImage());
 
 			this.teamValidator.validate(t, BindingResult);
 			if (!BindingResult.hasErrors()) {
@@ -147,9 +148,14 @@ public class TeamController {
 		/*CHIUNQUE VISUALIZZA LISTA TEAMS E DETTAGLI TEAM*/
 		
 		@GetMapping( "/team/{id}")
-		public String getTeam(@PathVariable("id") Long id, Model model) {
+		public String getTeam(@PathVariable("id") Long id, Model model, Principal principal) {
 			model.addAttribute("team", this.teamService.findById(id));
+			if(principal!=null && isPrincipalPresidentOfTeam(principal, id)) {
 			return "team.html";
+			}
+			else {
+				return "teamDefaultUser.html";
+			}
 		}
 
 
@@ -160,13 +166,34 @@ public class TeamController {
 		}
 		
 		@GetMapping(value = "/teams")
-		public String showTeams(Model model) {
-			/*Authentication userDetails =  SecurityContextHolder.getContext().getAuthentication();
-			String loggedUser = userDetails.getName();
-			Credentials credentials = credentialsService.getCredentials(loggedUser);*/
-			
-			model.addAttribute("teams", this.teamService.findAll());
-			//model.addAttribute("user", credentials.getUser());
-			return "teams.html";
+		public String showTeams(@RequestParam(name = "sport", required = false) String sport, Model model) {
+	        List<Team> teams;
+
+	        if (sport != null && !sport.isEmpty()) {
+	            // Se lo sport è specificato, recupera solo le squadre di quel tipo
+	            teams = this.teamService.findTeamsBySport(sport);
+	        } else {
+	            // Altrimenti, recupera tutte le squadre
+	            teams = this.teamService.findAll();
+	        }
+
+	        model.addAttribute("teams", teams);
+	        model.addAttribute("selectedSport", sport);
+
+	        // Aggiungi tutti gli sport disponibili al model
+	        List<String> sports = this.teamService.getSports();
+	        model.addAttribute("sports", sports);
+
+	        return "teams";
+		}
+		
+		// Metodo per verificare se il principal è già presidente di una squadra specifica
+		private boolean isPrincipalPresidentOfTeam(Principal principal, Long teamId) {
+		    String username = principal.getName();
+		    User user = this.credentialsService.getCredentials(username).getUser();
+
+		    // Verifica se l'utente è presidente di una squadra e se quella squadra ha l'id specificato
+		    return user.getPresident() != null && user.getPresident().getTeam() != null &&
+		           user.getPresident().getTeam().getId().equals(teamId);
 		}
 }
