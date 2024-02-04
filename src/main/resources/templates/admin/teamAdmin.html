@@ -69,10 +69,19 @@
        <li><strong><span>Anno di Fondazione: </span></strong> <span th:text="${team.year}">(2000)</span></li>
         <li><strong><span>Indirizzo Sede: </span></strong> <span th:text="${team.address}">(2000)</span></li>
         <li><strong><span>Sport: </span></strong><span th:text="${team.sport}">Up!</span></li>
-   
+        <li th:if="${team.president}"><strong><span>Presidente: </span></strong><span th:text="${team.president.name} + ' ' + ${team.president.surname}">Up!</span></li>
+       <li th:unless="${team.president}">
+       <form th:action="@{'/addPresidentToTeam/' + ${team.id}}" method="post">
+    <label for="presidentId">Seleziona un Giocatore:</label>
+    <select id="presidentId" name="presidentId">
+        <option th:each="president : ${presidentsToAdd}" th:value="${president.id}" th:text="${president.name} + ' ' + ${president.surname}"></option>
+    </select>    <button class="btn" type="submit">Aggiungi Presidente</button>
+</form>
+       </li>
        </ul>
        <div class="admin-team-section">
         <a th:href="@{'/admin' +'/formUpdateTeam/'+ ${team.id}}">Modifica</a>
+       <div th:if="${team.president}"> <form th:action="@{'/removePresidentFromTeam/'+ ${team.id}+'/' +${team.president.id}}" method="post"><button class="btn" type="submit">Rimuovi presidente</button></form></div>
       <form th:action="@{'/admin/deleteTeam/'+ ${team.id}}"  method="POST">
             <button type="submit" class="btn2">Elimina</button>
             </form>  </div>
@@ -87,7 +96,7 @@
 		   </div>
 		   </div>
 </div> 
-<div th:unless="${team}" th:style="'color:red;">Non esiste</div> 
+<div th:unless="${team}" th:style="'color:red;'">Non esiste</div> 
 </div> 
 		 
 

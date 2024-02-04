@@ -63,6 +63,7 @@ public class UserService {
 		return this.userRepository.findById(id).get();
 	}
 
+    @Transactional
 	public boolean getFiscalCode(String fiscalCode) {
 		// TODO Auto-generated method stub
 		return this.userRepository.existsByFiscalCode(fiscalCode);

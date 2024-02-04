@@ -62,14 +62,16 @@
 
 <div class="container-newPlayer my-5 text-center">
  <h1>Aggiungi un giocatore</h1>
-	<form th:action="@{'/addNewPlayer/'+${team.id}}" method="POST" th:object="${player}">
+	<form th:action="@{'/addNewPlayer/'+${team.id}}" method="POST" >
 		<div>
 			<span th:text="${messaggioErrore}">Errore</span>
 		</div>
-		
 		<div th:if="${team != null}">
-    Team ID: <span th:text="${team.id}"></span>
-</div>
+    <!-- Accedi alle proprietà di team solo se team non è nullo -->
+    <p th:text="${team.id}"></p>
+     <p th:text="${team.name}"></p>
+      <p th:text="${team.address}"></p>
+    </div>
 		<div>
 			<label>Nome: </label> <span><input required type="text" th:field="${player.name}" placeholder="name" /></span>
 		</div>
@@ -85,12 +87,12 @@
 			<label>Luogo di Nascita: </label> <span><input required type="text" th:field="${player.placeOfBirth}" placeholder="place of birth"  /></span>
 		</div>
 		<div>
-			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date"  th:attr="placeholder=${#dates.format(player.birthDate, 'dd-MM-yyyy')}"/></span>
+			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date" /></span>
 		</div>
 	<th:block> <label th:for="membershipStartDate">Data inizio tesseramento:</label>
- <span><input type="date" th:field="${player.membershipStartDate}" placeholder="Membership start date"  th:attr="placeholder=${#dates.format(player.membershipStartDate, 'dd-MM-yyyy')}"/></span>
+ <span><input type="date" th:field="${player.membershipStartDate}" placeholder="Membership start date"/></span>
         <label th:for="membershipEndDate">Data fine tesseramento:</label>
-   <span><input type="date" th:field="${player.membershipEndDate}" placeholder="Membership end date"  th:attr="placeholder=${#dates.format(player.membershipEndDate, 'dd-MM-yyyy')}"/></span>
+   <span><input type="date" th:field="${player.membershipEndDate}" placeholder="Membership end date" /></span>
        </th:block>
            <div>
 			<span><button class="btn" type="submit">Conferma</button></span>

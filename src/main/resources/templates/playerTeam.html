@@ -106,7 +106,7 @@
 </form>	
     </div>
     <div>
-      <a th:href="@{'/formNewPlayer/'+${team.id}}">Aggiungi un nuovo giocatore non presente nella lista</a>
+      <a th:href="@{'/addNewPlayerToTeam/' + ${team.id}}">Aggiungi un nuovo giocatore non presente nella lista</a>
     </div>
     <div>
       <a th:href="@{'/team/'+ ${team.id}}"><button type="button" class="btn2">Conferma</button></a>

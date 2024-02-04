@@ -37,7 +37,7 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 
-    @NotBlank
+    //@NotBlank
     private String placeOfBirth;
 	
 

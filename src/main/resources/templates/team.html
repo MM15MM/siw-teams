@@ -84,17 +84,17 @@
  </div>
     
 <div th:if="${#request.userPrincipal}"  class="team-president-section">
-      <div th:unless="${team.president}">
+     <!--   <div th:unless="${team.president}">
       <a th:href="@{/registerPresident/{id}(id=${team.id})}" class="save-user-as-president btn-link">
       Registrati come Presidente di questa squadra</a></div>
-   </div>
+   </div>-->
  
         <div>
             <a th:href="@{'/updatePlayers/' + ${team.id}}">Modifica Membri</a>
         </div>
-        <div>
+       <!--  <div>
             <a th:href="@{'/formNewPlayer/'+${team.id}}">Aggiungi un nuovo giocatore non presente nel sistema</a>
-        </div>
+        </div>--> 
  
 
 
@@ -107,6 +107,7 @@
         </ul> 
 		   </div>
 
+</div>
 </div>
 </div>
 

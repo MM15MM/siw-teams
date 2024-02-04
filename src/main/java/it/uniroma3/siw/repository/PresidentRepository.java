@@ -7,4 +7,7 @@ import it.uniroma3.siw.model.President;
 public interface PresidentRepository extends CrudRepository<President, Long> {
 	
 	public boolean existsByFiscalCode(String fiscalCode);
+
+	public String findByFiscalCode(String fc);
+	public President findById(String id);
 }

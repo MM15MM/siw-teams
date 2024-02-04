@@ -60,6 +60,15 @@
 
 <div class="containerTeams my-5 text-center">
 <h1 class="teams">Squadre</h1>
+<form th:action="@{/admin/teams}" method="get">
+        <label for="sport">Seleziona sport:</label>
+        <select name="sport" id="sport">
+            <option value="">Tutti gli sport</option>
+            <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
+        </select>
+        
+        <button class="btn" type="submit">Filtra</button>
+    </form>
 <div th:if="${teams==null || teams.isEmpty()}" th:style="'color:red;'">Non ci sono squadre nel sistema</div>
 <div class="lista-teams">
 	<div th:each="team : ${teams}">

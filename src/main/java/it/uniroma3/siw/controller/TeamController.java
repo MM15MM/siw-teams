@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,10 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.TeamValidator;
+import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.PresidentService;
 import it.uniroma3.siw.service.TeamService;
+import it.uniroma3.siw.service.UserService;
 
 @Controller
 public class TeamController {
@@ -34,6 +39,12 @@ public class TeamController {
 	
 	@Autowired
 	private CredentialsService credentialsService;
+
+	@Autowired
+	private PresidentService presidentService;
+
+	@Autowired
+	private UserService userService;
 	
 
 	/*----------------------------------------------------*/
@@ -46,8 +57,24 @@ public class TeamController {
 		
 		/*--------------PERCORSO PER L'ADMIN---------------*/
 		@GetMapping(value ="/admin/teams")
-		public String getTeamsAdmin(Model model) {
-			model.addAttribute("teams", this.teamService.findAll());
+		public String getTeamsAdmin(@RequestParam(name = "sport", required = false) String sport, Model model) {
+	        List<Team> teams;
+
+	        if (sport != null && !sport.isEmpty()) {
+	            // Se lo sport è specificato, recupera solo le squadre di quel tipo
+	            teams = this.teamService.findTeamsBySport(sport);
+	        } else {
+	            // Altrimenti, recupera tutte le squadre
+	            teams = this.teamService.findAll();
+	        }
+
+	        model.addAttribute("teams", teams);
+	        model.addAttribute("selectedSport", sport);
+
+	        // Aggiungi tutti gli sport disponibili al model
+	        List<String> sports = this.teamService.getSports();
+	        model.addAttribute("sports", sports);
+
 			return "admin/teams.html";
 		}
 
@@ -55,12 +82,29 @@ public class TeamController {
 		public String getTeamAdmin(@PathVariable("id") Long id, Model model) {
 
 			Team team = this.teamService.findById(id);
-			model.addAttribute("team", team);
+			List<President> presidents = this.presidentsToAdd(team);
+		    
+		    model.addAttribute("presidentsToAdd", presidents);
+		    model.addAttribute("team", team);
+		    
 			return "admin/teamAdmin.html";
 		}
+		public List<President> presidentsToAdd(Team team){
+			
+			List<President> presidents = new ArrayList<President>();
+			List<President> presidentsPresenti=(List<President>) this.presidentService.findAll(); 
+			
+			for(President p: presidentsPresenti) {
+				
+		if (p.getTeam()==null ) {
+					
+					presidents.add(p);
+				}
+			}
+			return presidents;
+		}
 		
-		
-		/*------------------AGGIUNTA NUOVO COMIC-------------------*/
+		/*------------------AGGIUNTA NUOVO TEAM-------------------*/
 		
 		
 		@GetMapping(value = "/admin/formNewTeam")
@@ -127,11 +171,6 @@ public class TeamController {
 	/*---------RICERCA TEAMS DA PARTE DELL'ADMIN----------*/
 		
 
-
-		@RequestMapping(value="/admin/formSearchTeams",method = RequestMethod.GET)
-		public String formSearchTeamsAdmin() {
-			return "admin/formSearchTeams.html";
-		}
 		@PostMapping(value ="/admin/searchTeams")
 		public String searchTeamsAdmin(Model model, @RequestParam String name) {
 			model.addAttribute("teams", this.teamService.findByName(name));
@@ -148,7 +187,7 @@ public class TeamController {
 		
 		/*CHIUNQUE VISUALIZZA LISTA TEAMS E DETTAGLI TEAM*/
 		
-		@GetMapping( "/team/{id}")
+		/*@GetMapping( "/team/{id}")
 		public String getTeam(@PathVariable("id") Long id, Model model, Principal principal) {
 			model.addAttribute("team", this.teamService.findById(id));
 			if(principal!=null && isPrincipalPresidentOfTeam(principal, id)) {
@@ -157,7 +196,7 @@ public class TeamController {
 			else {
 				return "teamDefaultUser.html";
 			}
-		}
+		}*/
 
 
 		@PostMapping(value = "/searchTeams")
@@ -197,4 +236,40 @@ public class TeamController {
 		    return user.getPresident() != null && user.getPresident().getTeam() != null &&
 		           user.getPresident().getTeam().getId().equals(teamId);
 		}
-}
+		
+
+		@GetMapping( "/team/{id}")
+		public String getTeam(@PathVariable("id") Long id, Model model, Principal principal) {
+			Team team = this.teamService.findById(id);
+		    model.addAttribute("team", team);
+
+		    if (principal == null) {
+		        return "teamDefaultUser.html";
+		    }
+
+		    String username = principal.getName();
+		    User user = this.credentialsService.getCredentials(username).getUser();
+
+		    if (user == null) {
+		        return "teamDefaultUser.html";
+		    }
+
+		    if (team != null && team.getPresident() != null) {
+		        if (user.getPresident() == null) {
+		            President newPresident = team.getPresident();
+		            newPresident.setUser(user);
+		            this.presidentService.save(newPresident);
+
+		            user.setPresident(newPresident);
+		            this.userService.saveUser(user);
+		            this.teamService.save(team);
+
+		            return "team.html";
+		        } else if (user.getPresident() != null && user.getPresident().getFiscalCode().equals(team.getPresident().getFiscalCode())) {
+		            return "team.html";
+		        }
+		    }
+
+		    return "teamDefaultUser.html";
+		}
+		}

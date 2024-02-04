@@ -23,7 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.uniroma3.siw.controller.validator.PlayerValidator;
+import it.uniroma3.siw.controller.validator.PresidentValidator;
 import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.model.User;
@@ -54,6 +56,9 @@ public class PresidentController {
 
 	@Autowired
 	private PlayerValidator playerValidator;
+
+	@Autowired
+	private PresidentValidator presidentValidator;
 
 	/*AGGIUNTA E RIMOZIONE PLAYER DAL TEAMDA PARTE DEL PRESIDENTE*/
 	@GetMapping(value="/updatePlayers/{id}")
@@ -102,24 +107,30 @@ public class PresidentController {
   
 	@PostMapping(value="/addNewPlayer/{id}")
 	public String presidentAddPlayerToTeam( @Valid @ModelAttribute("player") Player player, 
-            BindingResult bindingResult, 
-            @PathVariable("id") Long id,
-            HttpServletRequest request, Model model) {
-		Team team = this.teamService.findById(id); 
+            BindingResult bindingResult, @PathVariable("id") Long id,
+            HttpServletRequest request,Principal principal, Model model) {
 		
-		System.out.println("Debug message before printing team ID");
-		System.out.println("Team ID: " + team.getId().toString());
-		System.out.println("Debug message after printing team ID");
-		String sport = team.getSport();
+		Team t= this.teamService.findById(id);
+		System.out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println(t.getName().toString());
+		System.out.println(t.getPresident().toString());
+		System.out.println(t.getId().toString());
+		System.out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println("------------------------");
+		System.out.println("------------------------");
 this.playerValidator.validate(player, bindingResult);
 if(!bindingResult.hasErrors()) {
-	            player.setSport(sport);
-	            team.getPlayers().add(player);
-	            player.setTeam(team);
+	           player.setSport(t.getSport());
+	            t.getPlayers().add(player);
+	            player.setTeam(t);
 				this.playerService.save(player); 
-				this.teamService.save(team);
-				model.addAttribute("player", player);
-				model.addAttribute("team",team);		
+				t.getPlayers().add(player);
+				this.teamService.save(t);
+				model.addAttribute("team",t);		
 return "team";
 } 
 else {
@@ -142,18 +153,12 @@ return "formNewPlayerPresident.html";
 	     return "team.html";
 	}*/
   
-  @GetMapping(value = "/formNewPlayer/{id}")
+  @GetMapping(value = "/addNewPlayerToTeam/{id}")
 	public String presidentAddPlayer(@PathVariable("id") Long id, Model model){
-	  Team team = this.teamService.findById(id);
-	  if (team == null) {
-	        // Gestisci il caso in cui il team non viene trovato
-		  String errore="Team nullo";
-	        return errore;  // Adatta questo alla tua logica
-	    }
+      
 	  Player p = new  Player();
+	  model.addAttribute("team", this.teamService.findById(id));
 		model.addAttribute("player",p);
-		  model.addAttribute("team", team);
-		  
 		return "formNewPlayerPresident.html";
 	}
   
@@ -277,5 +282,101 @@ return "formNewPlayerPresident.html";
 	    // Verifica se l'utente è già presidente di una squadra
 	    return user.getPresident() != null;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/*ADMIN AGGIUNGE PRESIDENTE AL SISTEMA*/
+	
+	@PostMapping(value="/admin/newPresident")
+	public String adminNewPresident( @Valid @ModelAttribute("president") President president, 
+            BindingResult bindingResult,
+            HttpServletRequest request, Model model) {
+		
+		this.presidentValidator.validate(president, bindingResult);
+		if(!bindingResult.hasErrors()) {
+			
+			/*president.setTeam(team);
+			this.presidentService.save(president);
+			team.setPresident(president);
+			this.teamService.save(team);*/
+			this.presidentService.save(president);
+			model.addAttribute("president", president);
+			
+		}
+		
+		return "admin/indexAdmin";
+	}
+	@GetMapping(value="/admin/newPresident")
+	public String adminNewPresidentGetMapping(Model model) {
+		
+		model.addAttribute("president", new President());
+		return "admin/formNewPresident";
+	
+	}
+	@RequestMapping(value="/removePresidentFromTeam/{teamId}/{presidentId}",method = RequestMethod.POST)
+	public String removePresidentFromTeam(@PathVariable("presidentId") Long presidentId, 
+			@PathVariable("teamId") Long teamId,HttpServletRequest request, Model model) {
+		
+		String referer = request.getHeader("Referer");//per aggiornare la pagina
+		Team team = this.teamService.findById(teamId);
+		President president = this.presidentService.findById(presidentId);
+		
+		if ((team.getPresident().equals(president)) &&
+				(president.getTeam() != null)) {
+            team.setPresident(null);
+            president.setTeam(null);
+            this.teamService.save(team);
+            this.presidentService.save(president);
+        }
+		
+		return "redirect:" + referer;
+	}
+	
+	@RequestMapping(value="/addPresidentToTeam/{teamId}", method = RequestMethod.POST)
+	public String addPresidentToTeam( @RequestParam("presidentId") Long presidentId, 
+			@PathVariable("teamId") Long teamId, HttpServletRequest request,
+			Model model,RedirectAttributes redirectAttributes) {
+		
+		String referer = request.getHeader("Referer");// per aggiornare la pagina
+	    	
+		Team team = this.teamService.findById(teamId);
+		President president = this.presidentService.findById(presidentId);
+		
+		 
+		  if ((team.getPresident()==null)
+					&&(president.getTeam() == null )) {
+			 
+			    team.setPresident(president);
+	            president.setTeam(team);
+	            this.teamService.save(team);
+	            this.presidentService.save(president);
+			
+	        }
+		
+		    
+		return "redirect:" + referer;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

@@ -83,11 +83,6 @@
  </div>
  </div>
     
-<div th:if="${#request.userPrincipal}"  class="team-president-section">
-      <div th:unless="${team.president}">
-      <a th:href="@{/registerPresident/{id}(id=${team.id})}" class="save-user-as-president btn-link">
-      Registrati come Presidente di questa squadra</a></div>
-   </div>
 
 
 
