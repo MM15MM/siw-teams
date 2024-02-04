@@ -106,6 +106,10 @@ public class PresidentController {
             @PathVariable("id") Long id,
             HttpServletRequest request, Model model) {
 		Team team = this.teamService.findById(id); 
+		
+		System.out.println("Debug message before printing team ID");
+		System.out.println("Team ID: " + team.getId().toString());
+		System.out.println("Debug message after printing team ID");
 		String sport = team.getSport();
 this.playerValidator.validate(player, bindingResult);
 if(!bindingResult.hasErrors()) {
@@ -114,10 +118,8 @@ if(!bindingResult.hasErrors()) {
 	            player.setTeam(team);
 				this.playerService.save(player); 
 				this.teamService.save(team);
-		model.addAttribute("player", player);
-		System.out.println("Debug message before printing team ID");
-		System.out.println("Team ID: " + team.getId());
-		System.out.println("Debug message after printing team ID");
+				model.addAttribute("player", player);
+				model.addAttribute("team",team);		
 return "team";
 } 
 else {
@@ -143,6 +145,11 @@ return "formNewPlayerPresident.html";
   @GetMapping(value = "/formNewPlayer/{id}")
 	public String presidentAddPlayer(@PathVariable("id") Long id, Model model){
 	  Team team = this.teamService.findById(id);
+	  if (team == null) {
+	        // Gestisci il caso in cui il team non viene trovato
+		  String errore="Team nullo";
+	        return errore;  // Adatta questo alla tua logica
+	    }
 	  Player p = new  Player();
 		model.addAttribute("player",p);
 		  model.addAttribute("team", team);
@@ -164,14 +171,15 @@ return "formNewPlayerPresident.html";
 			@RequestParam("membershipEndDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
 			@RequestParam("membershipStartDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
 			HttpServletRequest request,
-			Model model) {
+			Model model,RedirectAttributes redirectAttributes) {
 		
 		String referer = request.getHeader("Referer");// per aggiornare la pagina
 	    	
 		Team team = this.teamService.findById(teamId);
 		Player player = this.playerService.findById(playerId);
 		
-			 if (((!(team.getPlayers().contains(player)))
+		 
+		  if (((!(team.getPlayers().contains(player)))
 					&&(player.getTeam() == null || 
 			 player.getMembershipEndDate() == null || 
 			 player.getMembershipEndDate().isBefore(startDate)))) {
@@ -184,11 +192,13 @@ return "formNewPlayerPresident.html";
 	            this.playerService.save(player);
 			
 	        }
-		 
-		 else if( player.getMembershipEndDate().isAfter(startDate)) {
+		  else if( player.getMembershipEndDate().isAfter(startDate)) {
 		        // Aggiungi un attributo al model con il messaggio di errore
-		        model.addAttribute("errorMessage", "Il giocatore non può essere aggiunto al team, potrai aggiungerlo quando terminerà il suo attuale tesseramento("+ player.getMembershipEndDate()+")");
-		    }
+			  String errorMessage = "Il giocatore non può essere aggiunto al team, potrai aggiungerlo quando terminerà il suo attuale tesseramento(" + player.getMembershipEndDate() + ")";
+			  redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
+			 System.out.println("Messaggio di errore impostato: " + errorMessage);
+		 }
+		
 		    
 		return "redirect:" + referer;
 	}

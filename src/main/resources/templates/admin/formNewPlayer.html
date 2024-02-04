@@ -63,9 +63,10 @@
 <div class="container-newPlayer my-5 text-center">
  <h1>Aggiungi un giocatore</h1>
 	<form th:action="@{/admin/newPlayer}" method="POST" th:object="${player}">
-		<div>
-			<span th:text="${messaggioErrore}">Errore</span>
-		</div>
+		
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+  		</div>
 		
 		<div>
 			<label>Nome: </label> <span><input required type="text" th:field="${player.name}" placeholder="name" /></span>

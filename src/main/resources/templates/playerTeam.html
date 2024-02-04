@@ -66,6 +66,8 @@
 <div class="containerTeamUpdate my-5 text-center">
     <h1>Giocatori</h1>
     <div class="players-list" th:if="${team.players.isEmpty()}">Non ci sono giocatori</div>
+    <div th:if="${errorMessage}" class="error-message">
+        <p th:text="${errorMessage}" th:style="'color: red;'"></p></div>
     <ul class="players">
       <li th:each="player : ${team.players}">
         <span th:value="${player.id}" th:text="${player.name}+' '+${player.surname}"></span>
@@ -76,6 +78,7 @@
     </ul>
     <div>
 		<h2>Giocatori che puoi aggiungere:</h2> 
+		 
 		
 		<form th:action="@{'/addPlayerToTeam/' + ${team.id}}" method="post">
     <label for="playerId">Seleziona un Giocatore:</label>
@@ -96,8 +99,7 @@
 
         <label th:for="membershipEndDate">Data fine tesseramento:</label>
         <input type="date" th:id="membershipEndDate" th:name="membershipEndDate" th:value="*{membershipEndDate}" required />-->
-    <div th:if="${errorMessage}" class="error-message">
-        <p th:text="${errorMessage}" th:style="'color: red;'"></p></div>
+   
     
   <!-- </th:block>-->
     <button class="btn" type="submit">Aggiungi Giocatore</button>

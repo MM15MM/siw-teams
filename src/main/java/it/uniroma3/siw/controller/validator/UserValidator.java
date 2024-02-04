@@ -39,7 +39,7 @@ public class UserValidator implements Validator {
 	            errors.rejectValue("fiscalCode", "required");
 	        else if (fiscalCode.length()!= FISCAL_CODE)
 	            errors.rejectValue("fiscalCode", "size");
-	        else  if (this.userService.getFiscalCode(fiscalCode) != null)
+	        else  if (this.userService.getFiscalCode(fiscalCode) == true)
 	            errors.rejectValue("fiscalCode", "duplicate");
 
 	    }
