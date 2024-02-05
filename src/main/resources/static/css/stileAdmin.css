@@ -107,51 +107,13 @@ li{
         border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati solo al lato destro */
   }
     label {
-        display: inline-block;
+       display: inline-block;
         width: 100px; /* Imposta la larghezza desiderata */
        text-align: right; /* Allinea il testo a destra */
        margin-right: 10px; /* Aggiunge un margine destro per separare le etichette dagli input */
         padding: 5px; /* Aggiunge spaziatura interna per una migliore presentazione */
 }
-      .footer-update-comic{
-             bottom:0;
-            position: fixed;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 100px;
-      }
-      .footer-comics-admin{            
-	        bottom:0;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 1000px
-            }
-       .footer-ricerca-comic{
-            bottom:100;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 189px;
-       }
+     
        
 
     .comic-title-card h3 {
@@ -159,143 +121,7 @@ li{
     margin-bottom: 5px;  /* Aggiungi uno spazio inferiore tra il titolo e il paragrafo */
     font-weight:bold;
    /* color:red;*/
-}         .footer-update-players{
-	
-	            bottom:0;
-            position: fixed;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 98px;
-          }
-       
-        .footer-nuovo-player{
-            bottom:100;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 196px;
-        }
-        .footer-nuovo-team{
-            bottom:0;
-            position: fixed;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 98px;
-        }
-        .footer {
-            bottom:100;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 70px;
-        }
-        .footer-team{
-        
-            bottom:100;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 180px;
-        
-        }
-        .footer-index{
-            /*bottom:100;*/
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 148px;
-        }
-        .footer-player {
-            bottom:100;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 264px;
-        }
-        
-        .footer-teams-trovati{
-            bottom:100;
-            position: absolute;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 380px;
-        }
-        
-        .footer-teams-admin{
-            bottom:0;
-            position: fixed;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 1000px;
-        }
-        
-        .footer-players {
-            bottom:0;
-            position: fixed;
-            width: 100%;
-            background: #282828;
-            min-height: 50px;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            margin-top: 336px;
-        }
+}         
         
         .menu {
             position: relative;

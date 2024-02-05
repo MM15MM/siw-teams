@@ -122,9 +122,9 @@ public class TeamController {
 				model.addAttribute("team", team);
 				return "redirect:/admin/teams"; 
 			} 
-			else {
-				return "admin/error.html"; 
-			}
+			
+				return "admin/formNewTeam"; 
+			
 		}
 		
 		/*----------ADMIN ELIMINA TEAM----------*/

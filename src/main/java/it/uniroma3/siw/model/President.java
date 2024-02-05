@@ -107,6 +107,8 @@ public class President {
     public String getPlaceOfBirth() {
         return this.placeOfBirth;
     }
-
+    public President getPlayer() {
+    	return this;
+    }
 }
 

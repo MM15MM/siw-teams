@@ -110,5 +110,7 @@ public class Team {
 	        return players;
 	    }
 
-  
+  public Team getTeam() {
+	  return this;
+  }
 }

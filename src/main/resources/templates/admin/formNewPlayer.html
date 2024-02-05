@@ -19,7 +19,7 @@
 
 <header>
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="font-effect-shadow-multiple">Siw-Federation</div>
+  <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -67,24 +67,29 @@
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
   		</div>
-		
-		<div>
+		<ul>
+		<li>
 			<label>Nome: </label> <span><input required type="text" th:field="${player.name}" placeholder="name" /></span>
-		</div>
-
-		<div>
+		</li>
+      <li>
+			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red;'"></span>
+			 </li>
+		<li>
 			<label>Cognome: </label> <span><input required type="text" th:field="${player.surname}" placeholder="surname"  /></span>
-		</div>
-
-		<div>
+		</li>
+<li>
+			<span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" th:style="'color:red;'"></span>
+			 </li>
+		<li>
 			<label>Ruolo: </label> <span><input required type="text" th:field="${player.role}" placeholder="role"  /></span>
-		</div>
-		<div>
+		</li>
+		<li>
 			<label>Luogo di Nascita: </label> <span><input required type="text" th:field="${player.placeOfBirth}" placeholder="place of birth"  /></span>
-		</div>
-		<div>
-			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date"  th:attr="placeholder=${#dates.format(player.birthDate, 'dd-MM-yyyy')}"/></span>
-		</div>
+		</li>
+		<li>
+			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date"  /></span>
+		</li>
+		</ul>
 	<div>
     <label for="sport">Seleziona uno sport:</label>
     <select name="sport" id="sport">

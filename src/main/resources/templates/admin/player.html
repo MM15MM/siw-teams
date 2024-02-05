@@ -19,7 +19,7 @@
 
 <header>
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="font-effect-shadow-multiple">Siw-Federation</div>
+ <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -60,12 +60,7 @@
 </header>
 	  <div class="containerPlayer my-5 text-center">
   <!-- Content here --> 
-		  <!--  <h1 th:if="${player}">Dettagli artista:</h1>
-          <ul>
-			<li><span th:text="#{artistname.message}+' '+${player.name}">Paolo</span></li>
-			<li><span th:text="#{artistsurname.message}+' '+${player.surname}">Rossi</span></li>
-			<li><span th:text="#{artistemail.message}+' '+${artist.email}">PaoloRossi@gmail.com</span></li>
-			</ul>-->
+		
 				<h1 >Dettagli giocatore</h1>
 				<div th:unless="${player}">Giocatore inesistente</div>
    <div th:if="${player}">
@@ -90,6 +85,9 @@
 <li>
 		<strong><span>Luogo di Nascita:</span></strong>
 		<span th:text="${player.placeOfBirth}"></span></li>
+		<li>
+		<strong><span>Sport:</span></strong>
+		<span th:text="${player.sport}"></span></li>
 		</ul>
 	</div>
 	
@@ -97,6 +95,7 @@
 	<ul class="membership-details">
 <li><strong>Inizio Tesseramento:</strong> <span th:text="${player.membershipStartDate}"></span></li>
 <li><strong>Termine Tesseramento:</strong> <span th:text="${player.membershipEndDate}"></span></li>
+<li><strong>Squadra:</strong> <span th:text="${player.team.name}"></span></li>
 	</ul></div>
             
        </div>

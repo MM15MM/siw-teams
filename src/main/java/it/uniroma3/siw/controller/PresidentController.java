@@ -78,6 +78,7 @@ public class PresidentController {
     
     model.addAttribute("playersToAdd", players);
     model.addAttribute("team", team);
+    model.addAttribute("player", new Player());
     
 		return "playerTeam.html";
     
@@ -104,54 +105,39 @@ public class PresidentController {
 	
 	
 	/*PRESIDENT AGGIUNGE GIOCATORE NON PRESENTE NEL SISTEMA E LO AGGIUNGE ALLA SQUADRA*/
-  
-	@PostMapping(value="/addNewPlayer/{id}")
-	public String presidentAddPlayerToTeam( @Valid @ModelAttribute("player") Player player, 
-            BindingResult bindingResult, @PathVariable("id") Long id,
-            HttpServletRequest request,Principal principal, Model model) {
-		
-		Team t= this.teamService.findById(id);
-		System.out.println("------------------------");
-		System.out.println("------------------------");
-		System.out.println("------------------------");
-		System.out.println("------------------------");
-		System.out.println(t.getName().toString());
-		System.out.println(t.getPresident().toString());
-		System.out.println(t.getId().toString());
-		System.out.println("------------------------");
-		System.out.println("------------------------");
-		System.out.println("------------------------");
-		System.out.println("------------------------");
-this.playerValidator.validate(player, bindingResult);
-if(!bindingResult.hasErrors()) {
-	           player.setSport(t.getSport());
-	            t.getPlayers().add(player);
-	            player.setTeam(t);
-				this.playerService.save(player); 
-				t.getPlayers().add(player);
-				this.teamService.save(t);
-				model.addAttribute("team",t);		
-return "team";
-} 
-else {
-return "formNewPlayerPresident.html"; 
+	
+	@RequestMapping(value="/addNewPlayer/{id}", method = RequestMethod.POST)
+	public String presidentAddPlayerToTeam(
+	        @Valid @ModelAttribute("player") Player player,
+	        BindingResult bindingResult,
+	       @PathVariable("id") Long id,
+           HttpServletRequest request, 
+	        Model model) {
+	  String referer = request.getHeader("Referer");
 
-}
+	  
 
+	    this.playerValidator.validate(player, bindingResult);
+	    Team team = this.teamService.findById(id);
+	    String sport = team.getSport();
+	    if (!bindingResult.hasErrors()) {
+	        player.setTeam(team);
+	        player.setSport(sport);
+	        team.getPlayers().add(player);
+
+	        this.playerService.save(player); 
+	        this.teamService.save(team);
+	        model.addAttribute("player", player);
+
+	       
+
+	        return "redirect:" + referer;
+	    } else {
+	        return "redirect:" + referer; 
+	    }
 	}
-	/*@RequestMapping (value="/confermaInserimento/{id}/{playerId}", method= RequestMethod.POST)
-	public String confermaInserimento(@PathVariable("id") Long id, @PathVariable ("playerId") Long idP,
-			Model model) {
-		Team team = this.teamService.findById(id);
-		 String sport= team.getSport();
-		 Player player= this.playerService.findById(idP);
-		 team.getPlayers().add(player);
-		 player.setSport(sport);
-	     player.setTeam(team);
-	     this.teamService.save(team);
-	     this.playerService.save(player);
-	     return "team.html";
-	}*/
+	
+
   
   @GetMapping(value = "/addNewPlayerToTeam/{id}")
 	public String presidentAddPlayer(@PathVariable("id") Long id, Model model){
@@ -203,7 +189,6 @@ return "formNewPlayerPresident.html";
 			  redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
 			 System.out.println("Messaggio di errore impostato: " + errorMessage);
 		 }
-		
 		    
 		return "redirect:" + referer;
 	}
@@ -221,7 +206,8 @@ return "formNewPlayerPresident.html";
 				(player.getTeam() != null)) {
             team.getPlayers().remove(player);
             player.setTeam(null);
-            player.setMembershipEndDate(LocalDate.now());
+            player.setMembershipEndDate(null);
+            player.setMembershipStartDate(null);
             this.teamService.save(team);
             this.playerService.save(player);
         }

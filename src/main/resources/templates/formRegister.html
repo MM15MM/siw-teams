@@ -23,7 +23,7 @@
 <body class="reg-form">
  		<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="font-effect-shadow-multiple">Siw-Federation</div>
+     <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -86,28 +86,7 @@
 		</li>
 		</ul>
 		</div>
-		<!--  <div>
-			<label>Luogo di Nascita:</label>
-			<ul>
-			<li>
-			<span><input type="text" placeholder="place of birth" required th:field="${user.placeOfBirth}" /></span>
-			</li>
-			<li>
-			<span th:if="${#fields.hasErrors('user.placeOfBirth')}" th:errors="${user.placeOfBirth}" th:style="'color:red'"></span>
-		</li>
-		</ul>
-		</div>
-		<div>
-			<label>Data di Nascita:</label>
-			<ul>
-			<li>
-			<span><input type="date" placeholder="birth date" required th:field="${user.birthDate}" /></span>
-			</li>
-			<li>
-			<span th:if="${#fields.hasErrors('user.birthDate')}" th:errors="${user.birthDate}" th:style="'color:red'"></span>
-		</li>
-		</ul>
-		</div>-->
+
 		
 		<div>
 			<label>Username:</label>
@@ -130,61 +109,7 @@
 		</ul>
 		</div>
 		
-    <!-- Altri campi del form per User e Credentials -->
-
-    <!-- Campo per selezionare la squadra solo se l'utente è presidente -->
-   <!-- <label for="isPresident">Sei un presidente?</label>
-    <input type="checkbox" id="isPresident" name="isPresident" th:checked="${isPresident}" />
-
-    <div th:if="${isPresident}">
-       
-        <label for="teamId">Scegli la tua squadra:</label>
-        <select id="teamId" name="teamId">
-            <option th:each="team : ${teams}" th:value="${team.id}" th:text="${team.name}"></option>
-        </select>
-         <div>
-			<label>Nome:</label>
-			<ul>
-			 <li>
-			<span><input type="text" placeholder="name" required th:field="${president.name}" th:attr="${isPresident} ? '' : 'disabled=true'"/></span>
-			 </li>
-			  <li>
-			<span th:if="${#fields.hasErrors('president.surname')}" th:errors="${president.name}" th:style="'color:red'"th:attr="${isPresident} ? '' : 'disabled=true'"></span>
-			 </li>
-			</ul>
-		</div>
-		<div>
-			<label>Cognome:</label>
-			<ul>
-			 <li>
-			<span><input type="text" placeholder="surname" required th:field="${president.surname}" th:attr="${isPresident} ? '' : 'disabled=true'"/></span>
-			 </li>
-			  <li>
-			<span th:if="${#fields.hasErrors('president.surname')}" th:errors="${president.surname}" th:style="'color:red'" th:attr="${isPresident} ? '' : 'disabled=true'"></span>
-			 </li>
-			</ul>
-		</div>
-       <div>
-        <label for="fiscalCode">Codice Fiscale:</label>
-        <ul>
-        <li><input type="text" id="fiscalCode" name="fiscalCode" th:field="${president.fiscalCode}" th:attr="${isPresident} ? '' : 'disabled=true'"/></li>
-       </ul>
-       </div>
-       
-       <div>
-        <label for="birthDate">Data di Nascita:</label>
-        <ul>
-        <li><input type="text" id="birthDate" name="birthDate" th:field="${president.birthDate}" th:attr="${isPresident} ? '' : 'disabled=true'"/></li>
-        </ul>
-        </div>
-        
-        <label for="placeOfBirth">Luogo di Nascita:</label>
-        <ul>
-        <li><input type="text" id="placeOfBirth" name="placeOfBirth" th:field="${president.placeOfBirth}" th:attr="${isPresident} ? '' : 'disabled=true'"/></li>
-        </ul>
-        </div>-->
-			
-		
+    	
 		<div>
 			<button class="btn" th:href="@{/registerSuccesLogin.html}" type="submit">Registra</button>
 		</div>

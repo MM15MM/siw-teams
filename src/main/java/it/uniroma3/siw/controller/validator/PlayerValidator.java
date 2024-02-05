@@ -7,23 +7,37 @@ import org.springframework.validation.Validator;
 
 import it.uniroma3.siw.model.Player;
 import it.uniroma3.siw.repository.PlayerRepository;
+import it.uniroma3.siw.service.PlayerService;
 
 @Component
 public class PlayerValidator implements Validator {
 	
 	@Autowired
-	private PlayerRepository playerRepository;
+	private PlayerService playerRepository;
 
 	@Override
 	public void validate(Object o, Errors errors) {
 		Player player = (Player)o;
 		
-		if (player.getName()!=null && player.getSurname()!=null 
-				&& playerRepository.existsByNameAndSurname(player.getName(),  player.getSurname())) {
-			errors.reject("player.duplicate");
-		}
+		String nome = player.getName().trim();
+        String cognome = player.getSurname().trim();
+		
+		
+		 if (nome.isEmpty())
+	            errors.rejectValue("name", "required");
+	
 
-	}
+	        if (cognome.isEmpty())
+	            errors.rejectValue("surname", "required");
+	       
+	       /* else if (playerRepository. existsByNameAndSurname(nome,cognome))
+
+	            errors.rejectValue("name", "duplicate");
+	        errors.rejectValue("surname", "duplicate");*/
+
+	    }
+
+	
 	
 	@Override
 	public boolean supports(Class<?> aClass) {

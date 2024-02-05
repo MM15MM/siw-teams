@@ -52,15 +52,6 @@ public class PresidentValidator implements Validator{
 		
 		
 		
-		
-		/*if (president.getName()!=null && president.getSurname()!=null 
-				&& presidentRepository.existsByFiscalCode(president.getFiscalCode())) {
-			errors.reject("president.duplicate");
-		}
-		 else if (presidentService.length()!= FISCAL_CODE)
-	            errors.rejectValue("fiscalCode", "size");
-	        else  if (this.userService.getFiscalCode(fiscalCode) == true)
-	            errors.rejectValue("fiscalCode", "duplicate");*/
 	
 	@Override
 	public boolean supports(Class<?> aClass) {

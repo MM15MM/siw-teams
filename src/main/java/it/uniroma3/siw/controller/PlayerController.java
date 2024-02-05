@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.PlayerValidator;
 import it.uniroma3.siw.model.Player;
-import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.service.PlayerService;
 import it.uniroma3.siw.service.TeamService;
 

@@ -38,12 +38,14 @@ public class Player {
 	@NotBlank
     private String role;
 	
-	@NotBlank
+	
 	private String sport;
 	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Column(name = "membership_start_date")
 	 private LocalDate membershipStartDate;
 
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	 @Column(name = "membership_end_date")
 	 private LocalDate membershipEndDate;
 	
@@ -136,6 +138,13 @@ public class Player {
     public LocalDate getMembershipEndDate() {
         return this.membershipEndDate;
     }
+
+public Player getPlayer() {
+	return this;
+}
+
+
+
 
 
 }

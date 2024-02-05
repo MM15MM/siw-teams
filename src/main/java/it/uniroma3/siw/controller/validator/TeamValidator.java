@@ -17,9 +17,11 @@ public class TeamValidator implements Validator {
 		@Override
 		public void validate(Object o, Errors errors) {
 			Team team = (Team)o;
-			if (team.getName()!=null && team.getYear()!=null 
-					&& teamRepository.existsByNameAndYear(team.getName(),  team.getYear())) {
-				errors.reject("team.duplicate");
+	        String nome = team.getName().trim();
+	        if (nome.isEmpty())
+	            errors.rejectValue("name", "required");
+	        else if (teamRepository.existsByNameAndYear(nome,  team.getYear())) {
+				errors.rejectValue("name", "duplicate");
 			}
 		}
 		@Override

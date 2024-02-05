@@ -18,7 +18,7 @@
 <body>
 			<header>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="font-effect-shadow-multiple">Siw-Federation</div>
+    <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -91,26 +91,54 @@
     <label th:for="membershipEndDate">Data fine tesseramento:</label>
     <input type="date" th:id="membershipEndDate" th:name="membershipEndDate" th:value="*{membershipEndDate}" required />
     
-   <!-- <th:block th:each="player : ${playersToAdd}">-->
-        <!--  <input type="hidden" name="playerId" th:value="${player.id}" />
-
-        <label th:for="membershipStartDate">Data inizio tesseramento:</label>
-        <input type="date" th:id="membershipStartDate" th:name="membershipStartDate" th:value="*{membershipStartDate}" required />
-
-        <label th:for="membershipEndDate">Data fine tesseramento:</label>
-        <input type="date" th:id="membershipEndDate" th:name="membershipEndDate" th:value="*{membershipEndDate}" required />-->
-   
-    
-  <!-- </th:block>-->
+  
     <button class="btn" type="submit">Aggiungi Giocatore</button>
 </form>	
     </div>
     <div>
-      <a th:href="@{'/addNewPlayerToTeam/' + ${team.id}}">Aggiungi un nuovo giocatore non presente nella lista</a>
-    </div>
-    <div>
       <a th:href="@{'/team/'+ ${team.id}}"><button type="button" class="btn2">Conferma</button></a>
     </div>
+    
+    <h3>Aggiungi un giocatore</h3>
+	<form th:action="@{'/addNewPlayer/' + ${team.id}}" method="POST" th:object="${player}">
+		<div th:if="${#fields.hasGlobalErrors()}">
+  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
+  		</div>
+		
+		<div>
+			<label>Nome: </label> <span><input required type="text" th:field="${player.name}" placeholder="name" /></span>
+		</div>
+           <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+		<div>
+			<label>Cognome: </label> <span><input required type="text" th:field="${player.surname}" placeholder="surname"  /></span>
+		</div>
+  <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}"></span>
+		<div>
+			<label>Ruolo: </label> <span><input required type="text" th:field="${player.role}" placeholder="role"  /></span>
+		</div>
+		<div>
+			<label>Luogo di Nascita: </label> <span><input required type="text" th:field="${player.placeOfBirth}" placeholder="place of birth"  /></span>
+		</div>
+		<div>
+			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date" /></span>
+		</div>
+	 <label th:for="membershipStartDate">Data inizio tesseramento:</label>
+ <span><input type="date" th:field="${player.membershipStartDate}"  placeholder="Membership start date"/></span>
+        <label th:for="membershipEndDate">Data fine tesseramento:</label>
+   <span><input type="date" th:field="${player.membershipEndDate}" placeholder="Membership end date" /></span>
+      
+           <div>
+			<span><button class="btn" type="submit">Conferma</button></span>
+		</div></form>
+		
+	
+	</div>
+    
+    
+    
+    
+    
+    
   </div>
 
 
