@@ -84,7 +84,7 @@
         <div class="modifica-link"><a th:href="@{'/admin' +'/formUpdateTeam/'+ ${team.id}}" >Modifica</a></div>
        <div th:if="${team.president}"> <form th:action="@{'/removePresidentFromTeam/'+ ${team.id}+'/' +${team.president.id}}" method="post"><button class="btn" type="submit">Rimuovi presidente</button></form></div>
       <form th:action="@{'/admin/deleteTeam/'+ ${team.id}}"  method="POST">
-            <button type="submit" class="btn2">Elimina Squadra</button>
+          <div class="elimina-squadra" > <button type="submit" class="btn2">Elimina Squadra</button></div>
             </form> </li> </ul>
    
     </div>

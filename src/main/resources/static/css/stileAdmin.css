@@ -28,19 +28,26 @@ div.font-effect-shadow-multiple {
      font-size:40px;
      color: white;
 }
-
+header {
+  position: fixed; /*  posizione fissa  */
+  top: 0; /* Posizione in alto nella pagina */
+  width: 100%; /*  occupa l'intera larghezza */
+  z-index: 1000;
+}
 body{
 	font-family:cursive;
 	background-image: url("../images/bkg1.jpg");
 	background-position:center;
 	 background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
+    background-attachment: fixed; /* fissa l'immagine durante lo scrolling */
     margin-bottom: 0px; /* Rimuove i margini predefiniti del body */
-padding-bottom:8em;
+
 
 	/*min-height: 100vh; /* Impedisce che il footer si sovrapponga al contenuto */
-	
+	padding-top:2em;
+	 padding-bottom: 8em;
+	 z-index: 1;
 	
 }
 
@@ -254,7 +261,9 @@ li{
     font-weight:bold;
    /* color:red;*/
 }
-   
+   .elimina-squadra{
+      padding-top:1em;
+   }
    
    
    
