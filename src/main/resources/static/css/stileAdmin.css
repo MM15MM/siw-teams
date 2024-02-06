@@ -1,10 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Rancho&effect=shadow-multiple');
-@import url('https://fonts.cdnfonts.com/css/comics');
+
 
 @import url('https://fonts.cdnfonts.com/css/natural-precision');
 
 
-
+.admin-team-section{
+	padding-right: 3em;
+	 align-items: center;
+}
+.modifica-link{
+	padding-bottom:1em;
+}
+.custom-row{
+	
+	padding-right:8em;
+	padding-left:9em;
+border:1px solid black;
+ background-color: rgba(220, 220, 220, 0.8); 
+}
+.custom-row:hover{
+	background-color:rgba(230, 230, 230, 0.8);
+}
 
 div.font-effect-shadow-multiple {
 
@@ -20,18 +36,14 @@ body{
 	 background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
-    margin-bottom: 70px; /* Rimuove i margini predefiniti del body */
-
+    margin-bottom: 0px; /* Rimuove i margini predefiniti del body */
+padding-bottom:8em;
 
 	/*min-height: 100vh; /* Impedisce che il footer si sovrapponga al contenuto */
 	
 	
 }
 
-.logo{
-	display:flex;
-	margin-right:200;
-}
 h1,h2{
 	font-family: 'Natural Precision', sans-serif;
 	/*text-decoration : line-through wavy red;*/
@@ -43,28 +55,7 @@ h1,h2{
 	margin-top:5px;
 }
 
-textarea{
-    width: 200px; /* Puoi regolare la larghezza a tuo piacimento */
-    height: 100px; /* Puoi regolare l'altezza a tuo piacimento */
-    border-radius: 8px; /* Puoi regolare il raggio del bordo a tuo piacimento */
-    resize: none; /* Opzione per impedire il ridimensionamento della textarea da parte dell'utente */
-	
-}
 
-.aggiorna-fumetto{
-    text-align: center;
-    margin-top: 50px; /* Regola il margine superiore a tuo piacimento */
-    justify-content:center;
-    margin-left:40px;
-}
-.autori-up{
-	margin-left:30px;
-	margin-top:20px;
-}
-.fumetti{
-    text-align: center;
-    margin-top: 50px; /* Regola il margine superiore a tuo piacimento */
-}
 
  .btn{
  display: inline-block;
@@ -107,6 +98,7 @@ li{
         border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati solo al lato destro */
   }
     label {
+    font-weight:bold;
        display: inline-block;
         width: 100px; /* Imposta la larghezza desiderata */
        text-align: right; /* Allinea il testo a destra */
@@ -116,61 +108,6 @@ li{
      
        
 
-    .comic-title-card h3 {
-    font-size: 1rem;
-    margin-bottom: 5px;  /* Aggiungi uno spazio inferiore tra il titolo e il paragrafo */
-    font-weight:bold;
-   /* color:red;*/
-}         
-        
-        .menu {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .menu__item {
-            list-style: none;
-        }
-        
-        
-        .menu__link {
-            font-size: 1.2rem;
-            color: #fff;
-            margin: 0 10px;
-            display: inline-block;
-            transition: 0.5s;
-            text-decoration: none;
-            opacity: 0.75;
-            font-weight: 300;
-        }
-        
-        .menu__link:hover {
-            opacity: 1;
-        }
-        
-        .comic-image{
-          width: 250px; /* Larghezza del box */
-          height: 300px; /* Altezza del box */
-          border: 1px solid #ccc; /* Bordo del box */
-          padding: 10px; /* Spazio interno del box */
-          margin: 60px 300px 0px; /* Margine: 10px in alto, 0 a destra, 10px in basso, -20px a sinistra */
-          display:flex;
-          align-items:center;
-          transition:border-width 0.3s;
-        }
-        .comic-image:hover {
-        border-width: 5px; /* Cambia la larghezza del bordo al passaggio del mouse */
-        }
-        .comic-image img{
-          max-width: 100%; /* L'immagine si adatta alla larghezza del box */
-         max-height: 100%; /* L'immagine si adatta all'altezza del box */
-        }
-        
         .players-update-team{
             margin-bottom:125px;
         }
@@ -180,12 +117,7 @@ li{
         font-size:16px;
         line-height:30px;
         }
-        /*.containerTeam-admin{
-             margin: -200px 600px 0px;
-        }*/
-       .containerTeamUpdate{
-           margin-bottom:300px;
-       }
+
        .container-reg{
         text-transform: uppercase;
         font-size:16px;
@@ -200,23 +132,7 @@ li{
           overflow: hidden;
           /*margin: -300px 650px 40px;*/
         }
-        .container-newPlayer{
-       /* text-transform: uppercase;
-        font-size:16px;*/
-        line-height:30px;
-        }
-        
-        /*.container-artisti{
-        text-transform: uppercase;
-        font-size:16px;
-        line-height:30px;
-        }*/
-
-   .container-searchComic-admin{
-        text-transform: uppercase;
-        font-size:16px;
-        line-height:30px;
-   }
+       
    .add-team{
    margin-left:40px;
    }
@@ -229,9 +145,7 @@ li{
    .players-up{
    margin-left:40px;
    }
-   .search-comics-admin{
-   margin-top: 100px;
-   }
+  
    .indexClasse{
    margin-top: 100px;
      font-size:16px;
@@ -241,17 +155,20 @@ li{
    font-weight:bold;
    }
   .players-title-page{
-  margin-left:30px;
+  padding-right:2em;
   }
 .player-details{
 	
 	margin-top:20px;
+	padding-right:2em;
 }
 .membership-details{
 	margin-top:20px;
 	}
 	.players-list{
 	margin-top:20px;
+	padding-right:8em;
+	padding-left:6em;
 	}
   .lista-teams {
             margin-top:50px;
@@ -259,8 +176,9 @@ li{
             flex-wrap: wrap; /* Consente agli elementi figli di andare a capo quando raggiungono la fine della linea.*/
             gap: 20px;/*Aggiunge uno spazio di 20 pixel tra gli elementi figli*/
             margin-left: 30px;
-            margin-right:30px;
-            margin-bottom:100px;
+            margin-right:0px;
+           
+             padding-left: 6em;
         }
         
      .name-team-list{
@@ -289,7 +207,7 @@ li{
             transition: transform 0.3s ease-in-out; /*Aggiunge un'animazione di transizione al cambiamento 
                                                    della proprietà transform, che viene utilizzata quando il cursore 
                                                    si posiziona su una card.*/
-           display: flex; /* Utilizza il modello di layout flessibile */
+           display: flex; 
           flex-direction: column; /* Imposta la direzione dei figli come colonna */
                                                    
                                               
@@ -306,12 +224,10 @@ li{
         }
 
         .card-content {
-            padding: 15px; /*Aggiunge uno spazio interno di 15 pixel */
+            padding: 15px; /* spazio interno  */
         }
 
-        h3, p {
-            margin: 0; /*Rimuove i margini predefiniti per gli elementi <h3> e <p> all'interno delle cards.*/
-        }
+       
         
         .team-image{
           width: 250px; /* Larghezza del box */
@@ -329,7 +245,7 @@ li{
         }
         .team-image img{
           width: 100%; /* L'immagine si adatta alla larghezza del box */
-         height: 100%; /* L'immagine si adatta all'altezza del box */
+         height: auto; 
         }
 
    .team-name-card h3 {

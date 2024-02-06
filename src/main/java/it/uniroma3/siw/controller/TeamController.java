@@ -14,12 +14,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.TeamValidator;
-import it.uniroma3.siw.model.Player;
 import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.model.User;
@@ -55,7 +52,7 @@ public class TeamController {
 	/*----------------------------------------------------*/
 		
 		
-		/*--------------PERCORSO PER L'ADMIN---------------*/
+		/*--------------PERCORSO PER L'ADMIN PER VISUALIZZARE LE/A SQUADRE/A---------------*/
 		@GetMapping(value ="/admin/teams")
 		public String getTeamsAdmin(@RequestParam(name = "sport", required = false) String sport, Model model) {
 	        List<Team> teams;
@@ -165,7 +162,7 @@ public class TeamController {
 				return "admin/teams.html";
 			}
 			model.addAttribute("team", this.teamService.findById(id));
-			return "admin/formUpdateTeam.html";
+			return "redirect:/admin/team/"+id;
 		}
 		
 	/*---------RICERCA TEAMS DA PARTE DELL'ADMIN----------*/
@@ -180,23 +177,13 @@ public class TeamController {
 		
 		/*----------------------------------------------------*/
 		/*----------------------------------------------------*/
-		/*--------------------GENERAL-------------------------*/
+		/*--------------------GENERALE E PRESIDENTE------------*/
 		/*----------------------------------------------------*/
 		/*----------------------------------------------------*/
 		/*----------------------------------------------------*/
 		
-		/*CHIUNQUE VISUALIZZA LISTA TEAMS E DETTAGLI TEAM*/
+		/*CHIUNQUE VISUALIZZA LISTA TEAMS, DETTAGLI TEAM E PUO' CERCARE LE SQUADRE*/
 		
-		/*@GetMapping( "/team/{id}")
-		public String getTeam(@PathVariable("id") Long id, Model model, Principal principal) {
-			model.addAttribute("team", this.teamService.findById(id));
-			if(principal!=null && isPrincipalPresidentOfTeam(principal, id)) {
-			return "team.html";
-			}
-			else {
-				return "teamDefaultUser.html";
-			}
-		}*/
 
 
 		@PostMapping(value = "/searchTeams")
@@ -227,23 +214,15 @@ public class TeamController {
 	        return "teams";
 		}
 		
-		// Metodo per verificare se il principal è già presidente di una squadra specifica
-		private boolean isPrincipalPresidentOfTeam(Principal principal, Long teamId) {
-		    String username = principal.getName();
-		    User user = this.credentialsService.getCredentials(username).getUser();
-
-		    // Verifica se l'utente è presidente di una squadra e se quella squadra ha l'id specificato
-		    return user.getPresident() != null && user.getPresident().getTeam() != null &&
-		           user.getPresident().getTeam().getId().equals(teamId);
-		}
 		
-
+		
+/* VISUALIZZAZIONE TEAM*/
 		@GetMapping( "/team/{id}")
 		public String getTeam(@PathVariable("id") Long id, Model model, Principal principal) {
 			Team team = this.teamService.findById(id);
 		    model.addAttribute("team", team);
 
-		    if (principal == null) {
+		    if (principal == null) { // se non si è autenticati restituisce pagina default
 		        return "teamDefaultUser.html";
 		    }
 
@@ -254,9 +233,10 @@ public class TeamController {
 		        return "teamDefaultUser.html";
 		    }
 
-		    if (team != null && team.getPresident() != null) {
-		        if (user.getPresident() == null) {
-		            President newPresident = team.getPresident();
+		    if (team != null && team.getPresident() != null) {     //se si è autenticati
+		        if (user.getPresident() == null) {                 //se l'user(che è presidente) non è associato al presidente allora, 
+		        	                                               //viene settato il presidente della squadra(se non è nullo)
+		            President newPresident = team.getPresident();  
 		            newPresident.setUser(user);
 		            this.presidentService.save(newPresident);
 

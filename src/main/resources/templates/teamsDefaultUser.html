@@ -63,13 +63,13 @@
 <div class="containerTeams my-5 text-center">
 <h1 class="teams">Squadre</h1>
 <div th:if="${teams==null || teams.isEmpty()}" th:style="'color:red;'">Non ci sono squadre nel sistema</div>
-<ul class="lista-teams">
-	<li th:each="team : ${teams}">
+<div class="row lista-teams ml-auto">
+	<div th:each="team : ${teams}" class="col-md-2">
 	
 		<a th:href="@{'/admin/team' + '/' + ${team.id}}" th:text="${team.name}" class="name-team-list"> Roma</a>
 	     
-	</li>
-</ul>
+	</div>
+</div>
 
        </div>
 

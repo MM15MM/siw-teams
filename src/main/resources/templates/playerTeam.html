@@ -64,7 +64,7 @@
 
 
 <div class="containerTeamUpdate my-5 text-center">
-    <h1>Giocatori</h1>
+    <h1>Giocatori in Squadra</h1>
     <div class="players-list" th:if="${team.players.isEmpty()}">Non ci sono giocatori</div>
     <div th:if="${errorMessage}" class="error-message">
         <p th:text="${errorMessage}" th:style="'color: red;'"></p></div>
@@ -72,7 +72,7 @@
       <li th:each="player : ${team.players}">
         <span th:value="${player.id}" th:text="${player.name}+' '+${player.surname}"></span>
         <form th:action="@{'/removePlayerFromTeam/'+${team.id} +'/'+ ${player.id}}" method="post">
-        <button class="btn" type="submit">Elimina Giocatore</button>
+        <button class="btn" type="submit">Rimuovi Giocatore</button>
      </form>	
       </li>
     </ul>
@@ -96,10 +96,10 @@
 </form>	
     </div>
     <div>
-      <a th:href="@{'/team/'+ ${team.id}}"><button type="button" class="btn2">Conferma</button></a>
+      <a th:href="@{'/team/'+ ${team.id}}"><button type="button" class="btn2">Torna alla Squadra</button></a>
     </div>
-    
-    <h3>Aggiungi un giocatore</h3>
+    <div class="update-players-president">
+    <h2>Aggiungi un giocatore</h2>
 	<form th:action="@{'/addNewPlayer/' + ${team.id}}" method="POST" th:object="${player}">
 		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 

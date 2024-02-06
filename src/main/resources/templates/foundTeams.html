@@ -64,8 +64,8 @@
 <div class="containerComic my-5 text-center">
 	<h1>Ecco i risultati della ricerca</h1>
 	<div th:if="${teams.isEmpty()}">Non ci sono fumetti che soddisfano i requisiti</div>
-	<div th:if="${!teams.isEmpty()}" class="lista-teams">
-		<div th:each="team : ${teams}">
+	<div th:if="${!teams.isEmpty()}" class="row lista-teams ml-auto" >
+		<div th:each="team : ${teams}" class="col-md-2">
 					<div class="card">
 		<a th:href="@{'/team' + '/' + ${team.id}}">
 			<img th:src="@{${team.image}}" alt="Immagine del fumetto" /></a>

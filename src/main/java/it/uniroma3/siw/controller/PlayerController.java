@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.PlayerValidator;
@@ -34,13 +36,13 @@ public class PlayerController {
 	
 	/*ELIMINA PLAYER DAL SISTEMA*/
 	
-	@PostMapping(value = "/admin/deletePlayer/{id}")
+	@RequestMapping(value = "/admin/deletePlayer/{id}", method=RequestMethod.GET)
 	public String deletePlayer(@PathVariable("id") Long id) {
         this.playerService.deleteById(id);
 		return "redirect:/admin/players";
 	}
 
-	/* AGGIUNGI NUOVO PLAYER NEL SISTEMA(SOLO ADMIN)*/
+	/* AGGIUNGI NUOVO PLAYER NEL SISTEMA SENZA LA SQUADRA)*/
 	
 	@PostMapping(value ="/admin/newPlayer")
 	public String newPlayer(@Valid @ModelAttribute("player") Player player, 
@@ -100,7 +102,7 @@ public class PlayerController {
 		
 	}
 	
-	/*ADMIN VISUALIZZA DETTAGLI ARTISTA*/
+	/*ADMIN VISUALIZZA DETTAGLI GIOCATORE*/
 	
 	@GetMapping (value="/admin/player/{id}")
 	public String showPlayerDetailsAdmin(@PathVariable("id") Long id ,Model model){
@@ -108,12 +110,28 @@ public class PlayerController {
 		return "admin/player";
 	}
 	
-   /*ADMIN VISUALIZZA LISTA ARTISTI*/
+   /*ADMIN VISUALIZZA LISTA GIOCATORI*/
 	
-	@GetMapping(value="/admin/players")
-	public String indexPlayer(Model model) {
-		model.addAttribute("players", this.playerService.findAll());
-		return "admin/players.html";
+	@GetMapping(value = "/admin/players")
+	public String getPlayersAdmin(Model model, @RequestParam(name = "sport", required = false) String sport) {
+	    List<Player> players;
+
+	    if (sport != null && !sport.isEmpty()) {
+	        // Se lo sport è specificato, recupera solo i giocatori di quello specifico sport
+	        players = this.playerService.findPlayersBySport(sport);
+	    } else {
+	        // Altrimenti, recupera tutti i giocatori
+	        players = this.playerService.findAll();
+	    }
+
+	    model.addAttribute("players", players);
+	    model.addAttribute("selectedSport", sport);
+
+	    // Aggiungi tutti gli sport disponibili al model
+	    List<String> sports = this.teamService.getSports();
+	    model.addAttribute("sports", sports);
+
+	    return "admin/players";
 	}
 	
 	

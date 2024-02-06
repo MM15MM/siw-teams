@@ -11,31 +11,32 @@ div.font-effect-shadow-multiple {
      font-size:40px;
      color: white;
 }
-
-.players-list-team{
-	margin-right:25px;
+.custom-row{
+border:1px solid black;
+ background-color: rgba(220, 220, 220, 0.8); 
 }
+.custom-row:hover{
+	 background-color:rgba(230, 230, 230, 0.8);
+}
+.players-list-team{
+	padding-right: 2em; 
+  
+}
+
+
 
 .cerca{
 	margin-top:5px;
 }
-textarea{
-   width: 200px; /* Puoi regolare la larghezza a tuo piacimento */
-    height: 30px; /* Puoi regolare l'altezza a tuo piacimento */
-    border-radius: 8px; /* Puoi regolare il raggio del bordo a tuo piacimento */
-    resize: none; /* Opzione per impedire il ridimensionamento della textarea da parte dell'utente */
-	
-}
-h1,h2,h3 .commento{
+
+h1,h2{
 font-family: 'Natural Precision', sans-serif;                                              
 	/*text-decoration : line-through wavy red;*/
 	color: #000000;
 	
 }
-h3{
-	font-family: 'Natural Precision', sans-serif;                                              
-	/*text-decoration : line-through wavy red;*/
-	color: #000000;
+.update-players-president{
+	padding-top:4em;
 }
 .reg-form, .login-form{
     font-family:cursive;
@@ -46,7 +47,7 @@ h3{
     background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
     margin: 0; /* Rimuove i margini predefiniti del body */
      height: 100vh;
-	 backdrop-filter: blur(5px);
+	  backdrop-filter: blur(5px); /* Utilizza vw per l'effetto di sfocatura */
 	
 }
 body{
@@ -58,13 +59,12 @@ body{
     background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
     margin: 0; /* Rimuove i margini predefiniti del body */
 
+	padding-bottom:8em;
+	height: 100vh;
 	
 }
 
-.logo{
-	display:flex;
-	margin-right:200;
-}
+
 
 .register-btn{
 	margin-left:200px;
@@ -114,53 +114,12 @@ body{
   transform: scale(1.05);
 }
 
-.containerPlayer{
-	bottom:150;
-	font-size:16px;
+
+.containerIndex{
+	padding-top:10em;
 }
 
 
-
-        
-        .menu {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 10px 0;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        
-        .menu__item {
-            list-style: none;
-        }
-        
-        
-        .menu__link {
-            font-size: 1.2rem;
-            color: #fff;
-            margin: 0 10px;
-            display: inline-block;
-            transition: 0.5s;
-            text-decoration: none;
-            opacity: 0.75;
-            font-weight: 300;
-        }
-        
-        .menu__link:hover {
-            opacity: 1;
-        }
-        
-
-        .containerTeam-admin{
-             margin: -200px 700px 0px;
-        }
-     /*container artisti*/
-     .containerPlayers-link{
-     text-align:center;
-     align-items: center;
-     }
      /*login e registrazione*/  
      .registrazione{
      text-align:center;
@@ -181,9 +140,9 @@ body{
        }
        
         .container-login {
+          color:black;
           font-size:16px;
           text-decoration:none;
-          text-transform: uppercase;
           overflow: hidden;
         }
         .container-login-suc {
@@ -220,16 +179,6 @@ li{
         margin-right: 10px; /* Aggiunge un margine destro per separare le etichette dagli input */
         padding: 5px; /* Aggiunge spaziatura interna per una migliore presentazione */
 }
-.comment-section{
-	align-items:center;
-	margin-right:50px;
-	margin-bottom:0px;
-	margin-left: 600px;
-	margin-top:180px;
-	line-height:30px;
-	text-align:center
-}
-
 
 .containerTeam{
 	line-height:30px;
@@ -238,10 +187,6 @@ li{
 	text-align:center;
 	align-items:center;
 }
-  .containerCerca {
-  align-items:center;
-  line-height:100px;
-  }    
   
    .link-player{
    font-weight:bold;
@@ -250,7 +195,7 @@ li{
   margin-left:30px;
   }
 .player-details{
-	
+	padding-right:2em;
 	margin-top:20px;
 }
 .membership-details{
@@ -258,6 +203,8 @@ li{
 	}
 	.players-list{
 	margin-top:20px;
+	padding-left:8em;
+	padding-right:8em;
 	} 
    .lista-teams {
             margin-top:50px;
@@ -265,21 +212,12 @@ li{
             flex-wrap: wrap; /* Consente agli elementi figli di andare a capo quando raggiungono la fine della linea.*/
             gap: 20px;/*Aggiunge uno spazio di 20 pixel tra gli elementi figli*/
             margin-left: 30px;
-            margin-right:30px;
-            margin-bottom:100px;
+            margin-right:0px;
+           
+             padding-left: 6em;
         }
         
-/*     .name-team-list{
 
-      font-weight:bold;
-       transition: transform 0.3s;/*Aggiunge un'animazione di transizione al cambiamento 
-                                                   della proprietà transform, che viene utilizzata quando il cursore 
-                                                   si posiziona su una card.*/
-   /*  }
-     .name-team-list:hover {
-         transform: scale(1.05);
-         
-     }*/
   
         .card {
          height:300px;
@@ -307,12 +245,9 @@ li{
         }
 
         .card-content {
-            padding: 15px; /*Aggiunge uno spazio interno di 15 pixel */
+            padding: 15px; /*Aggiunge uno spazio interno  */
         }
 
-        h3, p {
-            margin: 0; /*Rimuove i margini predefiniti per gli elementi <h3> e <p> all'interno delle cards.*/
-        }
       .team-name-card h3 {
     font-size: 1rem;
     margin-bottom: 5px;  /* Aggiungi uno spazio inferiore tra il titolo e il paragrafo */
@@ -336,5 +271,5 @@ li{
         }
         .team-image img{
           width: 100%; /* L'immagine si adatta alla larghezza del box */
-         height: 100%; /* L'immagine si adatta all'altezza del box */
+         height: auto; /* L'immagine si adatta all'altezza del box */
         }

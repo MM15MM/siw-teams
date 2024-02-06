@@ -18,7 +18,7 @@
 <body>
 <header>
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
- <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
+ <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -72,22 +72,23 @@
         <li th:if="${team.president}"><strong><span>Presidente: </span></strong><span th:text="${team.president.name} + ' ' + ${team.president.surname}">Up!</span></li>
        <li th:unless="${team.president}">
        <form th:action="@{'/addPresidentToTeam/' + ${team.id}}" method="post">
-    <label for="presidentId">Seleziona un Giocatore:</label>
+    <label for="presidentId">Seleziona un Presidente:</label>
     <select id="presidentId" name="presidentId">
         <option th:each="president : ${presidentsToAdd}" th:value="${president.id}" th:text="${president.name} + ' ' + ${president.surname}"></option>
     </select>    <button class="btn" type="submit">Aggiungi Presidente</button>
 </form>
        </li>
        </ul>
-       <div class="admin-team-section">
-        <a th:href="@{'/admin' +'/formUpdateTeam/'+ ${team.id}}">Modifica</a>
+       <ul class="admin-team-section">
+        <li class="team-actions">
+        <div class="modifica-link"><a th:href="@{'/admin' +'/formUpdateTeam/'+ ${team.id}}" >Modifica</a></div>
        <div th:if="${team.president}"> <form th:action="@{'/removePresidentFromTeam/'+ ${team.id}+'/' +${team.president.id}}" method="post"><button class="btn" type="submit">Rimuovi presidente</button></form></div>
       <form th:action="@{'/admin/deleteTeam/'+ ${team.id}}"  method="POST">
-            <button type="submit" class="btn2">Elimina</button>
-            </form>  </div>
+            <button type="submit" class="btn2">Elimina Squadra</button>
+            </form> </li> </ul>
    
     </div>
-		    <div class="players-update-team">
+		    <div th:if="${players}" class="players-update-team">
         <div><h2 class="players-up">Giocatori:</h2></div>
         <div th:unless="${team.players.isEmpty()}">
         <ul th:each="player: ${team.players}">

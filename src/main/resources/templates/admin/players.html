@@ -59,22 +59,34 @@
 	  </div>
   </nav>
 </header>
+
+
+
 <div class="container-players my-5 text-center">
 <h1 class="players-title-page">Giocatori</h1>
-
+<form th:action="@{/admin/players}" method="get">
+        <label for="sport">Seleziona sport:</label>
+        <select name="sport" id="sport">
+            <option value="">Tutti gli sport</option>
+            <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
+        </select>
+        
+        <button class="btn" type="submit">Filtra</button>
+    </form>
     <div th:if="${players == null or players.isEmpty()}">Non ci sono giocatori nel sistema</div>
     <ul class="players-list">
    
-    <li th:each="player : ${players}">
-     <form  class="delete-btn-box" th:action="@{'/admin/deletePlayer/'+${player.id}}" method="post">
-        <a th:class="link-player" th:href="@{'/admin/player/' + ${player.id}}" th:text="${player.name + ' ' + player.surname}">Dino Risi</a>
-		   <div class="delete-player-text">
-		   <!-- th:action="@{'/admin/deleteArtist/' + ${artist.id}}" method="post"> -->
-       
-			<button type="submit" class="btn2">Elimina</button>
+    <li th:each="player : ${players}" class="row mb-2 custom-row">
+    <div class="col-md-6">
+    <a th:class="link-player" th:href="@{'/admin/player/' + ${player.id}}" th:text="${player.name + ' ' + player.surname}">Dino Risi</a>
+		 </div> 
+		 <div class="col-md-6">
+     <a th:href="@{'/admin/deletePlayer/'+${player.id}}" th:style="'color:red;'">
+       Elimina</a>
 		
 		</div>
-		  </form>
+		  
+		  
     </li>
   
 </ul>

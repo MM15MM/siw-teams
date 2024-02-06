@@ -75,13 +75,19 @@
     </form>
     
     <div th:if="${players == null or players.isEmpty()}">Non ci sono giocatori nel sistema</div>
-    <ul class="players-list">
-    
-    <li th:each="player : ${players}">
+    <div class="players-list">
+    <div class="container-custom">
+    <th:block th:each="player : ${players}">
+    <div class="row custom-row">
+            <div class="col">
         <a th:class="link-player" th:href="@{'/player/' + ${player.id}}" th:text="${player.name + ' ' + player.surname}">Dino Risi</a>
-    </li>
-</ul>
+   
+    </div>
+        </div>
+    </th:block>
+</div>
 
+    </div>
     </div>
     	 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

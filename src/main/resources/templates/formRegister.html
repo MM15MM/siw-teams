@@ -92,7 +92,7 @@
 			<label>Username:</label>
 			<ul>
 			<li>
-			<span><input type="text" placeholder="username" required th:field="${credentials.username}" id="username"/></span>
+			<span><input type="text" placeholder="@username" required th:field="${credentials.username}" id="username"/></span>
 			</li>
 			<li>
 			<span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></span>

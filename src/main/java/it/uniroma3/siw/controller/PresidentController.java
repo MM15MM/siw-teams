@@ -26,7 +26,6 @@ import it.uniroma3.siw.controller.validator.PlayerValidator;
 import it.uniroma3.siw.controller.validator.PresidentValidator;
 import it.uniroma3.siw.model.Player;
 import it.uniroma3.siw.model.President;
-import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
@@ -60,7 +59,7 @@ public class PresidentController {
 	@Autowired
 	private PresidentValidator presidentValidator;
 
-	/*AGGIUNTA E RIMOZIONE PLAYER DAL TEAMDA PARTE DEL PRESIDENTE*/
+	/*AGGIUNTA E RIMOZIONE PLAYER DAL TEAM DA PARTE DEL PRESIDENTE*/
 	@GetMapping(value="/updatePlayers/{id}")
 	public String updatePlayers(@PathVariable("id") Long id, Model model, Principal principal) {
         
@@ -152,10 +151,9 @@ public class PresidentController {
   
   
   
+  /*AGGIUNTA PLAYER ESISTENTE NEL TEAM SE NON E' TESSERATO IN UN'ALTRA SQUADRA*/
   
   
-  
-	//@RequestParam("membershipStartDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
 	@RequestMapping(value="/addPlayerToTeam/{teamId}", method = RequestMethod.POST)
 	public String addPlayerToTeam( @RequestParam("playerId") Long playerId, 
 			@PathVariable("teamId") Long teamId, 
@@ -193,7 +191,7 @@ public class PresidentController {
 		return "redirect:" + referer;
 	}
 	
-	
+	/*RIMOZIONE GIOCATORE DAL TEAM*/
 	@RequestMapping(value="/removePlayerFromTeam/{teamId}/{playerId}",method = RequestMethod.POST)
 	public String removePlayerFromTeam(@PathVariable("playerId") Long playerId, 
 			@PathVariable("teamId") Long teamId,HttpServletRequest request, Model model) {
@@ -216,7 +214,7 @@ public class PresidentController {
 	}
 	
 	/*SALVATAGGIO PRESIDENTE*/
-	@GetMapping(value="/registerPresident/{id}")
+/*	@GetMapping(value="/registerPresident/{id}")
 	  public String registerPresident(@PathVariable("id") Long id,Principal principal, 
 			  Model model,HttpServletRequest request) {
 		
@@ -258,17 +256,17 @@ public class PresidentController {
 
 		}
 		return "redirect:/team/"+ id;
-	}
+	}*/
 	
 	// Metodo per verificare se il principal è già presidente
-	private boolean isPrincipalPresident(Principal principal) {
+/*	private boolean isPrincipalPresident(Principal principal) {
 	    String username = principal.getName();
 	    User user = this.credentialsService.getCredentials(username).getUser();
 
 	    // Verifica se l'utente è già presidente di una squadra
 	    return user.getPresident() != null;
 	}
-	
+	*/
 	
 	
 	
