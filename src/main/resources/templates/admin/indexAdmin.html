@@ -27,7 +27,12 @@
 		<ul class="navbar-nav elenco">
 		<li class="nav-item home">
 		<a class="nav-link" th:href="@{/}">Home</a>
-		</li>
+		</li><li class="nav-item elenco-teams">
+				<a class="nav-link" href="/admin/teams">Elenco Squadre</a>
+			</li>
+			<li class="nav-item elenco-players">
+				<a class="nav-link" href="/admin/players">Elenco Giocatori</a>
+			</li>
 			<li class="nav-item ml-auto">
 			<form th:action="@{/admin/searchTeams}" method="post">
 		<input class="cerca" type="search" th:value="${name}" name="name" id="name" placeholder="inserisci nome squadra" required/>
@@ -54,22 +59,45 @@
 
 <div class="container-index-admin my-5 text-center">
 	<h1>Operazioni per amministratore</h1>
-	<div class="indexClasse">
-	<div>
-		<a href="/admin/teams">Elenco Squadre</a>
-	</div>
-	<div>
-		<a href="/admin/players">Elenco Giocatori</a>
-	</div>
+<div class="container text-center mt-5">
+<div class="indexClasse">
+    <div class="row justify-content-center">
+        <div class="col-md-4">
+            <div class="card-home">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Nuova Squadra</strong></h5>
+                    <p class="card-text">Inserisci una una nuova squadra.</p>
+                    <a href="/admin/formNewTeam" class="btn btn-primary">Vai</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-home">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Nuovo Giocatore</strong></h5>
+                    <p class="card-text">Inserisci un nuovo giocatore.</p>
+                    <a href="/admin/formNewPlayer" class="btn btn-primary">Vai</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card-home">
+                <div class="card-body">
+                    <h5 class="card-title"><strong>Nuovo Presidente</strong></h5>
+                    <p class="card-text">Inserisci un nuovo presidente.</p>
+                    <a href="admin/newPresident" class="btn btn-primary">Vai</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
 	
-	<div>
-		<a href="/admin/formNewTeam">Inserisci i dati di una squadra</a>
-	</div>
-	<div>
+	
+
+	<!--  <div>
 		<a href="/admin/formNewPlayer">Inserisci i dati di un nuovo giocatore</a>
-	</div>
-	<div><a href="/admin/newPresident">Inserisci i dati di un nuovo presidente</a></div>
-	</div>
+	</div>-->
+	
 	</div>
 	
 	 

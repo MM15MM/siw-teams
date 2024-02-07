@@ -124,11 +124,13 @@ body{
   transform: scale(1.05);
 }
 
-
+.card-home {
+            background-color: #f8f9fa; /* Colore dello sfondo */
+            border: 1px solid #dee2e6; /* Bordo */;
+        }
 .containerIndex{
-	padding-top:10em;
+	padding-right:1em;
 }
-
 
      /*login e registrazione*/  
      .registrazione{

@@ -37,6 +37,10 @@ header {
 	   transition: opacity 0.5s ease-in-out;
    
 }
+.card-home {
+            background-color: #f8f9fa; /* Colore dello sfondo */
+            border: 1px solid #dee2e6; /* Bordo */;
+        }
 body{
 
 	font-family:cursive;
