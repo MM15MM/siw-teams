@@ -15,5 +15,7 @@ public interface TeamRepository extends CrudRepository<Team, Long> {
 	public List<Team> findBySport(String sport);
 	// Query per ottenere sport distinti
     @Query("SELECT DISTINCT t.sport FROM Team t")
-    List<String> findDistinctSports();
+    public List<String> findDistinctSports();
+    
+   
 }

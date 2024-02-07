@@ -45,14 +45,21 @@ public class TeamService {
 		// TODO Auto-generated method stub
 		return this.teamRepository.findByName(name);
 	}
-	
+	@Transactional
 	public List<Team> findTeamsBySport(String sport){
 		return this.teamRepository.findBySport(sport);
 	}
-	
+	@Transactional
 	public List<String> getSports(){
 		return this.teamRepository.findDistinctSports();
 	}
-	
-	
+	@Transactional
+	public Team findByPresidentFiscalCode(String presidenteFiscalCode) {
+		return  findByPresidentFiscalCode(presidenteFiscalCode);
+	}
+	@Transactional
+	public boolean existsByNameAndYear(String nome, Integer year) {
+		// TODO Auto-generated method stub
+		return this.teamRepository.existsByNameAndYear(nome, year);
+	}
 }

@@ -6,13 +6,13 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import it.uniroma3.siw.model.Team;
-import it.uniroma3.siw.repository.TeamRepository;
+import it.uniroma3.siw.service.TeamService;
 
 @Component
 public class TeamValidator implements Validator {
 
 		@Autowired
-		private TeamRepository teamRepository;
+		private TeamService teamService;
 
 		@Override
 		public void validate(Object o, Errors errors) {
@@ -20,7 +20,7 @@ public class TeamValidator implements Validator {
 	        String nome = team.getName().trim();
 	        if (nome.isEmpty())
 	            errors.rejectValue("name", "required");
-	        else if (teamRepository.existsByNameAndYear(nome,  team.getYear())) {
+	        else if (teamService.existsByNameAndYear(nome,  team.getYear())) {
 				errors.rejectValue("name", "duplicate");
 			}
 		}

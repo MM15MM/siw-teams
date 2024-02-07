@@ -38,7 +38,7 @@ import javax.sql.DataSource;
 		// chiunque (autenticato o no) può accedere alle pagine index, login, register, ai css e alle immagini
 		.antMatchers(HttpMethod.GET, "/","/**","/teams/**","/team/**", "/index", "/login", "/register", "/css/**", "/images/**","/player", "/players","/teamDefaultUser/**").permitAll()
 
-		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register
+		// chiunque (autenticato o no) può mandare richieste POST al punto di accesso per login e register e ricerca teams
 		.antMatchers(HttpMethod.POST, "/login", "/register","/searchTeams").permitAll()
 
 		

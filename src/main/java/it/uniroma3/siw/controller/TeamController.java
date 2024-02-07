@@ -58,7 +58,7 @@ public class TeamController {
 	        List<Team> teams;
 
 	        if (sport != null && !sport.isEmpty()) {
-	            // Se lo sport è specificato, recupera solo le squadre di quel tipo
+	            // recupera  squadre di quel tipo
 	            teams = this.teamService.findTeamsBySport(sport);
 	        } else {
 	            // Altrimenti, recupera tutte le squadre
@@ -68,7 +68,7 @@ public class TeamController {
 	        model.addAttribute("teams", teams);
 	        model.addAttribute("selectedSport", sport);
 
-	        // Aggiungi tutti gli sport disponibili al model
+	        // Aggiungi tutti gli sport disponibili 
 	        List<String> sports = this.teamService.getSports();
 	        model.addAttribute("sports", sports);
 
@@ -197,7 +197,7 @@ public class TeamController {
 	        List<Team> teams;
 
 	        if (sport != null && !sport.isEmpty()) {
-	            // Se lo sport è specificato, recupera solo le squadre di quel tipo
+	            //  recupera solo le squadre di quel tipo
 	            teams = this.teamService.findTeamsBySport(sport);
 	        } else {
 	            // Altrimenti, recupera tutte le squadre
@@ -207,7 +207,7 @@ public class TeamController {
 	        model.addAttribute("teams", teams);
 	        model.addAttribute("selectedSport", sport);
 
-	        // Aggiungi tutti gli sport disponibili al model
+	        // Aggiungi tutti gli sport disponibili 
 	        List<String> sports = this.teamService.getSports();
 	        model.addAttribute("sports", sports);
 

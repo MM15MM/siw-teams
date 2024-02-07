@@ -66,7 +66,7 @@ public class PlayerController {
 	public String addPlayer(Model model){
 		model.addAttribute("player",new Player());
 		List<String> sports = this.teamService.getSports();
-	    model.addAttribute("sports", sports); // Aggiungi  sport 
+	    model.addAttribute("sports", sports); //   sport 
 	   
 		return "admin/formNewPlayer.html";
 	}
@@ -84,17 +84,17 @@ public class PlayerController {
         List<Player> players;
 
         if (sport != null && !sport.isEmpty()) {
-            // Se lo sport è specificato, recupera solo i giocatori di quello specifico sport
+            //  recupera solo i giocatori di quello specifico sport
            players = this.playerService.findPlayersBySport(sport);
         } else {
-            // Altrimenti, recupera tutti i giocatori
+            // altrimenti recupera tutti i giocatori
             players = this.playerService.findAll();
         }
 
         model.addAttribute("players", players);
         model.addAttribute("selectedSport", sport);
 
-        // Aggiungi tutti gli sport disponibili al model
+        // Aggiungi tutti gli sport disponibili 
         List<String> sports = this.teamService.getSports();
         model.addAttribute("sports", sports);
 
@@ -117,17 +117,17 @@ public class PlayerController {
 	    List<Player> players;
 
 	    if (sport != null && !sport.isEmpty()) {
-	        // Se lo sport è specificato, recupera solo i giocatori di quello specifico sport
+	        //  recupera solo i giocatori di quello specifico sport
 	        players = this.playerService.findPlayersBySport(sport);
 	    } else {
-	        // Altrimenti, recupera tutti i giocatori
+	        // altrimenti recupera tutti i giocatori
 	        players = this.playerService.findAll();
 	    }
 
 	    model.addAttribute("players", players);
 	    model.addAttribute("selectedSport", sport);
 
-	    // Aggiungi tutti gli sport disponibili al model
+	    // Aggiungi tutti gli sport disponibili
 	    List<String> sports = this.teamService.getSports();
 	    model.addAttribute("sports", sports);
 

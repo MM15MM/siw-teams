@@ -33,8 +33,12 @@ header {
   top: 0; /* Posizione in alto nella pagina */
   width: 100%; /*  occupa l'intera larghezza */
   z-index: 1000;
+  opacity: 0;
+	   transition: opacity 0.5s ease-in-out;
+   
 }
 body{
+
 	font-family:cursive;
 	background-image: url("../images/bkg1.jpg");
 	background-position:center;
@@ -48,6 +52,8 @@ body{
 	padding-top:2em;
 	 padding-bottom: 8em;
 	 z-index: 1;
+	 opacity: 0;
+	   transition: opacity 0.5s ease-in-out;
 	
 }
 

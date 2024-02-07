@@ -6,16 +6,11 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import it.uniroma3.siw.model.President;
-import it.uniroma3.siw.model.User;
-import it.uniroma3.siw.repository.PresidentRepository;
 import it.uniroma3.siw.service.PresidentService;
 
 @Component
 public class PresidentValidator implements Validator{
 
-	@Autowired
-	private PresidentRepository presidentRepository;
-	
 	@Autowired
 	private PresidentService presidentService;
 	

@@ -47,7 +47,7 @@ public class President {
 	public User getUser() {
 		return this.user;
 	}
-
+	/*setter e getter id*/
     public Long getId() {
 		return id;
 	}
@@ -55,6 +55,8 @@ public class President {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	
+	/*setter e getter nome*/
 	public String getName() {
 		return name;
 	}
@@ -63,7 +65,7 @@ public class President {
 		this.name = name;
 	}
 	
-	
+	/*setter e getter cognome*/
 	public String getSurname() {
 		return surname;
 	}

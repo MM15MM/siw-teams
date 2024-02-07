@@ -1,7 +1,5 @@
 package it.uniroma3.siw.service;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import it.uniroma3.siw.model.Player;
-import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.repository.PlayerRepository;
 
 @Service
@@ -18,9 +15,6 @@ public class PlayerService {
 	@Autowired
 	private PlayerRepository playerRepository;
 	
-	@Autowired
-	private TeamService teamService;
-
 	@Transactional
 	public Player findById(Long playerId) {
 		// TODO Auto-generated method stub

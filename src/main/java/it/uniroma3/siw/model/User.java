@@ -41,14 +41,14 @@ public class User {
     private String placeOfBirth;
 	
 
-	
+    /*setter e getter presidente*/
 	public void setPresident(President president) {
 		this.president=president;
 	}
 	public President getPresident(){
 		return this.president;
 	}
-
+	/*setter e getter id*/
     public Long getId() {
 		return id;
 	}
@@ -56,6 +56,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
+	/*setter e getter nome*/
 	public String getName() {
 		return name;
 	}
@@ -64,7 +65,7 @@ public class User {
 		this.name = name;
 	}
 	
-	
+	/*setter e getter cognome*/
 	public String getSurname() {
 		return surname;
 	}

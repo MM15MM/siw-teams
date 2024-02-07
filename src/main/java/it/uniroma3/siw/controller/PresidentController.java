@@ -32,7 +32,6 @@ import it.uniroma3.siw.service.CredentialsService;
 import it.uniroma3.siw.service.PlayerService;
 import it.uniroma3.siw.service.PresidentService;
 import it.uniroma3.siw.service.TeamService;
-import it.uniroma3.siw.service.UserService;
 
 @Controller
 public class PresidentController {
@@ -47,9 +46,6 @@ public class PresidentController {
 	@Autowired
 	private PlayerService playerService;
 	
-	@Autowired
-	private UserService userService;
-
 	@Autowired
 	private PresidentService presidentService;
 
@@ -213,70 +209,36 @@ public class PresidentController {
 		return "redirect:" + referer;
 	}
 	
-	/*SALVATAGGIO PRESIDENTE*/
-/*	@GetMapping(value="/registerPresident/{id}")
-	  public String registerPresident(@PathVariable("id") Long id,Principal principal, 
-			  Model model,HttpServletRequest request) {
-		
-		Team team= this.teamService.findById(id);
-		 String referer = request.getHeader("Referer");//per aggiornare la pagina
-		 if (principal != null && this.isPrincipalPresident(principal)) {
-		        // L'utente è già presidente di un'altra squadra, reindirizza a una pagina di errore
-		        return "errorPresident.html";
-		    }
-		if (principal != null) {
-			
-	        String username = principal.getName();
-	        User user = this.credentialsService.getCredentials(username).getUser();
-
-	        
-	        if (user.getPresident() != null) {
-	            // L'utente è già presidente di un'altra squadra, reindirizza a una pagina di errore
-	            return "errorPresident.html";
-	        }
-	        // Crea un nuovo oggetto President e imposta alcuni valori predefiniti se necessario
-	        President newPresident = new President();
-	        newPresident.setName(user.getName());
-	        newPresident.setSurname(user.getSurname());
-	        newPresident.setFiscalCode(user.getFiscalCode());
-	        newPresident.setBirthDate(user.getBirthDate());
-	        newPresident.setPlaceOfBirth(user.getPlaceOfBirth());
-	        newPresident.setTeam(team);
-	        newPresident.setUser(user);
-	        team.setPresident(newPresident);
-	        
-	       
-	        this.presidentService.save(newPresident);
-            user.setPresident(newPresident);
-            this.teamService.save(team);
-	        this.userService.saveUser(user);
-
-	        // Aggiungi il nuovo presidente al modello
-	        model.addAttribute("president", newPresident);
-
-		}
-		return "redirect:/team/"+ id;
-	}*/
-	
-	// Metodo per verificare se il principal è già presidente
-/*	private boolean isPrincipalPresident(Principal principal) {
-	    String username = principal.getName();
+	/*PRESIDENTE VISUALIZZA PAGINA DEL SUO TEAM*/
+	@GetMapping(value="/manageTeam")
+	public String manageTeamPresident(Principal principal, Model model) {
+		String username = principal.getName();
 	    User user = this.credentialsService.getCredentials(username).getUser();
+	    String fc = user.getFiscalCode();
 
-	    // Verifica se l'utente è già presidente di una squadra
-	    return user.getPresident() != null;
+	    // Cerca il team associato al presidente con il codice fiscale corrente
+	    Team t = findPresident(fc);
+
+	    if (t == null || t.getPresident() == null) {
+	        return "errorPresident"; // Nessun presidente associato al team
+	    } else {
+	        Long id = t.getId();
+	        model.addAttribute("team", t);
+	        return "redirect:/team/" + id; // Ritorna la pagina del team
+	    }
 	}
-	*/
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	private Team findPresident(String fiscalCode) {
+	  List<Team> teams = this.teamService.findAll(); 
+	    for (Team team : teams) {
+	        if (team.getPresident() != null && team.getPresident().getFiscalCode().equals(fiscalCode)) {
+	            return team;
+	        }
+	    }
+	    return null; // Nessun team trovato
+	}
+		
 	
 	/*ADMIN AGGIUNGE PRESIDENTE AL SISTEMA*/
 	
@@ -288,10 +250,6 @@ public class PresidentController {
 		this.presidentValidator.validate(president, bindingResult);
 		if(!bindingResult.hasErrors()) {
 			
-			/*president.setTeam(team);
-			this.presidentService.save(president);
-			team.setPresident(president);
-			this.teamService.save(team);*/
 			this.presidentService.save(president);
 			model.addAttribute("president", president);
 			
@@ -325,6 +283,7 @@ public class PresidentController {
 		return "redirect:" + referer;
 	}
 	
+	/*AGGIUNGE PRESIDENTE AL TEAM*/
 	@RequestMapping(value="/addPresidentToTeam/{teamId}", method = RequestMethod.POST)
 	public String addPresidentToTeam( @RequestParam("presidentId") Long presidentId, 
 			@PathVariable("teamId") Long teamId, HttpServletRequest request,
