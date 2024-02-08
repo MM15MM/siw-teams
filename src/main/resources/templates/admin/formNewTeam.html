@@ -11,7 +11,6 @@
       <link rel="stylesheet" href="../../static/css/stileAdmin.css">
     <link rel="preload" href="../../static/css/stileAdmin.css" as="style">
        <script th:src="@{../../static/js/paginaAdmin.js}" defer></script>
-
     
     
    <title>Nuova Squadra</title> 
@@ -61,6 +60,7 @@
 	
 	<div class="container-NewTeam my-5 text-center">
 	<h1 class="add-team">Aggiungi una squadra</h1>
+	
 	<form th:action="@{/admin/team}" method="POST" th:object="${team}">
   		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 

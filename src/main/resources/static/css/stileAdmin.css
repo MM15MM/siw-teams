@@ -37,6 +37,16 @@ header {
 	   transition: opacity 0.5s ease-in-out;
    
 }
+
+.players-list-team{
+	 display: inline-block; /* Aggiungi questa proprietà per far sì che la box si adatti al contenuto */
+   
+	padding-right: 2em; 
+   border: 1px solid #ccc; /* Aggiungi un bordo sottile */
+    background-color: #f9f9f9; /* Cambia il colore di sfondo */
+    border-radius: 5px; /* Aggiungi angoli arrotondati */
+  
+}
 .card-home {
             background-color: #f8f9fa; /* Colore dello sfondo */
             border: 1px solid #dee2e6; /* Bordo */;
@@ -61,7 +71,7 @@ body{
 	
 }
 
-h1,h2{
+h1,h2,h5{
 	font-family: 'Natural Precision', sans-serif;
 	/*text-decoration : line-through wavy red;*/
 	color: #000000;
@@ -157,20 +167,15 @@ li{
    margin-left:40px;
    }
    .players-update-team{
-   margin-top:50px;
+   padding-top:2em;
+   padding-left:1em;
    }
-   .players-up{
-   margin-left:40px;
-   }
+ 
   
    .indexClasse{
-   margin-top: 100px;
-     font-size:16px;
-        line-height:30px;
+     padding-top:1em;
    }
-   .link-player{
-   font-weight:bold;
-   }
+
   .players-title-page{
   padding-right:2em;
   }

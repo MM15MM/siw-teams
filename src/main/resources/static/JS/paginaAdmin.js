@@ -19,7 +19,6 @@ var pagesToPreload = [
     '/admin/formUpdateTeam/',
     '/admin/newPresident',
     '/success',
-    '/admin/indexAdmin',
     '/'
 ];
 

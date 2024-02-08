@@ -12,7 +12,7 @@
                 
 <link rel="preload" href="../../static/css/stileAdmin.css" as="style">
        <script th:src="@{../static/js/paginaAdmin.js}" defer></script>
-    
+     <script th:src="@{../static/js/spinners.js}" defer></script>
     
    <title>Lista Squadre Admin</title> 
 </head>
@@ -61,6 +61,11 @@
 
 <div class="containerTeams my-5 text-center">
 <h1 class="teams">Squadre</h1>
+<div class="d-flex justify-content-center">
+<div id="loadingSpinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Caricamento in corso...</span>
+  
+</div> </div>
 <form th:action="@{/admin/teams}" method="get">
         <label for="sport">Seleziona sport:</label>
         <select name="sport" id="sport">

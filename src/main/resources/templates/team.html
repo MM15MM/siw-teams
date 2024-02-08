@@ -11,6 +11,7 @@
       <link rel="stylesheet" type="text/css" href="../static/css/stile.css">
      <link rel="preload" href="../static/css/stile.css" as="style">
        <script th:src="@{../../static/js/paginaDefault.js}" defer></script>
+       <script th:src="@{../../static/js/spinners.js}" defer></script>
      <!-- font -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,13 +67,20 @@
 	</header>
 
 
-  <div class="containerTeam my-5 text-center">
+  <div class="containerTeam  my-5 text-center align-items-center">
   <!-- Content here --> 
   <h1>Dettagli Squadra</h1>
+  <div class="d-flex justify-content-center">
+<div id="loadingSpinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Caricamento in corso...</span>
+  
+</div> </div>
   
    <div th:unless="${team}" th:style="'color:red;'">Non esiste</div>
      
     <div th:if="${team}"><div>
+    
+    
        <ul>
        <li><span class="team-image"><img width="5%" th:src=${team.image} /></span></li>
     <li><strong><span>Nome: </span></strong><span class ="team-name" th:text="${team.name}">Up!</span></li>
@@ -90,10 +98,6 @@
         <div>
             <a th:href="@{'/updatePlayers/' + ${team.id}}">Modifica Membri</a>
         </div>
-       <!--  <div>
-            <a th:href="@{'/formNewPlayer/'+${team.id}}">Aggiungi un nuovo giocatore non presente nel sistema</a>
-        </div>--> 
- 
 
 
 

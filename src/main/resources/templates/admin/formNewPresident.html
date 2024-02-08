@@ -66,6 +66,7 @@
 
 <div class="container my-5 text-center">
 	<h1 class="registrazione">Registrazione nuovo Presidente</h1>
+	>
 	
 	<form th:action="@{/admin/newPresident}" method="POST" th:object="${president}">   
 	<div th:if="${#fields.hasGlobalErrors()}">

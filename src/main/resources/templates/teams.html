@@ -12,6 +12,7 @@
      <link rel="stylesheet" href="../static/css/stile.css">
      <link rel="preload" href="../static/css/stile.css" as="style">
        <script th:src="@{../static/js/paginaDefault.js}" defer></script>
+       <script th:src="@{../static/js/spinners.js}" defer></script>
      <!-- font -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,17 +68,21 @@
 	</header>
 	<div class="containerTeams my-5 text-center">
 <h1 class="teams">Squadre</h1>
+<div class="d-flex justify-content-center">
+<div id="loadingSpinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Caricamento in corso...</span>
+  
+</div> </div>
 <div th:if="${#request.userPrincipal}"> <a  th:href="@{/manageTeam}"> Gestisci la tua squadra</a></div>
-
 <form th:action="@{/teams}" method="get">
         <label for="sport">Seleziona sport:</label>
-        <select name="sport" id="sport">
-            <option value="">Tutti gli sport</option>
+        <select name="sport" id="sport"> 
+        <option value="">Tutti gli sport</option>
             <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
         </select>
-        
-        <button class="btn" type="submit">Filtra</button>
+         <button class="btn" type="submit">Filtra</button>
     </form>
+
 <div th:if="${teams==null || teams.isEmpty()}" th:style="'color:red;'">Non ci sono squadre nel sistema</div>
 <div class="row lista-teams ml-auto">
 	<div th:each="team : ${teams}" class="col-md-2">

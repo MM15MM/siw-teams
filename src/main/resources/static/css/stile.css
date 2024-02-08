@@ -19,7 +19,12 @@ border:1px solid black;
 	 background-color:rgba(230, 230, 230, 0.8);
 }
 .players-list-team{
+	 display: inline-block; /* Aggiungi questa proprietà per far sì che la box si adatti al contenuto */
+   
 	padding-right: 2em; 
+   border: 1px solid #ccc; /* Aggiungi un bordo sottile */
+    background-color: #f9f9f9; /* Cambia il colore di sfondo */
+    border-radius: 5px; /* Aggiungi angoli arrotondati */
   
 }
 
@@ -167,8 +172,8 @@ body{
           margin: auto;
         }
         .Congratulazioni{
-           text-decoration: underline; /* Aggiunge una sottolineatura */
-    text-decoration-color: red; /* Colore della sottolineatura */
+           text-decoration: underline; /* sottolineatura */
+    text-decoration-color: red; /* Colore  */
 }
 li{
 	list-style:none;
@@ -176,7 +181,7 @@ li{
 
     input {
         border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati solo al lato destro */
-        transition: background-color 0.3s, color 0.3s; /* aggiungi una transizione per un effetto più fluido */
+        transition: background-color 0.3s, color 0.3s; 
         
   }
   input:hover {
@@ -192,17 +197,12 @@ li{
         padding: 5px; /* Aggiunge spaziatura interna per una migliore presentazione */
 }
 
-.containerTeam{
-	line-height:30px;
-}
 .containerPlayers{
 	text-align:center;
 	align-items:center;
 }
   
-   .link-player{
-   font-weight:bold;
-   }
+
   .players-title-page{
   margin-left:30px;
   }

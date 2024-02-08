@@ -11,7 +11,6 @@
       <link rel="stylesheet" href="../../static/css/stileAdmin.css">
     <link rel="preload" href="../../static/css/stileAdmin.css" as="style">
        <script th:src="@{../static/js/paginaAdmin.js}" defer></script>
-
     
     
    <title>Nuovo Giocatore</title> 
@@ -63,6 +62,7 @@
 
 <div class="container-newPlayer my-5 text-center">
  <h1>Aggiungi un giocatore</h1>
+ 
 	<form th:action="@{/admin/newPlayer}" method="POST" th:object="${player}">
 		
 		<div th:if="${#fields.hasGlobalErrors()}">

@@ -11,7 +11,7 @@
       <link rel="stylesheet" href="../../static/css/stileAdmin.css">
     <link rel="preload" href="../../static/css/stileAdmin.css" as="style">
        <script th:src="@{../../static/js/paginaAdmin.js}" defer></script>
-
+ <script th:src="@{../../static/js/spinners.js}" defer></script>
     
     
    <title>Squadra Admin</title> 
@@ -63,7 +63,11 @@
   <!-- Content here --> 
   <h1>Dettagli squadra </h1>
     <div th:if="${team}">
-     <div class="containerTeam-admin">
+    <div class="d-flex justify-content-center">
+<div id="loadingSpinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Caricamento in corso...</span>
+  
+</div> </div>
     <ul>
     <li><span class="team-image"><img width="5%" th:src=${team.image} /></span></li>
     <li><strong><span>Nome: </span></strong><span class ="team-name" th:text="${team.name}">Up!</span></li>
@@ -88,16 +92,17 @@
           <div class="elimina-squadra" > <button type="submit" class="btn2">Elimina Squadra</button></div>
             </form> </li> </ul>
    
-    </div>
-		    <div th:if="${players}" class="players-update-team">
+  
+		    <div th:unless="${team.players.isEmpty()}" class="players-update-team" >
         <div><h2 class="players-up">Giocatori:</h2></div>
-        <div th:unless="${team.players.isEmpty()}">
+        
+        <div class="players-list-team">
         <ul th:each="player: ${team.players}">
           <li><span th:text="${player.name} + ' ' + ${player.surname}"></span></li>
         </ul> 
 		   </div>
-		   </div>
-</div> 
+		   
+</div> </div>
 <div th:unless="${team}" th:style="'color:red;'">Non esiste</div> 
 </div> 
 		 

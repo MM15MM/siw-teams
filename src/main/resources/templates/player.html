@@ -11,6 +11,7 @@
       <link rel="stylesheet" href="../static/css/stile.css">
      <link rel="preload" href="../static/css/stile.css" as="style">
        <script th:src="@{../../static/js/paginaDefault.js}" defer></script>
+       <script th:src="@{../../static/js/spinners.js}" defer></script>
      <!-- font -->
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,6 +65,11 @@
 
 <div class="containerPlayer my-5 text-center">
 	<h1>Dettagli giocatore</h1>
+	<div class="d-flex justify-content-center">
+<div id="loadingSpinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Caricamento in corso...</span>
+  
+</div> </div>
 	<div th:unless="${player}" th:style="'color:red;">Giocatore inesistente</div>
 	<div th:if="${player}">
 	<ul class="player-details">

@@ -59,8 +59,9 @@
 	</header>
 	<div class="containerIndex my-5 text-center">
 <h1>Benvenuto!</h1>
-<div th:unless="${#request.userPrincipal}"><p> Registrati se sei un presidente di una squadra:così potrai modificare i membri della tua squadra</p>
-<p>Se non sei un presidente, potrai comunque navigare in questo sito. Scopri i dettagli relativi alla tua squadra del cuore!</p>
+
+<div th:unless="${#request.userPrincipal}"><p> Registrati se sei un presidente di una squadra: così potrai modificare i membri della tua squadra</p>
+<p>Se non sei un presidente, potrai comunque navigare su questo sito. Scopri i dettagli relativi alla tua squadra del cuore!</p>
 </div>
 <div th:if="${#request.userPrincipal}">
 <p>Ora puoi modificare i membri della squadra di cui sei il presidente.</p></div>
