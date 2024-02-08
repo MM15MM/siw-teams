@@ -251,10 +251,10 @@ li{
                                       creando un effetto di ingrandimento.*/
         }
 
-        .card img {
+       /* .card img {
             width: 100%;
             height: auto; /*Mantiene l'aspetto proporzionato dell'immagine.*/
-        }
+      /*  }*/
 
         .card-content {
             padding: 15px; /*Aggiunge uno spazio interno  */
@@ -281,7 +281,7 @@ li{
         .team-image:hover {
         border-width: 5px; /* Cambia la larghezza del bordo al passaggio del mouse */
         }
-        .team-image img{
-          width: 100%; /* L'immagine si adatta alla larghezza del box */
+       .team-image img{
+          width: auto; /* L'immagine si adatta alla larghezza del box */
          height: auto; /* L'immagine si adatta all'altezza del box */
         }

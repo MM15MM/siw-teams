@@ -240,10 +240,10 @@ li{
                                       creando un effetto di ingrandimento.*/
         }
 
-        .card img {
+       /* .card img {
             width: 100%;
             height: auto; /*Mantiene l'aspetto proporzionato dell'immagine.*/
-        }
+        /*}*/
 
         .card-content {
             padding: 15px; /* spazio interno  */
