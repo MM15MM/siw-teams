@@ -104,7 +104,7 @@
       </div>
       </div>
       	  <div class="delete-team">
-        <strong><span class="movie-title" th:text="${team.name}"></span></strong>
+        <strong><span class="team-title" th:text="${team.name}"></span></strong>
 		<form  class="delete-btn" th:action="@{'/admin/deleteTeam/' + ${team.id}}" method="post">
 			<button type="submit" class="btn2">Elimina</button>
 		</form>

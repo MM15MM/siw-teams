@@ -73,7 +73,7 @@
   <span class="visually-hidden">Caricamento in corso...</span>
   
 </div> </div>
-<div th:if="${#request.userPrincipal}"> <a  th:href="@{/manageTeam}"> Gestisci la tua squadra</a></div>
+<div th:if="${#request.userPrincipal}"> <a  th:href="@{/manageTeam}"> Gestisci Squadra</a></div>
 <form th:action="@{/teams}" method="get">
         <label for="sport">Seleziona sport:</label>
         <select name="sport" id="sport"> 

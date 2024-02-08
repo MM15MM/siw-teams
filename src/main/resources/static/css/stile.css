@@ -19,18 +19,18 @@ border:1px solid black;
 	 background-color:rgba(230, 230, 230, 0.8);
 }
 .players-list-team{
-	 display: inline-block; /* Aggiungi questa proprietà per far sì che la box si adatti al contenuto */
+	 display: inline-block; /* per far sì che la box si adatti al contenuto */
    
 	padding-right: 2em; 
-   border: 1px solid #ccc; /* Aggiungi un bordo sottile */
-    background-color: #f9f9f9; /* Cambia il colore di sfondo */
-    border-radius: 5px; /* Aggiungi angoli arrotondati */
+   border: 1px solid #ccc; 
+    background-color: #f9f9f9; 
+    border-radius: 5px; /* angoli arrotondati */
   
 }
 
 header {
   position: fixed; /*  posizione fissa  */
-  top: 0; /* Posizione in alto nella pagina */
+  top: 0; 
   width: 100%; /*  occupa l'intera larghezza */
   z-index: 1000;
   opacity: 0;
@@ -41,7 +41,7 @@ header {
 	margin-top:5px;
 }
 
-h1,h2{
+h1,h2,h3{
 font-family: 'Natural Precision', sans-serif;                                              
 	/*text-decoration : line-through wavy red;*/
 	color: #000000;
@@ -56,10 +56,10 @@ font-family: 'Natural Precision', sans-serif;
 	background-position:center;
 	 background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
+    background-attachment: fixed; /* fissa l'immagine di sfondo durante lo scrolling */
     margin: 0; /* Rimuove i margini predefiniti del body */
      height: 100vh;
-	  backdrop-filter: blur(5px); /* Utilizza vw per l'effetto di sfocatura */
+	  backdrop-filter: blur(5px); /* effetto di sfocatura */
 	
 }
 body{
@@ -68,7 +68,7 @@ body{
 	background-position:center;
 	 background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: fixed; /* Opzionale: fissa l'immagine di sfondo durante lo scrolling */
+    background-attachment: fixed; /*  fissa l'immagine di sfondo durante lo scrolling */
     margin: 0; /* Rimuove i margini predefiniti del body */
 
 		padding-top:2em;
@@ -130,8 +130,8 @@ body{
 }
 
 .card-home {
-            background-color: #f8f9fa; /* Colore dello sfondo */
-            border: 1px solid #dee2e6; /* Bordo */;
+            background-color: #f8f9fa; 
+            border: 1px solid #dee2e6; 
         }
 .containerIndex{
 	padding-right:1em;
@@ -146,7 +146,7 @@ body{
      }
       .container-reg{
         margin: auto;
-        width: 50%; /* o qualsiasi larghezza desiderata */
+        width: 50%; 
         display:flex;
         position:relative;
         justify-content:center;
@@ -180,7 +180,7 @@ li{
 } 
 
     input {
-        border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati solo al lato destro */
+        border-radius: 5px 5px 5px 5px; /* Aggiunge angoli arrotondati */
         transition: background-color 0.3s, color 0.3s; 
         
   }
@@ -191,10 +191,10 @@ li{
     label {
      font-weight:bold;
         display: inline-block;
-        width: 100px; /* Imposta la larghezza desiderata */
-        text-align: right; /* Allinea il testo a destra */
-        margin-right: 10px; /* Aggiunge un margine destro per separare le etichette dagli input */
-        padding: 5px; /* Aggiunge spaziatura interna per una migliore presentazione */
+        width: 100px; 
+        text-align: right; 
+        margin-right: 10px; 
+        padding: 5px; 
 }
 
 .containerPlayers{
@@ -220,8 +220,8 @@ li{
 	} 
    .lista-teams {
             margin-top:50px;
-            display: flex; /*Utilizza il modello di layout Flexbox*/
-            flex-wrap: wrap; /* Consente agli elementi figli di andare a capo quando raggiungono la fine della linea.*/
+            display: flex; 
+            flex-wrap: wrap; /* elementi figli vanno a capo quando raggiungono la fine della linea.*/
             gap: 20px;/*Aggiunge uno spazio di 20 pixel tra gli elementi figli*/
             margin-left: 30px;
             margin-right:0px;
@@ -234,21 +234,20 @@ li{
         .card {
          height:300px;
             width: 200px;
-            border: 1px solid #ddd; /*Aggiunge un bordo sottile di colore grigio alle cards.*/
+            border: 1px solid #ddd; 
             border-radius: 8px; /* bordo arrotondato*/
             overflow: hidden;   /*Nasconde eventuali contenuti che potrebbero fuoriuscire dalla cards.*/
             transition: transform 0.3s ease-in-out; /*Aggiunge un'animazione di transizione al cambiamento 
                                                    della proprietà transform, che viene utilizzata quando il cursore 
                                                    si posiziona su una card.*/
-           display: flex; /* Utilizza il modello di layout flessibile */
-          flex-direction: column; /* Imposta la direzione dei figli come colonna */
+           display: flex; 
+          flex-direction: column; /*  direzione dei figli come colonna */
                                                    
                                               
         }
 
         .card:hover {
-            transform: scale(1.05); /*Applica una trasformazione di scala al 105% quando il cursore è posizionato sulla card, 
-                                      creando un effetto di ingrandimento.*/
+            transform: scale(1.05); /* effetto di ingrandimento.*/
         }
 
        /* .card img {
@@ -264,15 +263,14 @@ li{
     font-size: 1rem;
     margin-bottom: 5px;  /* Aggiungi uno spazio inferiore tra il titolo e il paragrafo */
     font-weight:bold;
-   /* color:red;*/
 }
         
         .team-image{
-          width: 250px; /* Larghezza del box */
-          height: 300px; /* Altezza del box */
+          width: 250px; 
+          height: 300px; 
           border: 1px solid #ccc; /* Bordo del box */
-          padding: 10px; /* Spazio interno del box */
-          margin: 30px auto; /* Margine: 10px in alto, 0 a destra, 10px in basso, -20px a sinistra */
+          padding: 10px; 
+          margin: 30px auto; 
           display:flex;
           align-items:center;
           justify-content:center;
@@ -282,6 +280,6 @@ li{
         border-width: 5px; /* Cambia la larghezza del bordo al passaggio del mouse */
         }
        .team-image img{
-          width: auto; /* L'immagine si adatta alla larghezza del box */
-         height: auto; /* L'immagine si adatta all'altezza del box */
+          width: auto; 
+         height: auto; 
         }
