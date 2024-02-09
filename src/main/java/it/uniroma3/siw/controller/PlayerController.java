@@ -34,6 +34,13 @@ public class PlayerController {
 	private TeamService teamService;
 	
 	
+	
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	/*----------------ADMIN------------------------*/
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	
 	/*ELIMINA PLAYER DAL SISTEMA*/
 	
 	@RequestMapping(value = "/admin/deletePlayer/{id}", method=RequestMethod.GET)
@@ -71,36 +78,6 @@ public class PlayerController {
 		return "admin/formNewPlayer.html";
 	}
 	
-	/* CHIUNQUE VISUALIZZA I DETTAGLI DEL GIOCATORE E LA LISTA DEI GIOCATORI*/
-	
-	@GetMapping(value = "/player/{id}")
-	public String getPlayer(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("player", this.playerService.findById(id));
-		return "player.html";
-	}
-
-	@GetMapping(value = "/players")
-	public String getPlayers(Model model, @RequestParam(name = "sport", required = false) String sport) {
-        List<Player> players;
-
-        if (sport != null && !sport.isEmpty()) {
-            //  recupera solo i giocatori di quello specifico sport
-           players = this.playerService.findPlayersBySport(sport);
-        } else {
-            // altrimenti recupera tutti i giocatori
-            players = this.playerService.findAll();
-        }
-
-        model.addAttribute("players", players);
-        model.addAttribute("selectedSport", sport);
-
-        // Aggiungi tutti gli sport disponibili 
-        List<String> sports = this.teamService.getSports();
-        model.addAttribute("sports", sports);
-
-        return "players";
-		
-	}
 	
 	/*ADMIN VISUALIZZA DETTAGLI GIOCATORE*/
 	
@@ -133,6 +110,47 @@ public class PlayerController {
 
 	    return "admin/players";
 	}
+	
+	
+	
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	/*----------------GENERALE----------------------*/
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	
+	
+	/* CHIUNQUE VISUALIZZA I DETTAGLI DEL GIOCATORE E LA LISTA DEI GIOCATORI*/
+	
+	@GetMapping(value = "/player/{id}")
+	public String getPlayer(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("player", this.playerService.findById(id));
+		return "player.html";
+	}
+
+	@GetMapping(value = "/players")
+	public String getPlayers(Model model, @RequestParam(name = "sport", required = false) String sport) {
+        List<Player> players;
+
+        if (sport != null && !sport.isEmpty()) {
+            //  recupera solo i giocatori di quello specifico sport
+           players = this.playerService.findPlayersBySport(sport);
+        } else {
+            // altrimenti recupera tutti i giocatori
+            players = this.playerService.findAll();
+        }
+
+        model.addAttribute("players", players);
+        model.addAttribute("selectedSport", sport);
+
+        // Aggiungi tutti gli sport disponibili 
+        List<String> sports = this.teamService.getSports();
+        model.addAttribute("sports", sports);
+
+        return "players";
+		
+	}
+
 	
 	
 	

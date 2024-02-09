@@ -10,10 +10,13 @@ document.addEventListener("DOMContentLoaded", function() {
 var pagesToPreload = [
     '/admin/players',
     '/admin/deletePlayer/',
+    '/admin/deletePresident/',
     '/admin/formNewPlayer',
     '/admin/player/',
     '/admin/updatePlayers/',
     '/admin/teams',
+    '/admin/presidents',
+    '/admin/president/',
     '/admin/team/',
     '/admin/formNewTeam',
     '/admin/formUpdateTeam/',

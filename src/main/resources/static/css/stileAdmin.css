@@ -131,11 +131,6 @@ li{
         padding: 5px; 
 }
      
-       
-
-        .players-update-team{
-            margin-bottom:125px;
-        }
         
         .container-index-admin{
         text-transform: uppercase;
@@ -176,7 +171,7 @@ li{
   .players-title-page{
   padding-right:2em;
   }
-.player-details{
+.player-details,.president-details{
 	
 	margin-top:20px;
 	padding-right:2em;
@@ -184,11 +179,12 @@ li{
 .membership-details{
 	margin-top:20px;
 	}
-	.players-list{
+	.presidents-list,.players-list{
 	margin-top:20px;
 	padding-right:8em;
 	padding-left:6em;
 	}
+	
   .lista-teams {
             margin-top:50px;
             display: flex; 

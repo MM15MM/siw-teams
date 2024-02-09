@@ -40,6 +40,9 @@
 			<li class="nav-item elenco-players">
 				<a class="nav-link" href="/admin/players">Elenco Giocatori</a>
 			</li>
+			<li class="nav-item elenco-presidents">
+				<a class="nav-link" href="/admin/presidents">Elenco Presidenti</a>
+			</li>
 			<li class="nav-item ml-auto">
 			<form th:action="@{/admin/searchTeams}" method="post">
 		<input class="cerca" type="search" th:value="${name}" name="name" id="name" placeholder="inserisci nome squadra" required/>
@@ -66,7 +69,7 @@
 
 <div class="container my-5 text-center">
 	<h1 class="registrazione">Registrazione nuovo Presidente</h1>
-	>
+	
 	
 	<form th:action="@{/admin/newPresident}" method="POST" th:object="${president}">   
 	<div th:if="${#fields.hasGlobalErrors()}">
@@ -110,7 +113,12 @@
         <label for="placeOfBirth">Luogo di Nascita:</label>
         
         <input type="text" placeholder="placeof birth" id="placeOfBirth" name="placeOfBirth" th:field="${president.placeOfBirth}"/></li>
-       
+       	<li>
+			<label>Sport:</label>
+			
+			
+			<span><input type="text" placeholder="sport" required th:field="${president.sport}" /></span>
+			 </li>
         </ul>
         <div>
 			<span><button class="btn" type="submit">Conferma</button></span>

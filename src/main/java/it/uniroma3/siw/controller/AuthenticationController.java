@@ -98,11 +98,11 @@ public class AuthenticationController {
                  Model model) {
     	
     	this.userValidator.validate(user, userBindingResult);
-    	if (this.credentialsValidator != null) {
-            this.credentialsValidator.validate(credentials, credentialsBindingResult);
-        }
     	
-    	//this.credentialsValidator.validate(credentials,credentialsBindingResult);
+            this.credentialsValidator.validate(credentials, credentialsBindingResult);
+        
+    	
+    	
 
 		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {

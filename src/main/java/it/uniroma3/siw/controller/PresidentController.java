@@ -55,6 +55,15 @@ public class PresidentController {
 	@Autowired
 	private PresidentValidator presidentValidator;
 
+
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	/*----------------PRESIDENTE-------------------*/
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	
+		
+	
 	/*AGGIUNTA E RIMOZIONE PLAYER DAL TEAM DA PARTE DEL PRESIDENTE*/
 	@GetMapping(value="/updatePlayers/{id}")
 	public String updatePlayers(@PathVariable("id") Long id, Model model, Principal principal) {
@@ -240,6 +249,12 @@ public class PresidentController {
 	}
 		
 	
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	/*----------------ADMIN------------------------*/
+	/*---------------------------------------------*/
+	/*---------------------------------------------*/
+	
 	/*ADMIN AGGIUNGE PRESIDENTE AL SISTEMA*/
 	
 	@PostMapping(value="/admin/newPresident")
@@ -309,9 +324,45 @@ public class PresidentController {
 		return "redirect:" + referer;
 	}
 	
+/*ELIMINA PRESIDENT DAL SISTEMA*/
 	
+	@RequestMapping(value = "/admin/deletePresident/{id}", method=RequestMethod.GET)
+	public String deletePresident(@PathVariable("id") Long id) {
+        this.presidentService.deleteById(id);
+		return "redirect:/admin/presidents";
+	}
 	
+/*ADMIN VISUALIZZA DETTAGLI PRESIDENTE*/
 	
+	@GetMapping (value="/admin/president/{id}")
+	public String showPresidentDetailsAdmin(@PathVariable("id") Long id ,Model model){
+		model.addAttribute("president", this.presidentService.findById(id));
+		return "admin/president";
+	}
+	
+   /*ADMIN VISUALIZZA LISTA PRESIDENTI*/
+	
+	@GetMapping(value = "/admin/presidents")
+	public String getPresidentsAdmin(Model model, @RequestParam(name = "sport", required = false) String sport) {
+	    List<President> presidents;
+
+	    if (sport != null && !sport.isEmpty()) {
+	        //  recupera solo presidenti di quello specifico sport
+	    	presidents = this.presidentService.findPresidentsBySport(sport);
+	    } else {
+	        // altrimenti recupera tutti i presidenti
+	    	presidents = this.presidentService.findAll();
+	    }
+
+	    model.addAttribute("presidents", presidents);
+	    model.addAttribute("selectedSport", sport);
+
+	    // Aggiungi tutti gli sport disponibili
+	    List<String> sports = this.teamService.getSports();
+	    model.addAttribute("sports", sports);
+
+	    return "admin/presidents";
+	}
 	
 	
 	

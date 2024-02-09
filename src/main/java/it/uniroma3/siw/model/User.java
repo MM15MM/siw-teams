@@ -34,6 +34,7 @@ public class User {
     @NotBlank
     private String fiscalCode;
 
+   // @NotBlank
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthDate;
 

@@ -41,7 +41,7 @@ header {
 	margin-top:5px;
 }
 
-h1,h2,h3{
+h1,h2,h3,h5{
 font-family: 'Natural Precision', sans-serif;                                              
 	/*text-decoration : line-through wavy red;*/
 	color: #000000;
@@ -59,7 +59,7 @@ font-family: 'Natural Precision', sans-serif;
     background-attachment: fixed; /* fissa l'immagine di sfondo durante lo scrolling */
     margin: 0; /* Rimuove i margini predefiniti del body */
      height: 100vh;
-	  backdrop-filter: blur(5px); /* effetto di sfocatura */
+	  backdrop-filter: blur(8px); /* effetto di sfocatura */
 	
 }
 body{

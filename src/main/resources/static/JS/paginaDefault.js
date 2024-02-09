@@ -13,6 +13,7 @@ var pagesToPreload = [
     '/updatePlayers/',
     '/teams',
     '/team/',
+    '/register',
     '/addNewPlayer/',
     '/addNewPlayerToTeam/',
     '/removePlayerFromTeam/',

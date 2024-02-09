@@ -37,6 +37,9 @@ public class President {
 	@NotBlank
 	private String surname;
 	
+	@NotBlank
+	private String sport;
+	
 	@OneToOne
 	private User user;
 	
@@ -74,6 +77,14 @@ public class President {
 		this.surname = surname;
 	}
 	
+	/*setter e getter sport*/
+	public String getSport() {
+		return sport;
+	}
+	
+	public void setSport(String sport) {
+		this.sport = sport;
+	}
 	
 	/*setter e getter squadra*/
     public void setTeam(Team team) {

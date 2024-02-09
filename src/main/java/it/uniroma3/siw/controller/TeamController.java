@@ -93,13 +93,15 @@ public class TeamController {
 			
 			for(President p: presidentsPresenti) {
 				
-		if (p.getTeam()==null ) {
+		if ((p.getTeam()==null && p.getSport().equals(team.getSport())))  {
 					
 					presidents.add(p);
 				}
 			}
 			return presidents;
 		}
+		
+
 		
 		/*------------------AGGIUNTA NUOVO TEAM-------------------*/
 		
@@ -177,7 +179,7 @@ public class TeamController {
 		
 		/*----------------------------------------------------*/
 		/*----------------------------------------------------*/
-		/*--------------------GENERALE E PRESIDENTE------------*/
+		/*---------------GENERALE E PRESIDENTE----------------*/
 		/*----------------------------------------------------*/
 		/*----------------------------------------------------*/
 		/*----------------------------------------------------*/
@@ -217,7 +219,7 @@ public class TeamController {
 		
 		
 /* VISUALIZZAZIONE TEAM*/
-		@GetMapping( "/team/{id}")
+		@GetMapping( value="/team/{id}")
 		public String getTeam(@PathVariable("id") Long id, Model model, Principal principal) {
 			Team team = this.teamService.findById(id);
 		    model.addAttribute("team", team);

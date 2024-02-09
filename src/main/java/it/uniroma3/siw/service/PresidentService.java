@@ -40,5 +40,14 @@ public List<President> findAll() {
 	// TODO Auto-generated method stub
 	return (List<President>)this.presidentRepository.findAll();
 }
+  @Transactional
+public void deleteById(Long id) {
+	// TODO Auto-generated method stub
+	this.presidentRepository.deleteById(id);
+}
+public List<President> findPresidentsBySport(String sport) {
+	// TODO Auto-generated method stub
+	return this.presidentRepository.findBySport(sport);
+}
 
 }

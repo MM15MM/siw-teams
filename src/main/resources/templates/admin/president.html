@@ -10,16 +10,17 @@
      <link  rel="icon" href="../../static/images/sports.png" type="image/x-icon">
       <link rel="stylesheet" href="../../static/css/stileAdmin.css">
     <link rel="preload" href="../../static/css/stileAdmin.css" as="style">
-       <script th:src="@{../static/js/paginaAdmin.js}" defer></script>
+       <script th:src="@{../../static/js/paginaAdmin.js}" defer></script>
+ <script th:src="@{../../static/js/spinners.js}" defer></script>
     
     
-   <title>Nuovo Giocatore</title> 
+   <title>Presidente Admin</title> 
 </head>
 <body>
 
 <header>
  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
+ <a class="navbar-brand font-effect-shadow-multiple" href="#"><img src="../../static/images/sports.png" width="30" height="30" class="d-inline-block align-top" alt="Logo">Siw-Federation</a>
      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -61,56 +62,50 @@
 	  </div>
   </nav>
 </header>
-
-
-<div class="container-newPlayer my-5 text-center">
- <h1>Aggiungi un giocatore</h1>
- 
-	<form th:action="@{/admin/newPlayer}" method="POST" th:object="${player}">
+	  <div class="containerPresident my-5 text-center">
+  <!-- Content here --> 
 		
-		<div th:if="${#fields.hasGlobalErrors()}">
-  			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}">...</p> 
-  		</div>
-		<ul>
+				<h1 >Dettagli presidente</h1>
+				<div class="d-flex justify-content-center">
+<div id="loadingSpinner" class="spinner-border text-info" role="status">
+  <span class="visually-hidden">Caricamento in corso...</span>
+  
+</div> </div>
+				<div th:unless="${president}" >Presidente inesistente</div>
+   <div th:if="${president}">
+	<ul class="president-details">
+		<li><strong><span>Nome: </span></strong>
+		<span th:text="${president.name}"></span></li>
+	
+		<li><strong><span>Cognome: </span></strong>
+		<span th:text="${president.surname}"></span></li>
 		<li>
-			<label>Nome: </label> <span><input required type="text" th:field="${player.name}" placeholder="name" /></span>
-		</li>
-      <li>
-			<span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red;'"></span>
-			 </li>
-		<li>
-			<label>Cognome: </label> <span><input required type="text" th:field="${player.surname}" placeholder="surname"  /></span>
-		</li>
+		<strong><span>Codice Fiscale:</span></strong>
+		<span th:text="${president.fiscalCode}"></span></li>
+	
+	
+	<li>
+		<strong><span>Data di Nascita: </span></strong>
+		<span th:text="${president.birthDate}"></span></li>
+
 <li>
-			<span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" th:style="'color:red;'"></span>
-			 </li>
-		<li>
-			<label>Ruolo: </label> <span><input required type="text" th:field="${player.role}" placeholder="role"  /></span>
-		</li>
-		<li>
-			<label>Luogo di Nascita: </label> <span><input required type="text" th:field="${player.placeOfBirth}" placeholder="place of birth"  /></span>
-		</li>
-		<li>
-			<label>Data di Nascita: </label> <span><input type="date" th:field="${player.birthDate}" placeholder="birth date"  /></span>
-		</li>
+		<strong><span>Luogo di Nascita:</span></strong>
+		<span th:text="${president.placeOfBirth}"></span></li>
+		
+		<li th:if="${president.team}"><strong><span>Presidente di: </span></strong>
+		<span th:text="${president.team.name}"></span></li>
+	
 		</ul>
-	<div>
-    <label for="sport">Seleziona uno sport:</label>
-    <select name="sport" id="sport">
-            <option value="">Tutti gli sport</option>
-            <option th:each="sport : ${sports}" th:value="${sport}" th:text="${sport}"></option>
-        </select></div>
-           <div>
-			<span><button class="btn" type="submit">Conferma</button></span>
-		</div>
-	</form>
 	</div>
 	
-	 
 	
-	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
+
+            
+       </div>
+	
+	  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    </body>
-
-</html>
+	
+	
+</body>
