@@ -223,10 +223,11 @@ public class PresidentController {
 	public String manageTeamPresident(Principal principal, Model model) {
 		String username = principal.getName();
 	    User user = this.credentialsService.getCredentials(username).getUser();
-	    String fc = user.getFiscalCode();
-
+	    String c = user.getCode();
+        President p = this.presidentService.findByCode(c);
+        
 	    // Cerca il team associato al presidente con il codice fiscale corrente
-	    Team t = findPresident(fc);
+	    Team t = p.getTeam();
 
 	    if (t == null || t.getPresident() == null) {
 	        return "errorPresident"; // Nessun presidente associato al team
@@ -235,17 +236,6 @@ public class PresidentController {
 	        model.addAttribute("team", t);
 	        return "redirect:/team/" + id; // Ritorna la pagina del team
 	    }
-	}
-	
-	
-	private Team findPresident(String fiscalCode) {
-	  List<Team> teams = this.teamService.findAll(); 
-	    for (Team team : teams) {
-	        if (team.getPresident() != null && team.getPresident().getFiscalCode().equals(fiscalCode)) {
-	            return team;
-	        }
-	    }
-	    return null; // Nessun team trovato
 	}
 		
 	
@@ -267,10 +257,10 @@ public class PresidentController {
 			
 			this.presidentService.save(president);
 			model.addAttribute("president", president);
-			
+			return "admin/indexAdmin";
 		}
 		
-		return "admin/indexAdmin";
+		return "admin/formNewPresident";
 	}
 	@GetMapping(value="/admin/newPresident")
 	public String adminNewPresidentGetMapping(Model model) {
@@ -324,13 +314,7 @@ public class PresidentController {
 		return "redirect:" + referer;
 	}
 	
-/*ELIMINA PRESIDENT DAL SISTEMA*/
-	
-	@RequestMapping(value = "/admin/deletePresident/{id}", method=RequestMethod.GET)
-	public String deletePresident(@PathVariable("id") Long id) {
-        this.presidentService.deleteById(id);
-		return "redirect:/admin/presidents";
-	}
+
 	
 /*ADMIN VISUALIZZA DETTAGLI PRESIDENTE*/
 	

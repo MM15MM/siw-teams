@@ -17,6 +17,7 @@ public class PresidentValidator implements Validator{
 	 final Integer MAX_NAME_LENGTH = 100;
 	 final Integer MIN_NAME_LENGTH = 2;
 	final Integer FISCAL_CODE=16;
+	final Integer PRESIDENT_CODE=16;
 
 	@Override
 	public void validate(Object o, Errors errors) {
@@ -25,6 +26,7 @@ public class PresidentValidator implements Validator{
 	        String nome = president.getName().trim();
 	        String cognome = president.getSurname().trim();
 	        String fiscalCode = president.getFiscalCode().trim();
+	        String code = president.getCode().trim();
 
 	        if (nome.isEmpty())
 	            errors.rejectValue("nome", "required");
@@ -35,6 +37,10 @@ public class PresidentValidator implements Validator{
 	            errors.rejectValue("cognome", "required");
 	        else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
 	            errors.rejectValue("cognome", "size");
+	        if (code.isEmpty())
+	            errors.rejectValue("code", "required");
+	        else if (this.presidentService.existByCode(code) == true)
+	            errors.rejectValue("code", "duplicate");
 	       
 	        if (fiscalCode.isEmpty())
 	            errors.rejectValue("fiscalCode", "required");

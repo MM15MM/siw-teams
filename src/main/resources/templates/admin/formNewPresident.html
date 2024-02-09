@@ -114,6 +114,12 @@
         
         <input type="text" placeholder="placeof birth" id="placeOfBirth" name="placeOfBirth" th:field="${president.placeOfBirth}"/></li>
        	<li>
+       	<li>
+        <label for="fiscalCode">Codice Presidente:</label>
+        
+        <input type="text" placeholder="code" id="code" name="code" th:field="${president.code}" /></li>
+       		<li><span th:if="${#fields.hasErrors('code')}" th:errors="*{code}" th:style="'color:red;'"></span></li>
+       <li>
 			<label>Sport:</label>
 			
 			

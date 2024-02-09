@@ -56,7 +56,7 @@
 	<div class="container-reg">
 	
 	<form th:action="@{/register}" method="POST">
-	<ul><li><label>Nome:</label> <span><input type="text" placeholder="name" required th:field="${user.name}" /></span>
+	<!--  <ul><li><label>Nome:</label> <span><input type="text" placeholder="name" required th:field="${user.name}" /></span>
 			 </li>
 			  <li>
 			<span th:if="${#fields.hasErrors('user.name')}" th:errors="${user.nome}" th:style="'color:red;'"></span>
@@ -88,8 +88,8 @@
 			<label>Data di Nascita:</label>
 		
 			<span><input type="date" placeholder="birth date" required th:field="${user.birthDate}" /></span>
-			</li>
-		<li>
+			</li>-->
+	<ul>	<li>
 			<label>Username:</label>
 			
 			<span><input type="text" placeholder="@username" required th:field="${credentials.username}" id="username"/></span>
@@ -104,7 +104,22 @@
 			</li>
 			<li><span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></span>
 			</li>
-		
+		<li>
+			<label>Codice Fiscale:</label>
+			
+			<span><input type="text" placeholder="fiscal code" required th:field="${user.fiscalCode}" /></span>
+			</li>
+			<li>
+			<span th:if="${#fields.hasErrors('user.fiscalCode')}" th:errors="${user.fiscalCode}" th:style="'color:red'"></span>
+		</li>
+		<li>
+			<label>Codice Presedente:</label>
+			
+			<span><input type="text" placeholder="code" required th:field="${user.code}" /></span>
+			</li>
+			<li>
+			<span th:if="${#fields.hasErrors('user.code')}" th:errors="${user.code}" th:style="'color:red'"></span>
+		</li>
 			 </ul>
 		
     	

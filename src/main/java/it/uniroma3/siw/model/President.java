@@ -43,6 +43,18 @@ public class President {
 	@OneToOne
 	private User user;
 	
+	@NotBlank
+	private String code;
+	
+	
+	 /*setter e getter password presidente*/
+		public void setCode(String code) {
+			this.code=code;
+		}
+		public String getCode(){
+			return this.code;
+		}
+	
 	public void setUser(User user) {
 		this.user=user;
 	}

@@ -51,7 +51,7 @@ public class PlayerController {
 
 	/* AGGIUNGI NUOVO PLAYER NEL SISTEMA SENZA LA SQUADRA)*/
 	
-	@PostMapping(value ="/admin/newPlayer")
+/*	@PostMapping(value ="/admin/newPlayer")
 	public String newPlayer(@Valid @ModelAttribute("player") Player player, 
 			                BindingResult bindingResult,@RequestParam(name = "sport", required = true) String sport, Model model) {
 		List<String> sports = this.teamService.getSports();
@@ -76,7 +76,7 @@ public class PlayerController {
 	    model.addAttribute("sports", sports); //   sport 
 	   
 		return "admin/formNewPlayer.html";
-	}
+	}*/
 	
 	
 	/*ADMIN VISUALIZZA DETTAGLI GIOCATORE*/

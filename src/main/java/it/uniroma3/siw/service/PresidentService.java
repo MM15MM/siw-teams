@@ -21,10 +21,7 @@ public class PresidentService {
 		// TODO Auto-generated method stub
 		this.presidentRepository.save(president);
 	}
-  @Transactional
-  public String getByFiscalCode(String fc) {
-	  return this.presidentRepository.findByFiscalCode(fc);
-  }
+ 
   @Transactional
   public boolean existByFiscalCode(String fc) {
 	  return this.presidentRepository.existsByFiscalCode(fc);
@@ -40,14 +37,21 @@ public List<President> findAll() {
 	// TODO Auto-generated method stub
 	return (List<President>)this.presidentRepository.findAll();
 }
+  
   @Transactional
-public void deleteById(Long id) {
-	// TODO Auto-generated method stub
-	this.presidentRepository.deleteById(id);
-}
 public List<President> findPresidentsBySport(String sport) {
 	// TODO Auto-generated method stub
 	return this.presidentRepository.findBySport(sport);
 }
+@Transactional
+public President findByCode(String code) {
+	// TODO Auto-generated method stub
+	return this.presidentRepository.findByCode(code);
+}
 
+@Transactional
+public boolean existByCode(String code) {
+	// TODO Auto-generated method stub
+	return this.presidentRepository.existsByCode(code);
+}
 }

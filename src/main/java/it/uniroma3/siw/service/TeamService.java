@@ -51,6 +51,7 @@ public class TeamService {
 	}
 	@Transactional
 	public List<String> getSports(){
+		
 		return this.teamRepository.findDistinctSports();
 	}
 	@Transactional

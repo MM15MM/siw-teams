@@ -1,6 +1,5 @@
 package it.uniroma3.siw.model;
 
-import java.time.LocalDate;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,8 +9,6 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 
-import org.springframework.format.annotation.DateTimeFormat;
-
 @Entity
 @Table(name = "users")
 public class User {
@@ -20,28 +17,29 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-	@NotBlank
-	private String name;
-	
-	@NotBlank
-	private String surname;
 	
 	@OneToOne
 	@JoinColumn(name = "president_id")
 	private President president;
 	
+	@NotBlank
+	private String code;
 	
     @NotBlank
     private String fiscalCode;
 
-   // @NotBlank
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private LocalDate birthDate;
-
-    //@NotBlank
-    private String placeOfBirth;
 	
 
+    /*setter e getter password presidente*/
+	public void setCode(String code) {
+		this.code=code;
+	}
+	public String getCode(){
+		return this.code;
+	}
+    
+    
+    
     /*setter e getter presidente*/
 	public void setPresident(President president) {
 		this.president=president;
@@ -57,24 +55,7 @@ public class User {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	/*setter e getter nome*/
-	public String getName() {
-		return name;
-	}
 	
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	/*setter e getter cognome*/
-	public String getSurname() {
-		return surname;
-	}
-	
-	public void setSurname(String surname) {
-		this.surname = surname;
-	}
-
 	/*setter e getter codice fiscale*/
     public void setFiscalCode(String fiscalCode) {
         this.fiscalCode = fiscalCode;
@@ -84,23 +65,7 @@ public class User {
         return this.fiscalCode;
     }
 	
-	/*setter e getter data nascita*/
-    public void setBirthDate(LocalDate birthDate) {
-        this.birthDate = birthDate;
-    }
- 
-    public LocalDate getBirthDate() {
-        return this.birthDate;
-    }
 	
-	/*setter e getter luogo nascita*/
-    public void setPlaceOfBirth(String placeOfBirth) {
-        this.placeOfBirth = placeOfBirth;
-    }
-    
-    public String getPlaceOfBirth() {
-        return this.placeOfBirth;
-    }
 
 }
 

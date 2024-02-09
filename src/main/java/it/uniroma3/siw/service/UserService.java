@@ -68,6 +68,11 @@ public class UserService {
 		// TODO Auto-generated method stub
 		return this.userRepository.existsByFiscalCode(fiscalCode);
 	}
+    @Transactional
+	public boolean existsByCode(String code) {
+		// TODO Auto-generated method stub
+		return this.userRepository.existsByCode(code);
+	}
 
 
 

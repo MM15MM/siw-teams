@@ -35,6 +35,7 @@ public class AuthenticationController {
 
     @Autowired
 	private UserService userService;
+
     
 	
 	@GetMapping(value = "/register") 
@@ -98,13 +99,9 @@ public class AuthenticationController {
                  Model model) {
     	
     	this.userValidator.validate(user, userBindingResult);
-    	
-            this.credentialsValidator.validate(credentials, credentialsBindingResult);
-        
-    	
-    	
+        this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
-		// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
+    	// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
             this.userService.saveUser(user);
             credentials.setUser(user);
@@ -114,7 +111,6 @@ public class AuthenticationController {
         }
         return "formRegister";
     }
-
 
 }
 

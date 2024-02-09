@@ -247,7 +247,8 @@ public class TeamController {
 		            this.teamService.save(team);
 
 		            return "team.html";
-		        } else if (user.getPresident() != null && user.getPresident().getFiscalCode().equals(team.getPresident().getFiscalCode())) {
+		        } else if (user.getPresident() != null && user.getPresident().getFiscalCode().equals(team.getPresident().getFiscalCode()) 
+		        		&& user.getCode().equals(team.getPresident().getCode())) {
 		            return "team.html";
 		        }
 		    }
