@@ -196,7 +196,7 @@ public class TeamController {
 		
 		@GetMapping(value = "/teams")
 		public String showTeams(@RequestParam(name = "sport", required = false) String sport, Model model) {
-	        List<Team> teams;
+			List<Team> teams;
 
 	        if (sport != null && !sport.isEmpty()) {
 	            //  recupera solo le squadre di quel tipo
@@ -205,7 +205,7 @@ public class TeamController {
 	            // Altrimenti, recupera tutte le squadre
 	            teams = this.teamService.findAll();
 	        }
-
+           
 	        model.addAttribute("teams", teams);
 	        model.addAttribute("selectedSport", sport);
 
