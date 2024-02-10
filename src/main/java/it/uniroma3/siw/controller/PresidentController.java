@@ -158,8 +158,7 @@ public class PresidentController {
   
   /*AGGIUNTA PLAYER ESISTENTE NEL TEAM SE NON E' TESSERATO IN UN'ALTRA SQUADRA*/
   
-  
-	@RequestMapping(value="/addPlayerToTeam/{teamId}", method = RequestMethod.POST)
+ 	@RequestMapping(value="/addPlayerToTeam/{teamId}", method = RequestMethod.POST)
 	public String addPlayerToTeam( @RequestParam("playerId") Long playerId, 
 			@PathVariable("teamId") Long teamId, 
 			@RequestParam("membershipEndDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
@@ -175,8 +174,8 @@ public class PresidentController {
 		 
 		  if (((!(team.getPlayers().contains(player)))
 					&&(player.getTeam() == null || 
-			 player.getMembershipEndDate() == null || 
-			 player.getMembershipEndDate().isBefore(startDate)))) {
+			 (player.getMembershipEndDate() == null && 
+			 player.getMembershipStartDate()==null)))) {
 			 
 			    team.getPlayers().add(player);
 	            player.setTeam(team);
@@ -186,7 +185,7 @@ public class PresidentController {
 	            this.playerService.save(player);
 			
 	        }
-		  else if( player.getMembershipEndDate().isAfter(startDate)) {
+		  else {
 		        // Aggiungi un attributo al model con il messaggio di errore
 			  String errorMessage = "Il giocatore non può essere aggiunto al team, potrai aggiungerlo quando terminerà il suo attuale tesseramento(" + player.getMembershipEndDate() + ")";
 			  redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
