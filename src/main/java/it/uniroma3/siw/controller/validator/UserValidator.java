@@ -6,12 +6,16 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 
 import it.uniroma3.siw.model.User;
+import it.uniroma3.siw.service.PresidentService;
 import it.uniroma3.siw.service.UserService;
 
 @Component
 public class UserValidator implements Validator {
 
 	    final Integer FISCAL_CODE=16;
+	    
+	    @Autowired
+	    private PresidentService presidentService;
 	    
 	    @Autowired
 	    private UserService userService;
@@ -26,6 +30,8 @@ public class UserValidator implements Validator {
 
 	        if (code.isEmpty())
 	            errors.rejectValue("code", "required");
+	        else if(!this.presidentService.existByCode(code))
+	        	errors.rejectValue("code", "inexistent");
 	        else if (this.userService.existsByCode(code) == true)
 	            errors.rejectValue("code", "duplicate");
 	       
@@ -35,6 +41,8 @@ public class UserValidator implements Validator {
 	            errors.rejectValue("fiscalCode", "size");
 	        else  if (this.userService.getFiscalCode(fiscalCode) == true)
 	            errors.rejectValue("fiscalCode", "duplicate");
+	        else if (!this.presidentService.existsByFiscalCodeAndCode(fiscalCode, code))
+	            errors.rejectValue("fiscalCode", "fiscalCodeMismatch");
 
 	    }
 

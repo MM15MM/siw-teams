@@ -236,8 +236,11 @@ public class TeamController {
 		    }
 
 		    if (team != null && team.getPresident() != null) {     //se si è autenticati
-		        if (user.getPresident() == null) {                 //se l'user(che è presidente) non è associato al presidente allora, 
-		        	                                               //viene settato il presidente della squadra(se non è nullo)
+		        if (user.getPresident() == null && 
+		        		user.getFiscalCode().equals(team.getPresident().getFiscalCode()) 
+		        		&& user.getCode().equals(team.getPresident().getCode())) {     //se l'user(che è presidente) non è stato ancora
+		        	                                                             //associato al presidente allora, 
+		        	                                                    //viene settato il presidente della squadra(se non è nullo)
 		            President newPresident = team.getPresident();  
 		            newPresident.setUser(user);
 		            this.presidentService.save(newPresident);
@@ -248,7 +251,7 @@ public class TeamController {
 
 		            return "team.html";
 		        } else if (user.getPresident() != null && user.getPresident().getFiscalCode().equals(team.getPresident().getFiscalCode()) 
-		        		&& user.getCode().equals(team.getPresident().getCode())) {
+		        		&& user.getPresident().getCode().equals(team.getPresident().getCode())) {
 		            return "team.html";
 		        }
 		    }

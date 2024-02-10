@@ -5,7 +5,11 @@ document.addEventListener("DOMContentLoaded", function() {
     header.style.opacity = 1; // Imposta l'opacità dell'header al valore completo
 
 });
-
+$(document).ready(function(){
+    $('.navbar-toggler').click(function(){
+      $('#navbarNav').toggleClass('show');
+    });
+  });
 // Lista degli URL delle pagine da precaricare
 var pagesToPreload = [
     '/admin/players',

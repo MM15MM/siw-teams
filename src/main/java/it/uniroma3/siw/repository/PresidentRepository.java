@@ -20,4 +20,7 @@ public interface PresidentRepository extends CrudRepository<President, Long> {
 
 
 	public boolean existsByCode(String code);
+
+
+	public boolean existsByFiscalCodeAndCode(String fiscalCode, String code);
 }

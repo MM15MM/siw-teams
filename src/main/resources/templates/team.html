@@ -78,7 +78,7 @@
 </div> </div>
   
    <div th:unless="${team}" th:style="'color:red;'">Non esiste</div>
-     
+   <div class="team-details"> 
     <div th:if="${team}"><div>
     
     
@@ -91,7 +91,7 @@
         <li th:if="${team.president}"><strong><span>Presidente: </span></strong><span th:text="${team.president.name} +' '+ ${team.president.surname}">(2000)</span></li>
     </ul>
  </div>
- </div>
+ </div></div> 
     
 <div th:if="${#request.userPrincipal}"  class="team-president-section">
     

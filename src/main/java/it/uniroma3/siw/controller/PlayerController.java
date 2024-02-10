@@ -2,21 +2,15 @@ package it.uniroma3.siw.controller;
 
 import java.util.List;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.uniroma3.siw.controller.validator.PlayerValidator;
 import it.uniroma3.siw.model.Player;
 import it.uniroma3.siw.service.PlayerService;
 import it.uniroma3.siw.service.TeamService;
@@ -27,8 +21,8 @@ public class PlayerController {
 	@Autowired
 	private PlayerService playerService;
 	
-	@Autowired
-	private PlayerValidator playerValidator;
+	/*@Autowired
+	private PlayerValidator playerValidator;*/
 
 	@Autowired
 	private TeamService teamService;

@@ -101,7 +101,7 @@ public class AuthenticationController {
     	this.userValidator.validate(user, userBindingResult);
         this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
-    	// se user e credential hanno entrambi contenuti validi, memorizza User e the Credentials nel DB
+    	
         if(!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {
             this.userService.saveUser(user);
             credentials.setUser(user);

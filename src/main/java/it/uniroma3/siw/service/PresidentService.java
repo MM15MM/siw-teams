@@ -54,4 +54,10 @@ public boolean existByCode(String code) {
 	// TODO Auto-generated method stub
 	return this.presidentRepository.existsByCode(code);
 }
+@Transactional
+public boolean existsByFiscalCodeAndCode(String fiscalCode, String code) {
+	// TODO Auto-generated method stub
+	return this.presidentRepository.existsByFiscalCodeAndCode(fiscalCode,code);
+}
+
 }
