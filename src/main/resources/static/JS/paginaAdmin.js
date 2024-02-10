@@ -10,26 +10,3 @@ $(document).ready(function(){
       $('#navbarNav').toggleClass('show');
     });
   });
-// Lista degli URL delle pagine da precaricare
-var pagesToPreload = [
-    '/admin/players',
-    '/admin/deletePlayer/',
-    '/admin/deletePresident/',
-    '/admin/formNewPlayer',
-    '/admin/player/',
-    '/admin/updatePlayers/',
-    '/admin/teams',
-    '/admin/presidents',
-    '/admin/president/',
-    '/admin/team/',
-    '/admin/formNewTeam',
-    '/admin/formUpdateTeam/',
-    '/admin/newPresident',
-    '/success',
-    '/'
-];
-
-// Cicla attraverso la lista e precarica le pagine
-pagesToPreload.forEach(function(url) {
-    fetch(url);
-});
