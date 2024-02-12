@@ -231,10 +231,7 @@ public class TeamController {
 		    String username = principal.getName();
 		    User user = this.credentialsService.getCredentials(username).getUser();
 
-		    if (user == null) {
-		        return "teamDefaultUser.html";
-		    }
-
+		   
 		    if (team != null && team.getPresident() != null) {     //se si è autenticati
 		        if (user.getPresident() == null && 
 		        		user.getFiscalCode().equals(team.getPresident().getFiscalCode()) 
