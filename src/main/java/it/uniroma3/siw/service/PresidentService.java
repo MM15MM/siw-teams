@@ -59,5 +59,10 @@ public boolean existsByFiscalCodeAndCode(String fiscalCode, String code) {
 	// TODO Auto-generated method stub
 	return this.presidentRepository.existsByFiscalCodeAndCode(fiscalCode,code);
 }
+@Transactional
+public void deleteById(Long id) {
+	// TODO Auto-generated method stub
+	this.presidentRepository.deleteById(id);
+}
 
 }

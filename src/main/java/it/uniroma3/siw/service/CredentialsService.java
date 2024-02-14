@@ -36,4 +36,9 @@ public class CredentialsService {
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }
+    @Transactional
+	public void deleteByUserId(Long id) {
+		// TODO Auto-generated method stub
+		this.credentialsRepository.deleteByUserId(id);
+	}
 }

@@ -43,7 +43,7 @@ import javax.sql.DataSource;
 
 		
 		// solo gli utenti autenticati con ruolo ADMIN possono accedere a risorse con path /admin/**
-		.antMatchers(HttpMethod.GET, "/admin/**","/IndexAdmin").hasAnyAuthority(ADMIN_ROLE)
+		.antMatchers(HttpMethod.GET, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
 		.antMatchers(HttpMethod.POST, "/admin/**").hasAnyAuthority(ADMIN_ROLE)
 
 

@@ -2,6 +2,7 @@ package it.uniroma3.siw.model;
 
 import java.time.LocalDate;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -43,7 +44,7 @@ public class President {
 	@NotBlank
 	private String sport;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	private User user;
 	
 	@NotBlank

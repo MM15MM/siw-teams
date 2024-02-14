@@ -163,7 +163,6 @@ public class PlayerController {
 		        // Aggiungi un attributo al model con il messaggio di errore
 			  String errorMessage = "Il giocatore non può essere aggiunto al team, potrai aggiungerlo quando terminerà il suo attuale tesseramento(" + player.getMembershipEndDate() + ")";
 			  redirectAttributes.addFlashAttribute("errorMessage", errorMessage);
-			 System.out.println("Messaggio di errore impostato: " + errorMessage);
 		 }
 		    
 		return "redirect:" + referer;
@@ -201,7 +200,7 @@ public class PlayerController {
 	/*ELIMINA PLAYER DAL SISTEMA*/
 	
 	@GetMapping(value = "/admin/deletePlayer/{id}")
-	public String deletePlayer(@PathVariable("id") Long id) {
+	public String deletePlayer(@PathVariable("id") Long id, Model model) {
         this.playerService.deleteById(id);
 		return "redirect:/admin/players";
 	}

@@ -143,6 +143,17 @@ public class PresidentController {
 		return "redirect:" + referer;
 	}
 	
+	/*ADMIN ELIMINA PRESIDENTE*/
+	@GetMapping(value="/admin/deletePresident/{id}")
+	public String adminNewPresidentGetMapping(@PathVariable("id") Long id,Model model) {
+		President p = this.presidentService.findById(id);
+            if(p.getUser()!=null) {
+			this.credentialsService.deleteByUserId(p.getUser().getId());
+		}
+            this.presidentService.deleteById(id);
+		return "redirect:/admin/presidents";
+	
+	}
 
 	
 /*ADMIN VISUALIZZA DETTAGLI PRESIDENTE*/

@@ -67,7 +67,7 @@
 
 
 <div class="container-presidents my-5 text-center">
-<h1 class="presidents-title-page">Giocatori</h1>
+<h1 class="presidents-title-page">Presidenti</h1>
 <div class="d-flex justify-content-center">
 <div id="loadingSpinner" class="spinner-border text-info" role="status">
   <span class="visually-hidden">Caricamento in corso...</span>
@@ -82,15 +82,17 @@
         
         <button class="btn" type="submit">Filtra</button>
     </form>
-    <div th:if="${presidents == null or presidents.isEmpty()}">Non ci sono giocatori nel sistema</div>
+    <div th:if="${presidents == null or presidents.isEmpty()}">Non ci sono presidenti nel sistema</div>
     <ul class="presidents-list">
    
     <li th:each="president : ${presidents}" class="row mb-2 custom-row" th:onclick="'redirectToPresidentPageAdmin(\'' + ${president.id} + '\')'" th:style="'cursor:pointer;'">
-    <div class="col">
+    <div class="col-md-6">
     <span th:text="${president.name + ' ' + president.surname}"></span>
      </div> 
 		  
-		  
+		<div class="col-md-6">
+    <a th:href="@{'/admin/deletePresident/' + ${president.id}}" th:style="'color:red;'">Elimina</a>
+     </div>  
     </li>
   
 </ul>
