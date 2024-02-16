@@ -146,25 +146,19 @@ public class TeamController {
 		}
 
 		@PostMapping(value = "/admin/formUpdateTeam/{id}")
-		public String editingTeam(@Valid @PathVariable("id") Long id, @ModelAttribute("team") Team team,
-				BindingResult BindingResult, Model model) {
-			Team t = this.teamService.findById(id);
-			t.setName(team.getName());
-			t.setAddress(team.getAddress());
-			t.setPresident(team.getPresident());
-			t.setYear(team.getYear());
-			t.setSport(team.getSport());
-			t.setImage(team.getImage());
-
-			this.teamValidator.validate(t, BindingResult);
-			if (!BindingResult.hasErrors()) {
-				List<Team> teams = this.teamService.findAll();
-				model.addAttribute("teams", teams);
-				this.teamService.save(t);
-				return "admin/teams.html";
-			}
-			model.addAttribute("team", this.teamService.findById(id));
-			return "redirect:/admin/team/"+id;
+		public String editingTeam(@PathVariable("id") Long id, @Valid @ModelAttribute("team") Team team,
+				BindingResult bindingResult, Model model) {
+			
+			this.teamValidator.validate(team, bindingResult);
+	        if(!bindingResult.hasErrors()){
+	            Team t = this.teamService.findById(id);
+	            team.setId(t.getId());
+	            this.teamService.save(team);
+	            model.addAttribute("team", team);
+	            return "redirect:/admin/team/"+ id;
+	        }else{
+	            return "admin/formUpdateTeam.html";//"redirect:" + //referer;
+	        }
 		}
 		
 	/*---------RICERCA TEAMS DA PARTE DELL'ADMIN----------*/

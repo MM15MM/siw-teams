@@ -29,14 +29,14 @@ public class PresidentValidator implements Validator{
 	        String code = president.getCode().trim();
 
 	        if (nome.isEmpty())
-	            errors.rejectValue("nome", "required");
+	            errors.rejectValue("name", "required");
 	        else if (nome.length() < MIN_NAME_LENGTH || nome.length() > MAX_NAME_LENGTH)
-	            errors.rejectValue("nome", "size");
+	            errors.rejectValue("name", "size");
 
 	        if (cognome.isEmpty())
-	            errors.rejectValue("cognome", "required");
+	            errors.rejectValue("surname", "required");
 	        else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
-	            errors.rejectValue("cognome", "size");
+	            errors.rejectValue("surname", "size");
 	        if (code.isEmpty())
 	            errors.rejectValue("code", "required");
 	        else if (this.presidentService.existByCode(code) == true)

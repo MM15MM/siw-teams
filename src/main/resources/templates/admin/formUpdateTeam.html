@@ -78,28 +78,31 @@
   		<div th:if="${#fields.hasGlobalErrors()}">
   			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}" th:style="'color:red'">...</p> 
   		</div>
-		
-		<div>
+		<ul>
+		<li>
 			<label>Nome:</label> <span><input placeholder="name" type="text" th:field="${team.name}" /></span>
-		    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
-		</div>
+		   </li>
+		   <li> <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" th:style="'color:red;'"></span>
+		</li>
 
-		<div>
+		<li>
 			<label>Anno di Fondazione:</label> <span><input placeholder="year" type="number" th:field="${team.year}" required /></span>
-		    <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}"></span>
-		</div>
+		   </li> 
+		  <li> <span th:if="${#fields.hasErrors('year')}" th:errors="*{year}" th:style="'color:red;'"></span>
+		</li>
 
-		<div>
-			<label>Indirizzo Sede:</label> <span><input placeholder="indirizzo sede" type="text" th:field="${team.address}" /></span>
-		</div>
+		<li>
+			<label>Indirizzo Sede:</label> <span><input placeholder="address" type="text" th:field="${team.address}" /></span>
+		</li>
 		
-		<div>
+		<li>
 			<label>Sport:</label> <span><input placeholder="sport" type="text" th:field="${team.sport}" /></span>
-		</div>
+		</li>
 
-        <div>
+        <li>
 			<label>URL:</label> <span><input placeholder="url immagine" type="url" th:field="${team.image}" /></span>
-		</div>
+		</li>
+		</ul>
 		<div>
 			<span><button class="btn" type="submit">Modifica</button></span>
 		</div>

@@ -187,9 +187,6 @@ public class PresidentController {
 
 	    return "admin/presidents";
 	}
-		
-	
-	
 	
 	
 

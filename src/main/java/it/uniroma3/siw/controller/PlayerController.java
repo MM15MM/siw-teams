@@ -49,8 +49,6 @@ public class PlayerController {
 	/*---------------------------------------------*/
 	/*---------------------------------------------*/
 	
-		
-	
 	/*AGGIUNTA E RIMOZIONE PLAYER DAL TEAM DA PARTE DEL PRESIDENTE*/
 	@GetMapping(value="/updatePlayers/{id}")
 	public String updatePlayers(@PathVariable("id") Long id, Model model, Principal principal) {
@@ -295,7 +293,7 @@ public class PlayerController {
             // altrimenti recupera tutti i giocatori
             players = this.playerService.findAll();
         }
-
+        
         model.addAttribute("players", players);
         model.addAttribute("selectedSport", sport);
 
