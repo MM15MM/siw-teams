@@ -151,8 +151,7 @@ public class TeamController {
 			
 			this.teamValidator.validate(team, bindingResult);
 	        if(!bindingResult.hasErrors()){
-	            Team t = this.teamService.findById(id);
-	            team.setId(t.getId());
+	          
 	            this.teamService.save(team);
 	            model.addAttribute("team", team);
 	            return "redirect:/admin/team/"+ id;
