@@ -93,6 +93,8 @@
 		 <div class="col-md-6">
      <div th:unless="${player.team}"><a th:href="@{'/admin/deletePlayer/'+${player.id}}" th:style="'color:red;'">
        Elimina</a></div>
+       <div th:if="${player.team}"><a href="" th:style="'color:black; opacity: 0.5;'">
+       Elimina</a></div>
 		
 		</div>
 		  

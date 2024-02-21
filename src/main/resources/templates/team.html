@@ -106,7 +106,7 @@
         <h2>Giocatori:</h2>
         <div  class="players-list-team">
         <ul th:each="player: ${team.players}">
-          <li><span th:text="${player.name} + ' ' + ${player.surname}"></span></li>
+          <li><span th:text="${player.name} + ' ' + ${player.surname}+' '"></span><a th:href="@{'/updatePlayer/' + ${player.id}}">Modifica Giocatore</a></li>
         </ul> 
 		   </div>
 

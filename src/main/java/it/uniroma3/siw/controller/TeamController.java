@@ -1,6 +1,7 @@
 package it.uniroma3.siw.controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,10 +18,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.controller.validator.TeamValidator;
+import it.uniroma3.siw.model.Player;
 import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
+import it.uniroma3.siw.service.PlayerService;
 import it.uniroma3.siw.service.PresidentService;
 import it.uniroma3.siw.service.TeamService;
 import it.uniroma3.siw.service.UserService;
@@ -42,6 +45,9 @@ public class TeamController {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private PlayerService playerService;
 	
 
 	/*----------------------------------------------------*/
@@ -119,7 +125,7 @@ public class TeamController {
 			if(!bindingResult.hasErrors()) { //se i dati sono corretti
 			    this.teamService.save(team); //salvo oggetto team  
 				model.addAttribute("team", team);
-				return "redirect:/admin/teams"; 
+				return "redirect:/admin/team/"+team.getId(); 
 			} 
 			
 				return "admin/formNewTeam"; 
@@ -132,6 +138,15 @@ public class TeamController {
 		public String deleteTeam(@PathVariable("id") Long id, Model model){
 
 			Team team = this.teamService.findById(id);
+			for(Player p: team.getPlayers()) {
+				p.setTeam(null);
+				p.setMembershipEndDate(LocalDate.now());
+				this.playerService.save(p);
+			}
+			if(team.getPresident()!=null) {
+				team.getPresident().setTeam(null);
+				this.presidentService.save(team.getPresident());
+			}
 			this.teamService.deleteById(team.getId());
 
 			return "redirect:/admin/teams";

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import it.uniroma3.siw.controller.validator.PlayerValidator;
 import it.uniroma3.siw.model.Player;
+import it.uniroma3.siw.model.President;
 import it.uniroma3.siw.model.Team;
 import it.uniroma3.siw.model.User;
 import it.uniroma3.siw.service.CredentialsService;
@@ -187,7 +188,32 @@ public class PlayerController {
 		
 		return "redirect:" + referer;
 	}
+	/*---------PRESIDENTE MODIFICA DETTAGLI GIOCATORE--------*/
 	
+	@GetMapping(value = "/updatePlayer/{id}")
+	public String editPlayer(@PathVariable("id") Long id, Model model) {
+		model.addAttribute("player", this.playerService.findById(id));
+		return "formUpdatePlayer.html";
+	}
+
+	@PostMapping(value = "/formUpdatePlayer/{id}")
+	public String editingPlayer(@PathVariable("id") Long id, @Valid @ModelAttribute("player") Player player,
+			BindingResult bindingResult, Principal principal, Model model) {
+		String username = principal.getName();
+		User u =this.credentialsService.getCredentials(username).getUser();
+		President p = u.getPresident();
+		
+		this.playerValidator.validate(player, bindingResult);
+        if(!bindingResult.hasErrors()){
+             player.setSport(p.getSport());
+             player.setTeam(p.getTeam());
+            this.playerService.save(player);
+            model.addAttribute("player", player);
+            return "redirect:/team/"+ player.getTeam().getId();
+        }else{
+            return "admin/formUpdatePlayer.html";//"redirect:" + //referer;
+        }
+	}
 	
 	/*---------------------------------------------*/
 	/*---------------------------------------------*/

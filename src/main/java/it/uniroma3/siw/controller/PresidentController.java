@@ -86,7 +86,7 @@ public class PresidentController {
 			
 			this.presidentService.save(president);
 			model.addAttribute("president", president);
-			return "admin/indexAdmin";
+			return "redirect:/admin/president/"+president.getId();
 		}
 		
 		return "admin/formNewPresident";
@@ -145,11 +145,15 @@ public class PresidentController {
 	
 	/*ADMIN ELIMINA PRESIDENTE*/
 	@GetMapping(value="/admin/deletePresident/{id}")
-	public String adminNewPresidentGetMapping(@PathVariable("id") Long id,Model model) {
+	public String adminDeletePresident(@PathVariable("id") Long id,Model model) {
 		President p = this.presidentService.findById(id);
             if(p.getUser()!=null) {
 			this.credentialsService.deleteByUserId(p.getUser().getId());
 		}
+         if(p.getTeam()!=null) {
+        	 p.getTeam().setPresident(null);
+        	 this.teamService.save(p.getTeam());
+         }
             this.presidentService.deleteById(id);
 		return "redirect:/admin/presidents";
 	

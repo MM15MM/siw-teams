@@ -52,6 +52,7 @@ font-family: 'Natural Precision', sans-serif;
 	padding-top:4em;
 }
 .reg-form, .login-form, .reg-suc{
+	cursor: url('../images/ball.png'), auto;
     font-family:cursive;
 	background-image: url("../images/background1.jpg");
 	background-position:center;
@@ -64,6 +65,7 @@ font-family: 'Natural Precision', sans-serif;
 	
 }
 body{
+	cursor: url('../images/ball.png'), auto;
 	font-family:cursive;
 	background-image: url("../images/bkg1.jpg");
 	background-position:center;

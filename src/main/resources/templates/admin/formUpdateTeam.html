@@ -109,13 +109,13 @@
 	</form>
       </div>
       </div>
-      	  <div class="delete-team">
-        <strong><span class="team-title" th:text="${team.name}"></span></strong>
+      	  <div class="delete-team mt-2">
+       
 		<form  class="delete-btn" th:action="@{'/admin/deleteTeam/' + ${team.id}}" method="post">
 			<button type="submit" class="btn2">Elimina</button>
 		</form>
 		</div>
-		
+		<div> <a th:href="@{'/admin/team/' + ${team.id}}"> Torna alla squadra</a></div>
 		</div>
 
 		

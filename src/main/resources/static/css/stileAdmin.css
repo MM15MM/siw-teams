@@ -54,7 +54,7 @@ header {
             border: 1px solid #dee2e6; 
         }
 body{
-
+  cursor: url('../images/ball.png'), auto;
 	font-family:cursive;
 	background-image: url("../images/bkg1.jpg");
 	background-position:center;
